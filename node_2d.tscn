@@ -257,17 +257,10 @@ script = ExtResource("1_kdubu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="player" unique_id=1930288591]
 texture_filter = 1
-position = Vector2(1.6666667, 0)
 sprite_frames = SubResource("SpriteFrames_q5dlx")
-animation = &"wall climb"
+animation = &"fall"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player" unique_id=1767063805]
 position = Vector2(0.6666665, 2.5)
 shape = SubResource("RectangleShape2D_d21ai")
-
-[node name="wall_slide" type="RayCast2D" parent="player" unique_id=970725092]
-unique_name_in_owner = true
-position = Vector2(0.33333302, 2)
-scale = Vector2(0.33333334, 0.33333334)
-target_position = Vector2(46, -2)
