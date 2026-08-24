@@ -3,7 +3,10 @@ extends CharacterBody2D
 #The variable accessing the animations in animatedsprite2d
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var wall_slide: RayCast2D = %wall_slide
-
+@onready var ledge: RayCast2D = %ledge
+@onready var space: RayCast2D = %space
+@onready var collision_shape_2d: CollisionShape2D = %CollisionShape2D
+@onready var area_2d: Area2D = $Area2D
 
 
 #Games states
@@ -13,48 +16,66 @@ enum State{
 	Jump,
 	Wall_Jump,
 	Slide,
-	Swing
+	Swing,
+	Climb
 }
 
 #Variables
-const fall_gravity = 1500.0
+const fall_gravity = 1000.0
 const fall_velocity = 500.0
 const walk_velocity = 200.0
-const jump_velocity = -600.0
-const jump_deceleration = 1500.0
-const increment = 250 #multiplier for jump force
-const max_y = -1000.0 #maximum vertical jump
-const max_x = 1000.0 #maximum horizontal jump
+const increment = 200 #multiplier for jump force
+const max_y = -500.0 #maximum vertical jump
+const max_x = 500.0 #maximum horizontal jump
 const wall_gravity = 300.0 #Used to calculate how fast the player slides
 const wall_velocity = 500.0 #Maximum slide speed
 var current_x:float = 0.0 #initial variable for jumping horizontally
 var can_move = true #variable for when character can move or not
 var flipped = false #variable for changing the horizontal value when changing directions
+var onRope = false #Used for indicating rope state status
 var current_y:float =  0.0 #Initial jump force
+var bounce_multiplier = 0 #Used for super bounce calculation 
+var facing_direction = 1.0 #Used for forcing player sprite to change direction depending on input
+var climb_direction = 0 #Used for climbing up and down on the rope
+
 
 
 
 
 #Default state is fall for now, might change it to floor one day
-var active_state := State.Fall
+var active_state = State.Fall
 
 #Prepares the starting state
 func _ready() -> void:
 	switch_state(active_state)
-
+	ledge.add_exception(self)
 
 #Is used to process physics inside the different states
 func _physics_process(delta: float) -> void:
 	process_state(delta)
 	move_and_slide()
-	if Input.is_action_pressed("jump") and animated_sprite_2d.animation == "idle":
+	if Input.is_action_pressed("jump") and animated_sprite_2d.animation == "stand":
 		can_move = false #prohibits movement while charging jump
 		if flipped == false: #if flipped uses negative horizontal values otherwise use positive values for default
 			current_x = move_toward(current_x, max_x , increment *delta)
 		else:
 			current_x= move_toward(current_x, max_y, increment * delta)
 		current_y= move_toward(current_y, max_y, increment * delta)
+		animated_sprite_2d.offset = Vector2(0, 34 )
 		animated_sprite_2d.animation = "hold"
+	elif Input.is_action_pressed("jump") and animated_sprite_2d.animation == "wall climb":
+		if flipped == true: #if flipped uses negative horizontal values otherwise use positive values for default
+			current_x = move_toward(current_x, max_x , increment *delta)
+		else:
+			current_x= move_toward(current_x, max_y, increment * delta)
+		current_y= move_toward(current_y, max_y, increment * delta)
+	elif Input.is_action_pressed("jump") and animated_sprite_2d.animation == "swing":
+		if flipped == false: #if flipped uses negative horizontal values otherwise use positive values for default
+			current_x = move_toward(current_x, max_x , increment *delta)
+		else:
+			current_x= move_toward(current_x, max_y, increment * delta)
+		current_y= move_toward(current_y, max_y, increment * delta)
+	
 
 #Used because states change the value for everyframe and will get stuck if this part is inside the state
 func jump_process() -> void:
@@ -80,6 +101,15 @@ func switch_state(to_state: State) -> void:
 			animated_sprite_2d.animation = "wall climb"
 			velocity.y = 0
 
+		State.Climb:
+			animated_sprite_2d.play("ledge climb") #work in progress (no sprite yet)
+			velocity = Vector2.ZERO
+			global_position.y = ledge.get_collision_point().y
+			
+		State.Swing:
+			animated_sprite_2d.animation = "swing"
+			rotation_degrees = 0
+			velocity = Vector2.ZERO
 
 #Defines what each states does.
 func process_state(delta: float) -> void:
@@ -89,53 +119,177 @@ func process_state(delta: float) -> void:
 			if is_on_floor():
 				switch_state(State.Floor)
 			elif can_slide():
-				print("can slide")
 				switch_state(State.Slide)
-			
+			elif is_input_facing() and is_ledge() and is_space():
+				switch_state(State.Climb)
+			elif onRope == true:
+				switch_state(State.Swing)
+
 		State.Floor:
 			if Input.get_axis("left", "right") and can_move == true:
 				animated_sprite_2d.animation = "run"
 			else:
-				animated_sprite_2d.animation = "idle"
+				animated_sprite_2d.animation = "stand"
 			if can_move == true:
 				movement()
-			if not is_on_floor():
+			if not is_on_floor() and can_slide() == false: #Do not turn into elif
 				switch_state(State.Fall)
 			elif Input.is_action_just_released("jump"):
 				can_move = true
 				switch_state(State.Jump)
+			elif onRope == true:
+				switch_state(State.Swing)
 
 		State.Jump:
+			animated_sprite_2d.offset = Vector2(0, 0)
 			velocity.x = current_x
 			velocity.y = current_y
 			jump_process()
-			if velocity.y <= 0 or velocity.y >= 0:
+			if velocity.y <= 0 and onRope == false or velocity.y >= 0 and onRope == false:
 				switch_state(State.Fall)
-#In progress
+
+#In progress: sprite needs to be changed at some point
 		State.Slide:
 			velocity.y = move_toward(velocity.y, wall_velocity, wall_gravity * delta)
-			movement()
 			if is_on_floor():
 				switch_state(State.Floor)
 			elif not can_slide():
 				switch_state(State.Fall)
+			elif Input.is_action_just_pressed("jump"):
+				set_facing_direction(-facing_direction)
+				switch_state(State.Wall_Jump)
+			elif Input.is_action_pressed("left"): #Allows players to adjust their position on the wall
+				velocity.y = facing_direction * 50
+			elif Input.is_action_pressed("right"):
+				velocity.y = -facing_direction * 50
+			elif is_input_facing() and is_ledge() and is_space():
+				switch_state(State.Climb)
 
+		State.Wall_Jump:
+			velocity.y = 0
+			if animated_sprite_2d.flip_h != true: #changes the values used for jumping horizontally when the image gets flipped
+				flipped = true
+			else:
+				flipped = false
+			if Input.is_action_just_released("jump"):
+				bounce_multiplier = current_y
+				switch_state(State.Jump)
+				can_move = true
 
-#Defines movement and direction of jumps 
-func movement() -> void:
-	var direction := (Input.get_axis("left","right"))
-	if direction:
-		animated_sprite_2d.flip_h = direction < 0
-		#Forces the raycast to change directions
-		wall_slide.position.x = direction * absf(wall_slide.position.x)
-		wall_slide.target_position.x = direction * absf(wall_slide.target_position.x)
-		wall_slide.force_raycast_update()
-	velocity.x = direction * walk_velocity #Allows walking
+		State.Climb:
+			if not animated_sprite_2d.is_playing(): #ensures the animation is over before changing the character position
+				var offset = ledge_offset()
+				offset.x *= facing_direction
+				global_position += offset *2
+				switch_state(State.Floor)
+			
+		State.Swing:
+			if Input.is_action_pressed("up"):
+				if facing_direction > 0:
+					position.y += -facing_direction
+				else:
+					position.y += facing_direction
+			elif Input.is_action_pressed("down"):
+				if facing_direction > 0:
+					position.y += facing_direction
+				else:
+					position.y += -facing_direction
+			movement()
+			if Input.is_action_just_released("jump"):
+				exit_rope()
+				switch_state(State.Jump)
+				
+
+#Defines movement and direction of jumps (lacking sprites)
+func movement(direction: = 0) -> void:
+	if direction == 0:
+		direction = (Input.get_axis("left","right"))
+	set_facing_direction(direction)
+	if not onRope:
+		velocity.x = direction * walk_velocity #Allows walking
 	if animated_sprite_2d.flip_h == true: #changes the values used for jumping horizontally when the image gets flipped
 		flipped = true
 	else:
 		flipped = false
-		
+
+##------------------------------------------------
+##Used for ledge climbing
+##-----------------------------------------------
+func is_input_facing() -> bool:
+	return (Input.get_axis("left","right")) == facing_direction
+
+func is_ledge() -> bool:
+	return is_on_wall() and ledge.is_colliding() and ledge.get_collision_normal().is_equal_approx(Vector2.UP)
+
+func is_space() -> bool:
+	space.global_position = ledge.get_collision_point()
+	space.force_raycast_update()
+	return not space.is_colliding()
+
+func ledge_offset() -> Vector2:
+	var shaped = collision_shape_2d.shape
+	if shaped is RectangleShape2D:
+		return Vector2(shaped.size.x, -shaped.size.y * 0.5)
+	return Vector2.ZERO
+##------------------------------------------------
+##End of ledge climbing
+##-----------------------------------------------
+
+#forces players to jump on the opposite direction on wall jump
+func set_facing_direction(direction: float) -> void:
+	if direction:
+		animated_sprite_2d.flip_h = direction < 0
+		#Forces the raycast to change directions
+		facing_direction = direction
+		ledge.position.x = direction * absf(ledge.position.x)
+		ledge.target_position.x = direction * absf(ledge.target_position.x)
+		ledge.force_raycast_update()
+		wall_slide.position.x = direction * absf(wall_slide.position.x)
+		wall_slide.target_position.x = direction * absf(wall_slide.target_position.x)
+		wall_slide.force_raycast_update()
 
 func can_slide() -> bool: #used for wall sliding
 	return is_on_wall_only() and wall_slide.is_colliding()
+
+
+
+func bounce() -> void: #used to define how superjumps work
+	if velocity.y > 0 and velocity.x != 0 and velocity.y <= 250:
+		velocity.y *= -3
+	elif velocity.y < 0 and velocity.x != 0 and velocity.y >= -250:
+		velocity.y *= 3
+	if velocity.y > 0 and velocity.x != 0 and velocity.y <500 and velocity.y > 250:
+		velocity.y *= -2
+	elif velocity.y < 0 and velocity.x != 0 and velocity.y > -500 and velocity.y > -250:
+		velocity.y *= 2
+	elif velocity.x != 0 and velocity.y > 0 and velocity.y > 500:
+		velocity.y *= -1.25
+	elif velocity.x != 0 and velocity.y < 0 and velocity.y < -500:
+		velocity.y *= 1.25
+
+
+##------------------------------------------------
+##Start of rope 
+##-----------------------------------------------
+func enter_rope(area):
+	onRope = true
+	reparent(area)
+	global_position = area.get_rope_position(self)
+
+func exit_rope():
+	area_2d.monitoring = false
+	onRope = false
+	reparent(get_tree().current_scene)
+	rotation_degrees = 0
+	
+	await get_tree().create_timer(1).timeout
+	area_2d.monitoring = true
+	
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if area.is_in_group("rope") and onRope == false:
+		call_deferred("enter_rope", area)
+
+
+func _on_area_2d_area_exited(area: Area2D) -> void:
+	if area.is_in_group("rope") and onRope == true:
+		onRope = false

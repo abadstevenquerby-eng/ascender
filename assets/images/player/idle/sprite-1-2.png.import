@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qfajrgskpn0d"
-path="res://.godot/imported/Fall (32x32).png-21da23d5fef03472fe1569e655e80fc6.ctex"
+uid="uid://q2y4ehwrkdfm"
+path="res://.godot/imported/sprite-1-2.png-16807239336fb826c9856ccea7b9330a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/player/Fall (32x32).png"
-dest_files=["res://.godot/imported/Fall (32x32).png-21da23d5fef03472fe1569e655e80fc6.ctex"]
+source_file="res://assets/images/player/idle/sprite-1-2.png"
+dest_files=["res://.godot/imported/sprite-1-2.png-16807239336fb826c9856ccea7b9330a.ctex"]
 
 [params]
 

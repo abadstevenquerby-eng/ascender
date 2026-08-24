@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dimuk0tgjjbtx"
-path="res://.godot/imported/Hold (32x32).png-a7e38b81615d478de3ba27fe76db0d8c.ctex"
+uid="uid://yuvsbvoaxfwo"
+path="res://.godot/imported/mushroom bounce.png-7132b9d5463f2bda186ec0840d3e8ec6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/player/Hold (32x32).png"
-dest_files=["res://.godot/imported/Hold (32x32).png-a7e38b81615d478de3ba27fe76db0d8c.ctex"]
+source_file="res://assets/images/mushroom/mushroom bounce.png"
+dest_files=["res://.godot/imported/mushroom bounce.png-7132b9d5463f2bda186ec0840d3e8ec6.ctex"]
 
 [params]
 
