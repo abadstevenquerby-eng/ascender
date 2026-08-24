@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://c7i0dc1qqi62i"]
+
+[ext_resource type="Script" uid="uid://d27vp7bp12e5d" path="res://script/main.gd" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://ukcl7s64eh2q" path="res://testmushroom.tscn" id="2_0xm2m"]
+
+[node name="main" type="Node2D" unique_id=314686293]
+script = ExtResource("1_0xm2m")
+
+[node name="testmushroom" parent="." unique_id=164484946 instance=ExtResource("2_0xm2m")]
+position = Vector2(69, 184)
