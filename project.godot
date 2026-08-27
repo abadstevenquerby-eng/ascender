@@ -11,14 +11,20 @@ config_version=5
 [application]
 
 config/name="ascender copied new"
-run/main_scene="uid://c7i0dc1qqi62i"
+run/main_scene="uid://dcawovsp0do63"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+MainAudio="*uid://dxkcygaw26e07"
+
 [display]
 
-window/size/viewport_width=1600
-window/size/viewport_height=1600
+window/size/viewport_width=1275
+window/size/viewport_height=1247
+window/size/mode=3
+window/stretch/mode="viewport"
 
 [input]
 

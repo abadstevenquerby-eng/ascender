@@ -4,8 +4,8 @@ extends Area2D
 @onready var rope: Area2D = $"."
 
 signal onRope
-var maxSwing =  45
-var direction = -0.5
+var maxSwing =  45 #Defines how wide the swing will be
+var direction = -0.5 #Value used to make the vine move
 
 @export var ropeTexture: CompressedTexture2D:
 	set(newValue):
@@ -54,11 +54,12 @@ func  _process(delta: float) -> void:
 	elif rotation_degrees <= 0 - maxSwing:
 		direction = 0.5
 
+#Is called by the player script in order to latch onto the moving rope
 func get_rope_position(body):
 	var newPosition
 	var shortestDistance
 	
-	for child in get_children():
+	for child in get_children(): #Checks the rope group to find the global position of the 
 		if not child is Sprite2D: continue
 		var distance =  body.global_position.distance_to(child.global_position)
 		
