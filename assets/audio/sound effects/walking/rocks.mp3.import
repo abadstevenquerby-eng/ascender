@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bqoxsjwek2ken"
+path="res://.godot/imported/rocks.mp3-3ec244fdd32fa13e1b8e99939aeb1c54.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/sound effects/walking/rocks.mp3"
+dest_files=["res://.godot/imported/rocks.mp3-3ec244fdd32fa13e1b8e99939aeb1c54.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
