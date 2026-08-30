@@ -150,8 +150,7 @@ func process_state(delta: float) -> void:
 
 		State.Jump:
 			animated_sprite_2d.offset = Vector2(0, 0)
-			velocity.x = current_x 
-			velocity.y = current_y -100
+			velocity.x = current_x 			velocity.y = current_y -100
 			jump_process()
 			if velocity.y <= 0 and onRope == false or velocity.y >= 0 and onRope == false:
 				switch_state(State.Fall)

@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://lx1ho8hrxxgb"]
+
+[ext_resource type="Texture2D" uid="uid://bghwoyyt0v22m" path="res://assets/images/tilemap/level1/Lava_2.png" id="1_l8jp3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pbxjr"]
+size = Vector2(377, 28.6875)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2xug1"]
+size = Vector2(364, 93.046875)
+
+[node name="StaticBody2D" type="StaticBody2D" unique_id=1804036104]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2125354495]
+texture = ExtResource("1_l8jp3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2011864691]
+position = Vector2(32.5, -191.65625)
+shape = SubResource("RectangleShape2D_pbxjr")
+
+[node name="CollisionShape2d" type="CollisionShape2D" parent="." unique_id=1190185649]
+position = Vector2(-110, -5)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_2xug1")

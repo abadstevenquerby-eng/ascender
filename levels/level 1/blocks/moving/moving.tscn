@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://bqqn7ts2e7ty1"]
+
+[ext_resource type="Script" uid="uid://berxv4folugux" path="res://levels/level 1/blocks/moving/moving.gd" id="1_x3se0"]
+[ext_resource type="Texture2D" uid="uid://jpo451rwwer2" path="res://assets/images/tilemap/level1/Lava_3.png" id="2_g6wx0"]
+
+[sub_resource type="Curve2D" id="Curve2D_1geap"]
+resource_local_to_scene = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4oiyx"]
+size = Vector2(299, 51)
+
+[node name="Path2D" type="Path2D" unique_id=299928165]
+curve = SubResource("Curve2D_1geap")
+script = ExtResource("1_x3se0")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=2112734648]
+unique_name_in_owner = true
+position = Vector2(-2, 18)
+rotates = false
+loop = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="PathFollow2D" unique_id=829375851]
+remote_path = NodePath("../../AnimatableBody2D")
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="." unique_id=1567530090]
+position = Vector2(-2, 18)
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D" unique_id=2079185917]
+texture = ExtResource("2_g6wx0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D" unique_id=951812469]
+position = Vector2(-1, -15.5)
+shape = SubResource("RectangleShape2D_4oiyx")

@@ -2,7 +2,6 @@ extends CharacterBody2D
 
 #The variable accessing the animations in animatedsprite2d
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
-@onready var wall_slide: RayCast2D = %wall_slide
 @onready var ledge: RayCast2D = %ledge
 @onready var space: RayCast2D = %space
 @onready var collision_shape_2d: CollisionShape2D = %CollisionShape2D
@@ -297,3 +296,7 @@ func _update_charge_bar(is_charging: bool) -> void:
 	else:
 		charge_bar.visible = false
 		charge_bar.value = 0.0
+
+
+func entered(area: Area2D) -> void:
+	pass # Replace with function body.

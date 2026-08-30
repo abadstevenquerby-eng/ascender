@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://ctjc8s37yjwvw"]
+
+[ext_resource type="Texture2D" uid="uid://jpo451rwwer2" path="res://assets/images/tilemap/level1/Lava_3.png" id="1_1y2ps"]
+[ext_resource type="Script" uid="uid://bn8oimnkmvka5" path="res://levels/level 1/blocks/falling_collapse/falling_slow.gd" id="1_ay3dh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cwj88"]
+size = Vector2(293, 52)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ay3dh"]
+size = Vector2(281, 38)
+
+[node name="StaticBody2D" type="StaticBody2D" unique_id=1187791060]
+script = ExtResource("1_ay3dh")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=358690413]
+texture = ExtResource("1_1y2ps")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=498523994]
+unique_name_in_owner = true
+position = Vector2(-0.5, -18)
+shape = SubResource("RectangleShape2D_cwj88")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1305501482]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=973880513]
+position = Vector2(-6, -43)
+shape = SubResource("RectangleShape2D_ay3dh")
+
+[connection signal="body_entered" from="Area2D" to="." method="enter"]
