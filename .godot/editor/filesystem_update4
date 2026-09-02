@@ -1,2 +1,5 @@
 res://levels/level_2/level2.tscn
-res://levels/level_2/blocks/static/block3.tscn
+res://main_menu.gd
+res://main_menu.tscn
+res://level_selection.gd
+res://level_selection.tscn

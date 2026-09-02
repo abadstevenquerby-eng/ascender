@@ -13,11 +13,8 @@ func _process(delta: float) -> void:
 
 
 func _on_level_pressed() -> void:
-	$sfx_click.play()
 	get_tree().change_scene_to_file("res://levels/level 1/level1.tscn")
 
 
 func _on_level_2_pressed() -> void:
-	$sfx_click.play()
-	await get_tree
-	get_tree().change_scene_to_file("res://levels/testlevel/testmushroom.tscn")
+	get_tree().change_scene_to_file("res://levels/level_2/level2.tscn")
