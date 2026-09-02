@@ -8,6 +8,8 @@ extends CharacterBody2D
 @onready var area_2d: Area2D = $Area2D
 @onready var charge_bar: ProgressBar = get_node_or_null("%Chargebar")
 @onready var sfx_run: AudioStreamPlayer = %sfx_run
+@onready var sfx_jump: AudioStreamPlayer = %sfx_jump
+
 
 #Games states
 enum State{
@@ -64,6 +66,7 @@ func _physics_process(delta: float) -> void:
 		current_y= move_toward(current_y, max_y, increment * delta)
 		animated_sprite_2d.offset = Vector2(0, 34 )
 		animated_sprite_2d.animation = "hold"
+		
 	elif Input.is_action_pressed("jump") and animated_sprite_2d.animation == "wall climb":
 		if flipped == true: #if flipped uses negative horizontal values otherwise use positive values for default
 			current_x = move_toward(current_x, max_x , increment *delta)
@@ -76,6 +79,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			current_x= move_toward(current_x, max_y, increment * delta)
 		current_y= move_toward(current_y, max_y, increment * delta)
+		
 	elif animated_sprite_2d.animation == "run":
 		if not sfx_run.playing:
 			sfx_run.play()
@@ -147,6 +151,7 @@ func process_state(delta: float) -> void:
 				switch_state(State.Swing)
 
 		State.Jump:
+			sfx_jump.play()
 			animated_sprite_2d.offset = Vector2(0, 0)
 			velocity.x = current_x
 			velocity.y = current_y - 100

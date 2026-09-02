@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dkdie0oiaf1di"]
+
+[ext_resource type="Texture2D" uid="uid://ghfsfc1561vy" path="res://levels/level_2/blocks/static/Sprite_0035.png" id="1_omeds"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5rhpf"]
+size = Vector2(119, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_et13v"]
+size = Vector2(248.875, 129)
+
+[node name="StaticBody2D" type="StaticBody2D" unique_id=605309229]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=150682709]
+position = Vector2(-129.5, 26)
+shape = SubResource("RectangleShape2D_5rhpf")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1926677811]
+texture = ExtResource("1_omeds")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="." unique_id=1863589385]
+position = Vector2(51.5625, 2.5)
+shape = SubResource("RectangleShape2D_et13v")

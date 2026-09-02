@@ -50,9 +50,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -320.5625
-offset_top = 12.5
+offset_top = -5.148987
 offset_right = 349.4375
-offset_bottom = 213.5
+offset_bottom = 195.85101
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/icon_max_width = 0
@@ -69,10 +69,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -321.79327
-offset_top = 167.69226
-offset_right = 348.2068
-offset_bottom = 368.69226
+offset_left = -321.7935
+offset_top = 151.40503
+offset_right = 348.20654
+offset_bottom = 352.40503
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/icon_max_width = 0
@@ -81,6 +81,26 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_7vrkn")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_fu7sn")
 theme_override_styles/hover = SubResource("StyleBoxTexture_jix8l")
 text = "Settings"
+
+[node name="Terms & Condition" type="Button" parent="Panel" unique_id=2084096639]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -321.7935
+offset_top = 307.14502
+offset_right = 348.20654
+offset_bottom = 508.14514
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/icon_max_width = 0
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxTexture_7vrkn")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_fu7sn")
+theme_override_styles/hover = SubResource("StyleBoxTexture_jix8l")
+text = "Terms & Condition"
 
 [node name="Leaderboards" type="Button" parent="Panel" unique_id=1537089146]
 layout_mode = 1
@@ -110,9 +130,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -321.79327
-offset_top = 618.6538
+offset_top = 618.6537
 offset_right = 348.2068
-offset_bottom = 819.6538
+offset_bottom = 819.6537
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/icon_max_width = 0
@@ -123,32 +143,12 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_jix8l")
 text = "Quit
 "
 
-[node name="Terms & Condition" type="Button" parent="Panel" unique_id=2084096639]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -321.79327
-offset_top = 321.53845
-offset_right = 348.2068
-offset_bottom = 522.5386
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/icon_max_width = 0
-theme_override_font_sizes/font_size = 50
-theme_override_styles/normal = SubResource("StyleBoxTexture_7vrkn")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_fu7sn")
-theme_override_styles/hover = SubResource("StyleBoxTexture_jix8l")
-text = "Terms & Condition"
-
 [node name="TextureRect" type="TextureRect" parent="Panel" unique_id=1295675770]
 layout_mode = 0
 offset_left = 411.65387
-offset_top = 456.0
+offset_top = 180.1099
 offset_right = 1323.6539
-offset_bottom = 847.0
+offset_bottom = 571.10986
 texture = ExtResource("4_jix8l")
 
 [connection signal="pressed" from="Panel/Start game" to="." method="_on_start_game_pressed"]

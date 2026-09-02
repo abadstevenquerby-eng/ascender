@@ -7,8 +7,8 @@ extends CharacterBody2D
 @onready var space: RayCast2D = %space
 @onready var collision_shape_2d: CollisionShape2D = %CollisionShape2D
 @onready var area_2d: Area2D = $Area2D
-@onready var sfx_run: AudioStreamPlayer = $player/sfx_run
 @onready var charge_bar: ProgressBar = get_node_or_null("%Chargebar")
+@onready var sfx_jump: AudioStreamPlayer = %sfx_jump
 
 
 #Games states
@@ -149,8 +149,10 @@ func process_state(delta: float) -> void:
 				switch_state(State.Swing)
 
 		State.Jump:
+			sfx_jump.play()
 			animated_sprite_2d.offset = Vector2(0, 0)
-			velocity.x = current_x 			velocity.y = current_y -100
+			velocity.x = current_x 
+			velocity.y = current_y -100
 			jump_process()
 			if velocity.y <= 0 and onRope == false or velocity.y >= 0 and onRope == false:
 				switch_state(State.Fall)
@@ -349,9 +351,9 @@ func _update_charge_bar(is_charging: bool) -> void:
 		var fill_style: StyleBoxFlat = charge_bar.get_theme_stylebox("fill")
 		if fill_style:
 			if ratio >= 0.99:
-				fill_style.bg_color = Color(0.2, 1.0, 0.4, 1.0) # Bright green at 100% full
+				fill_style.bg_color = Color(0.349, 0.326, 0.904, 1.0) # Bright green at 100% full
 			else:
-				fill_style.bg_color = Color(1.0, 0.75, 0.1, 1.0) # Gold while charging
+				fill_style.bg_color = Color(0.515, 0.56, 0.98, 1.0) # Gold while charging
 	else:
 		charge_bar.visible = false
 		charge_bar.value = 0.0

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dt1ylfb6dewqh" path="res://levels/level 1/level_1.gd" id="1_7mql6"]
 [ext_resource type="PackedScene" uid="uid://diai1gjmhc7cy" path="res://levels/level 1/player(level1).tscn" id="2_7vvte"]
 [ext_resource type="Texture2D" uid="uid://iwn1vmea7jw5" path="res://assets/images/backgrounds/lava.png" id="2_nhr3n"]
+[ext_resource type="AudioStream" uid="uid://guu51tuoyin1" path="res://assets/audio/ambience/level1.mp3" id="4_14grb"]
 [ext_resource type="AudioStream" uid="uid://ba0jwjp5ofi83" path="res://assets/audio/music/bgm_1.wav" id="5_5lb6v"]
 [ext_resource type="PackedScene" uid="uid://c62d317gid6f6" path="res://levels/level 1/blocks/static/block_1.tscn" id="6_8xv0u"]
 [ext_resource type="PackedScene" uid="uid://lx1ho8hrxxgb" path="res://levels/level 1/blocks/static/block_2.tscn" id="7_k8j64"]
@@ -13,24 +14,17 @@
 [ext_resource type="PackedScene" uid="uid://dungggdj1db0q" path="res://levels/level 1/blocks/falling_collapse/falling_fast.tscn" id="10_d4aew"]
 [ext_resource type="PackedScene" uid="uid://bqqn7ts2e7ty1" path="res://levels/level 1/blocks/moving/moving.tscn" id="11_nsygj"]
 
-[sub_resource type="Curve2D" id="Curve2D_nsygj"]
+[sub_resource type="Curve2D" id="Curve2D_14grb"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -2.1875, -2.1875, 0, 0, 0, 0, 1126.561, -8.75)
 }
 point_count = 2
 
-[sub_resource type="Curve2D" id="Curve2D_14grb"]
-resource_local_to_scene = true
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -2.1875, -2.1875, 0, 0, 0, 0, 1008.4363, -4.3745117)
-}
-point_count = 2
-
 [sub_resource type="Curve2D" id="Curve2D_khgbs"]
 resource_local_to_scene = true
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -2.1875, -2.1875, 0, 0, 0, 0, -10.9375, -435.31152)
+"points": PackedVector2Array(0, 0, 0, 0, -2.1875, -2.1875, 0, 0, 0, 0, 1008.4363, -4.3745117)
 }
 point_count = 2
 
@@ -42,6 +36,13 @@ _data = {
 point_count = 2
 
 [sub_resource type="Curve2D" id="Curve2D_o246c"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -2.1875, -2.1875, 0, 0, 0, 0, -10.9375, -435.31152)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_3iamj"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -2.1875, -2.1875, 0, 0, 0, 0, 1017.1862, -8.749023)
@@ -607,12 +608,27 @@ hold \"Spacebar\" to Jump.
 The longer you hold it, the higher 
 and further you jump."
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="background_text_audio" unique_id=1797398668]
+[node name="TextEdit2" type="TextEdit" parent="background_text_audio" unique_id=768085144]
+offset_left = 419.0
+offset_top = 889.0
+offset_right = 696.0
+offset_bottom = 1041.0
+text = "Hold the movement button 
+while falling in order to grab a 
+ledge."
+
+[node name="bgm" type="AudioStreamPlayer" parent="background_text_audio" unique_id=1797398668]
 stream = ExtResource("5_5lb6v")
+volume_db = -3.0
+autoplay = true
+
+[node name="ambience" type="AudioStreamPlayer" parent="background_text_audio" unique_id=978702383]
+stream = ExtResource("4_14grb")
+volume_db = -5.0
 autoplay = true
 
 [node name="player" parent="." unique_id=331636849 instance=ExtResource("2_7vvte")]
-position = Vector2(471, -2653)
+position = Vector2(198, 1121)
 
 [node name="blocks" type="Node2D" parent="." unique_id=733903127]
 
@@ -684,7 +700,7 @@ scale = Vector2(0.36, 0.36)
 [node name="block18" parent="blocks" unique_id=299928165 instance=ExtResource("11_nsygj")]
 position = Vector2(475.00003, -2131)
 scale = Vector2(0.45714343, 0.45714343)
-curve = SubResource("Curve2D_nsygj")
+curve = SubResource("Curve2D_14grb")
 
 [node name="block19" parent="blocks" unique_id=1894768943 instance=ExtResource("10_d4aew")]
 position = Vector2(862, -2366)
@@ -700,12 +716,12 @@ position = Vector2(178, -2435)
 [node name="block22" parent="blocks" unique_id=738749660 instance=ExtResource("11_nsygj")]
 position = Vector2(408, -2803.0002)
 scale = Vector2(0.45714343, 0.45714343)
-curve = SubResource("Curve2D_14grb")
+curve = SubResource("Curve2D_khgbs")
 
 [node name="block23" parent="blocks" unique_id=808886132 instance=ExtResource("11_nsygj")]
 position = Vector2(928, -2853.0002)
 scale = Vector2(0.45714343, 0.45714343)
-curve = SubResource("Curve2D_khgbs")
+curve = SubResource("Curve2D_lirpf")
 
 [node name="block24" parent="blocks" unique_id=1725623866 instance=ExtResource("6_8xv0u")]
 position = Vector2(718.00006, -3174)
@@ -726,7 +742,7 @@ position = Vector2(174, 751)
 [node name="block28" parent="blocks" unique_id=223309182 instance=ExtResource("11_nsygj")]
 position = Vector2(701, -3680)
 scale = Vector2(0.45714343, 0.45714343)
-curve = SubResource("Curve2D_lirpf")
+curve = SubResource("Curve2D_o246c")
 
 [node name="block29" parent="blocks" unique_id=1435836420 instance=ExtResource("10_d4aew")]
 position = Vector2(353, -3830)
@@ -747,7 +763,7 @@ scale = Vector2(0.67999876, 0.67999876)
 [node name="block33" parent="blocks" unique_id=421978647 instance=ExtResource("11_nsygj")]
 position = Vector2(337.00003, -4694.0005)
 scale = Vector2(0.45714343, 0.45714343)
-curve = SubResource("Curve2D_o246c")
+curve = SubResource("Curve2D_3iamj")
 
 [node name="block34" parent="blocks" unique_id=372969384 instance=ExtResource("7_k8j64")]
 position = Vector2(1185.9999, -4732)

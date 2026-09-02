@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cerunlaxj53jk"]
 
-[ext_resource type="Script" uid="uid://ctprgm0sfiis1" path="res://script/player(climbing).gd" id="1_k74mb"]
+[ext_resource type="Script" uid="uid://7csgwmvjp2f6" path="res://levels/level_2/player_lvl2.gd" id="1_ycn60"]
 [ext_resource type="Texture2D" uid="uid://dux7a03avcq84" path="res://assets/images/player/jump/sprite-2-4.png" id="2_ir8iy"]
 [ext_resource type="Texture2D" uid="uid://d36wwqkuhydve" path="res://assets/images/player/jump/sprite-2-1.png" id="3_hqns4"]
 [ext_resource type="Texture2D" uid="uid://ia4s0tvdt64x" path="res://assets/images/player/idle/sprite-1-1.png" id="4_x0ka3"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bg1xnyud40mq" path="res://assets/images/player/idle/sprite-1-3.png" id="6_nr8wp"]
 [ext_resource type="Texture2D" uid="uid://bagf2ydi3dua7" path="res://assets/images/player/idle/sprite-1-4.png" id="7_d2bti"]
 [ext_resource type="Texture2D" uid="uid://f6c3f5bem4oi" path="res://assets/images/player/jump/sprite-2-2.png" id="8_x0ka3"]
+[ext_resource type="AudioStream" uid="uid://cum7qec2nl4rm" path="res://assets/audio/sound effects/jump/jump3.mp3" id="9_ycn60"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_q5dlx"]
 animations = [{
@@ -103,7 +104,7 @@ size = Vector2(16.333334, 23.5)
 
 [node name="player" type="CharacterBody2D" parent="." unique_id=1532563660]
 scale = Vector2(3, 3)
-script = ExtResource("1_k74mb")
+script = ExtResource("1_ycn60")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="player" unique_id=1930288591]
 texture_filter = 1
@@ -140,6 +141,11 @@ target_position = Vector2(1, -77)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player/Area2D" unique_id=1534566100]
 position = Vector2(0.6666667, 2.6666667)
 shape = SubResource("RectangleShape2D_d21ai")
+
+[node name="sfx_jump" type="AudioStreamPlayer" parent="player" unique_id=986492730]
+unique_name_in_owner = true
+stream = ExtResource("9_ycn60")
+volume_db = -26.0
 
 [connection signal="area_entered" from="player/Area2D" to="player" method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="player/Area2D" to="player" method="_on_area_2d_area_exited"]
