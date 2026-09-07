@@ -9,6 +9,8 @@ extends CharacterBody2D
 @onready var charge_bar: ProgressBar = get_node_or_null("%Chargebar")
 @onready var sfx_run: AudioStreamPlayer = %sfx_run
 @onready var sfx_jump: AudioStreamPlayer = %sfx_jump
+@onready var charge_bar_2: TextureProgressBar = %ChargeBar2
+
 
 
 #Games states
@@ -50,7 +52,6 @@ var active_state = State.Fall
 func _ready() -> void:
 	switch_state(active_state)
 	ledge.add_exception(self)
-	_setup_charge_bar()
 
 #Is used to process physics inside the different states
 func _physics_process(delta: float) -> void:
@@ -85,7 +86,9 @@ func _physics_process(delta: float) -> void:
 			sfx_run.play()
 		
 	is_charging = true
-	_update_charge_bar(is_charging)
+	charge_bar_2.visible = false
+	texture(is_charging)
+	
 
 #Used because states change the value for everyframe and will get stuck if this part is inside the state
 func jump_process() -> void:
@@ -132,10 +135,12 @@ func process_state(delta: float) -> void:
 				switch_state(State.Climb)
 			elif onRope == true:
 				switch_state(State.Swing)
+			current_x = 0
+			current_y = 0
 
 		State.Floor:
 			if Input.get_axis("left", "right") and can_move == true:
-				animated_sprite_2d.animation = "run"
+				animated_sprite_2d.play("run")
 			else:
 				animated_sprite_2d.animation = "stand"
 				if sfx_run.playing:
@@ -259,49 +264,16 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 ##------------------------------------------------
 ##Start of bar
 ##-----------------------------------------------
-func _setup_charge_bar() -> void:
-	if not charge_bar:
-		var bar = ProgressBar.new()
-		bar.name = "ChargeBar"
-		bar.unique_name_in_owner = true
-		add_child(bar)
-		charge_bar = bar
-	charge_bar.visible = false
-	charge_bar.show_percentage = false
-	charge_bar.min_value = 0.0
-	charge_bar.max_value = 100.0
-	charge_bar.size = Vector2(30, 5)
-	charge_bar.position = Vector2(-15, -18)
-	
-	var bg_style = StyleBoxFlat.new()
-	bg_style.bg_color = Color(0.1, 0.1, 0.15, 0.85)
-	bg_style.set_corner_radius_all(2)
-	bg_style.set_border_width_all(1)
-	bg_style.border_color = Color(0.35, 0.35, 0.45, 1.0)
-	charge_bar.add_theme_stylebox_override("background", bg_style)
-	
-	var fill_style = StyleBoxFlat.new()
-	fill_style.bg_color = Color(1.0, 0.75, 0.1, 1.0)
-	fill_style.set_corner_radius_all(2)
-	charge_bar.add_theme_stylebox_override("fill", fill_style)
-	
-func _update_charge_bar(is_charging: bool) -> void:
-	if not charge_bar:
-		return
+
+func texture(is_charging: bool)-> void:
+	charge_bar_2.visible = false
 	if is_charging and abs(current_y) > 0:
-		charge_bar.visible = true
+		charge_bar_2.visible = true
 		var ratio = clamp(abs(current_y) / abs(max_y), 0.0, 1.0)
-		charge_bar.value = ratio * 100.0
-		var fill_style: StyleBoxFlat = charge_bar.get_theme_stylebox("fill")
+		charge_bar_2.value = ratio * 100.0
+		var fill_style: StyleBoxFlat = charge_bar_2.get_theme_stylebox("fill")
 		if fill_style:
 			if ratio >= 0.99:
 				fill_style.bg_color = Color(0.2, 1.0, 0.4, 1.0) # Bright green at 100% full
 			else:
 				fill_style.bg_color = Color(1.0, 0.75, 0.1, 1.0) # Gold while charging
-	else:
-		charge_bar.visible = false
-		charge_bar.value = 0.0
-
-
-func entered(area: Area2D) -> void:
-	pass # Replace with function body.

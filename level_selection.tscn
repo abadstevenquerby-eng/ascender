@@ -152,3 +152,5 @@ texture = ExtResource("4_txqpt")
 
 [connection signal="pressed" from="Panel/Level1" to="." method="_on_level_1_pressed"]
 [connection signal="pressed" from="Panel/Level2" to="." method="_on_level_2_pressed"]
+[connection signal="pressed" from="Panel/Level3" to="." method="_on_level_3_pressed"]
+[connection signal="pressed" from="Panel/Level 4" to="." method="_on_level_4_pressed"]

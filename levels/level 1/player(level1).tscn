@@ -8,8 +8,15 @@
 [ext_resource type="Texture2D" uid="uid://bg1xnyud40mq" path="res://assets/images/player/idle/sprite-1-3.png" id="6_gplnd"]
 [ext_resource type="Texture2D" uid="uid://bagf2ydi3dua7" path="res://assets/images/player/idle/sprite-1-4.png" id="7_srlyw"]
 [ext_resource type="Texture2D" uid="uid://f6c3f5bem4oi" path="res://assets/images/player/jump/sprite-2-2.png" id="8_vvj2n"]
+[ext_resource type="Texture2D" uid="uid://b3yb6dhoh0mk2" path="res://assets/images/player/run/sprite_0000.png" id="9_g0uiy"]
 [ext_resource type="AudioStream" uid="uid://bqoxsjwek2ken" path="res://assets/audio/sound effects/walking/rocks.mp3" id="9_tbfi5"]
+[ext_resource type="Texture2D" uid="uid://dbe38tx7kc8m7" path="res://assets/images/player/run/sprite_0001.png" id="10_dfsh0"]
 [ext_resource type="AudioStream" uid="uid://cum7qec2nl4rm" path="res://assets/audio/sound effects/jump/jump3.mp3" id="10_yqi8s"]
+[ext_resource type="Texture2D" uid="uid://0ufojck6veov" path="res://assets/images/player/run/sprite_0002.png" id="11_k7e0c"]
+[ext_resource type="PackedScene" path="res://elements/ui/bar/charge_bar.tscn" id="11_yqi8s"]
+[ext_resource type="Texture2D" uid="uid://bo6vhnkjakxxl" path="res://assets/images/player/run/sprite_0003.png" id="12_2yj0a"]
+[ext_resource type="Texture2D" uid="uid://cljg0tsnd31g8" path="res://assets/images/player/run/sprite_0004.png" id="13_238qr"]
+[ext_resource type="Texture2D" uid="uid://cfr3td2g2rxyl" path="res://assets/images/player/run/sprite_0005.png" id="14_good1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_q5dlx"]
 animations = [{
@@ -67,11 +74,26 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_4ludq")
+"texture": ExtResource("9_g0uiy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_dfsh0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_k7e0c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_2yj0a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_238qr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_good1")
 }],
 "loop": true,
 "name": &"run",
-"speed": 20.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -112,7 +134,8 @@ texture_filter = 1
 position = Vector2(0.6666668, 3.3333335)
 scale = Vector2(0.07735083, 0.07735082)
 sprite_frames = SubResource("SpriteFrames_q5dlx")
-animation = &"jump"
+animation = &"run"
+frame_progress = 0.5439099
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player" unique_id=1767063805]
 unique_name_in_owner = true
@@ -146,6 +169,14 @@ volume_db = -2.521
 unique_name_in_owner = true
 stream = ExtResource("10_yqi8s")
 volume_db = -26.0
+
+[node name="ChargeBar2" parent="player" unique_id=75933198 instance=ExtResource("11_yqi8s")]
+unique_name_in_owner = true
+offset_left = -16.333336
+offset_top = -18.333334
+offset_right = 1422.6666
+offset_bottom = 135.66667
+scale = Vector2(0.022748126, 0.040918596)
 
 [connection signal="area_entered" from="player/Area2D" to="player" method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="player/Area2D" to="player" method="_on_area_2d_area_exited"]

@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://rah5e5nwx6un" path="res://levels/testlevel/testmushroom.gd" id="1_8h8sm"]
 [ext_resource type="Texture2D" uid="uid://jg5mw1h5w0sf" path="res://assets/images/tilemap/mushroom (2).png" id="1_lqw0w"]
 [ext_resource type="Texture2D" uid="uid://lo7jctapd4ox" path="res://assets/images/backgrounds/mushroom.png" id="1_nkjps"]
-[ext_resource type="PackedScene" uid="uid://cerunlaxj53jk" path="res://script/player(with climbing ability).tscn" id="2_ltu0j"]
 [ext_resource type="PackedScene" uid="uid://cmsk6hhqcpam5" path="res://elements/mushroom/bouncy mushroom.tscn" id="3_g0qq0"]
 [ext_resource type="PackedScene" uid="uid://db7ka3fdblgvy" path="res://elements/rope/rope.tscn" id="4_mvrq8"]
+[ext_resource type="PackedScene" uid="uid://kmrmipo0u0tp" path="res://levels/level_2/player_level2.tscn" id="6_8h8sm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ltu0j"]
 texture = ExtResource("1_lqw0w")
@@ -501,6 +501,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_ltu0j")
 
 [node name="testmushroom" type="Node2D" unique_id=164484946]
+position = Vector2(-415, 187)
 script = ExtResource("1_8h8sm")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=907866616]
@@ -510,9 +511,6 @@ offset_right = 1809.0
 offset_bottom = 1011.0
 scale = Vector2(1.4006152, 1.4006152)
 texture = ExtResource("1_nkjps")
-
-[node name="player" parent="." unique_id=331636849 instance=ExtResource("2_ltu0j")]
-position = Vector2(110, 887)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=394775255]
 position = Vector2(-6, 504)
@@ -535,5 +533,7 @@ position = Vector2(1024, 782)
 scale = Vector2(0.6800006, 0.6800006)
 
 [node name="Rope" parent="ropes_setup" unique_id=1964370234 instance=ExtResource("4_mvrq8")]
-rotation = -0.49739248
+rotation = -0.3664843
 length = 2
+
+[node name="2dnode" parent="." unique_id=331636849 instance=ExtResource("6_8h8sm")]

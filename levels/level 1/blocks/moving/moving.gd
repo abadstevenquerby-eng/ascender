@@ -4,6 +4,7 @@ extends Path2D
 
 var speed = 0.2
 var direction = 1
+var pos = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -13,3 +14,5 @@ func _physics_process(delta: float) -> void:
 		direction = -1
 	elif direction == -1 and path_follow_2d.progress_ratio == 0:
 		direction = 1
+	pos = path_follow_2d.progress_ratio
+	

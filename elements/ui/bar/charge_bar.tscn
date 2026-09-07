@@ -1,0 +1,13 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" uid="uid://biq0el00tomsp" path="res://elements/ui/bar/charge_bar_background.png" id="1_bg"]
+[ext_resource type="Texture2D" uid="uid://cs83abga8usar" path="res://elements/ui/bar/charge_bar_fill.png" id="2_fill"]
+
+[node name="ChargeBar" type="TextureProgressBar"]
+offset_right = 1439.0
+offset_bottom = 154.0
+texture_under = ExtResource("1_bg")
+texture_progress = ExtResource("2_fill")
+value = 0.0
+fill_mode = 0
+texture_filter = 1

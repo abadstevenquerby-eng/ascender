@@ -7,7 +7,7 @@
 size = Vector2(20, 184)
 
 [node name="Rope" type="Area2D" unique_id=1964370234 groups=["rope"]]
-rotation = -0.32288098
+rotation = 0.4974245
 priority = 3
 script = ExtResource("1_nmccy")
 ropeTexture = ExtResource("2_jry5w")

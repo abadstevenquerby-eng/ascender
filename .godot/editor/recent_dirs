@@ -1,20 +1,28 @@
-res://
-res://levels/level_2/blocks/static/
-res://elements/rope/
 res://levels/level_2/
+res://
 res://levels/level 1/
-res://levels/level 1/blocks/static/
+res://assets/images/player/
+res://levels/level_2/blocks/falling/
 res://levels/level 1/blocks/falling_collapse/
-res://levels/level 1/blocks/moving/
 res://elements/mushroom/
+res://elements/rope/
+res://levels/level_2/blocks/moving/
+res://levels/level_4/
+res://levels/testlevel/
+res://levels/level_3/
+res://elements/ui/bar/
+res://levels/level_4/block/static/
+res://levels/level_3/blocks/static/
+res://levels/level_2/blocks/static/
+C:/Users/steven/Documents/ascender-copied-new/levels/level 1/blocks/falling_collapse/
+res://levels/level 1/blocks/moving/
+res://levels/level 1/blocks/static/
 C:/Users/steven/Documents/ascender-copied-new/elements/mushroom/
 C:/Users/steven/Documents/ascender-copied-new/script/
 C:/Users/steven/Documents/ascender-copied-new/levels/testlevel/
-res://levels/testlevel/
 res://assets/audio/sound effects/ui/
 res://script/
 C:/Users/steven/Documents/ascender-copied-new/levels/level 1/
 res://levels/
 C:/Users/steven/Documents/ascender-copied-new/
-res://assets/images/player/
 res://assets/images/tilemap/

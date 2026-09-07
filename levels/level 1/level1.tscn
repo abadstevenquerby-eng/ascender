@@ -628,7 +628,7 @@ volume_db = -5.0
 autoplay = true
 
 [node name="player" parent="." unique_id=331636849 instance=ExtResource("2_7vvte")]
-position = Vector2(198, 1121)
+position = Vector2(204, 1147)
 
 [node name="blocks" type="Node2D" parent="." unique_id=733903127]
 

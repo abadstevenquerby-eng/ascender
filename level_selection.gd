@@ -11,10 +11,18 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+func _on_level_2_pressed() -> void:
+	get_tree().change_scene_to_file("res://levels/level_2/level2.tscn")
 
-func _on_level_pressed() -> void:
+
+func _on_level_1_pressed() -> void:
 	get_tree().change_scene_to_file("res://levels/level 1/level1.tscn")
 
 
-func _on_level_2_pressed() -> void:
-	get_tree().change_scene_to_file("res://levels/level_2/level2.tscn")
+func _on_level_3_pressed() -> void:
+	get_tree().change_scene_to_file("res://levels/testlevel/testmushroom.tscn")
+
+
+
+func _on_level_4_pressed() -> void:
+	get_tree().change_scene_to_file("res://levels/level_4/level4.tscn")

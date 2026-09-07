@@ -7,9 +7,8 @@ extends CharacterBody2D
 @onready var space: RayCast2D = %space
 @onready var collision_shape_2d: CollisionShape2D = %CollisionShape2D
 @onready var area_2d: Area2D = $Area2D
-@onready var charge_bar: ProgressBar = get_node_or_null("%Chargebar")
 @onready var sfx_jump: AudioStreamPlayer = %sfx_jump
-
+@onready var charge_bar: TextureProgressBar = %charge_bar
 
 #Games states
 enum State{
@@ -36,10 +35,13 @@ var can_move = true #variable for when character can move or not
 var flipped = false #variable for changing the horizontal value when changing directions
 var onRope = false #Used for indicating rope state status
 var current_y:float =  0.0 #Initial jump force
-var bounce_multiplier = 0 #Used for super bounce calculation 
 var facing_direction = 1.0 #Used for forcing player sprite to change direction depending on input
 var climb_direction = 0 #Used for climbing up and down on the rope
-var climb = true
+var wall_climb = true
+var ledge_climb = true
+var floor_allow = true
+var cling = true
+
 
 
 
@@ -51,7 +53,7 @@ var active_state = State.Fall
 func _ready() -> void:
 	switch_state(active_state)
 	ledge.add_exception(self)
-	_setup_charge_bar()
+	texture(true)
 
 #Is used to process physics inside the different states
 func _physics_process(delta: float) -> void:
@@ -80,8 +82,8 @@ func _physics_process(delta: float) -> void:
 			current_x= move_toward(current_x, max_y, increment * delta)
 		current_y= move_toward(current_y, max_y, increment * delta)
 	is_charging = true
-	_update_charge_bar(is_charging)
-	
+	texture(is_charging)
+
 
 #Used because states change the value for everyframe and will get stuck if this part is inside the state
 func jump_process() -> void:
@@ -90,8 +92,7 @@ func jump_process() -> void:
 			current_x = -1
 		else:
 			current_x = 1
-		
-	
+
 #Used to switch and match states
 func switch_state(to_state: State) -> void:
 	active_state = to_state
@@ -100,7 +101,6 @@ func switch_state(to_state: State) -> void:
 		State.Fall:
 			animated_sprite_2d.animation = "fall"
 			
-	
 		State.Jump:
 			animated_sprite_2d.animation = "jump"
 		
@@ -109,7 +109,7 @@ func switch_state(to_state: State) -> void:
 			velocity.y = 0
 
 		State.Climb:
-			animated_sprite_2d.play("ledge climb") #work in progress (no sprite yet)
+			animated_sprite_2d.play("ledge climb")
 			velocity = Vector2.ZERO
 			global_position.y = ledge.get_collision_point().y
 			
@@ -117,36 +117,46 @@ func switch_state(to_state: State) -> void:
 			animated_sprite_2d.animation = "swing"
 			rotation_degrees = 0
 			velocity = Vector2.ZERO
+			
+		State.Floor:
+			animated_sprite_2d.animation = "stand"
 
 #Defines what each states does.
 func process_state(delta: float) -> void:
 	match active_state:
 		State.Fall:
 			velocity.y = move_toward(velocity.y, fall_velocity, fall_gravity * delta)
-			if is_on_floor():
+			if is_on_floor() and floor_allow:
 				switch_state(State.Floor)
-			elif can_slide():
+			elif !floor_allow and !can_slide() and !is_ledge():
+				velocity.x += facing_direction 
+			elif can_slide() and !is_ledge():
 				switch_state(State.Slide)
-			elif is_input_facing() and is_ledge() and is_space():
+			elif is_input_facing() and is_ledge() and is_space() and ledge_climb:
 				switch_state(State.Climb)
 			elif onRope == true:
 				switch_state(State.Swing)
+			current_x = 0
+			current_y = 0
+			
 
 		State.Floor:
 			if Input.get_axis("left", "right") and can_move == true:
-				animated_sprite_2d.animation = "run"
+				animated_sprite_2d.play("run")
 			else:
-				
 				animated_sprite_2d.animation = "stand"
 			if can_move == true:
 				movement()
-			if not is_on_floor() and can_slide() == false: #Do not turn into elif
+			if !is_on_floor() and can_slide() == false: #Do not turn into elif
 				switch_state(State.Fall)
 			elif Input.is_action_just_released("jump"):
 				can_move = true
 				switch_state(State.Jump)
 			elif onRope == true:
 				switch_state(State.Swing)
+			elif get_collision_layer_value(2):
+				set_collision_mask_value(2, false)
+				switch_state(State.Fall)
 
 		State.Jump:
 			sfx_jump.play()
@@ -173,19 +183,22 @@ func process_state(delta: float) -> void:
 				velocity.y = facing_direction * 75
 			elif Input.is_action_pressed("right"):
 				velocity.y = -facing_direction * 75
-			elif is_input_facing() and is_ledge() and is_space():
+			elif is_input_facing() and is_ledge() and is_space() and ledge_climb:
 				switch_state(State.Climb)
 
 		State.Wall_Jump:
-			velocity.y = 0
+			if is_on_wall_only():
+				velocity = get_platform_velocity()
+			elif not is_on_wall():
+				switch_state(State.Fall)
 			if animated_sprite_2d.flip_h != true: #changes the values used for jumping horizontally when the image gets flipped
 				flipped = true
 			else:
 				flipped = false
 			if Input.is_action_just_released("jump"):
-				bounce_multiplier = current_y
 				switch_state(State.Jump)
 				can_move = true
+				
 
 		State.Climb:
 			if not animated_sprite_2d.is_playing(): #ensures the animation is over before changing the character position
@@ -193,6 +206,7 @@ func process_state(delta: float) -> void:
 				offset.x *= facing_direction
 				global_position += offset *2
 				switch_state(State.Floor)
+				
 			
 		State.Swing:
 			if Input.is_action_pressed("up"):
@@ -215,7 +229,6 @@ func process_state(delta: float) -> void:
 func movement(direction: = 0) -> void:
 	if direction == 0:
 		direction = (Input.get_axis("left","right"))
-		
 	set_facing_direction(direction)
 	if not onRope:
 		velocity.x = direction * walk_velocity #Allows walking
@@ -261,14 +274,11 @@ func set_facing_direction(direction: float) -> void:
 		wall_slide.force_raycast_update()
 
 func can_slide() -> bool: #used for wall sliding
-	return is_on_wall_only() and wall_slide.is_colliding() and climb
+	return is_on_wall_only() and wall_slide.is_colliding() and wall_climb
 
 
 
 func bounce() -> void: #used to define how superjumps work
-	print("bfore.y ", velocity.y)
-	print("bfore.x ", velocity.x)
-	
 	if velocity.y > 0 and velocity.x != 0 and velocity.y <= 250:
 		velocity.y *= -3
 	elif velocity.y < 0 and velocity.x != 0 and velocity.y >= -250:
@@ -281,10 +291,6 @@ func bounce() -> void: #used to define how superjumps work
 		velocity.y *= -1.25
 	elif velocity.x != 0 and velocity.y < 0 and velocity.y < -500:
 		velocity.y *= 1.25
-	print("velocity.y ", velocity.y)
-	print("velocity.x ", velocity.x)
-	
-
 
 ##------------------------------------------------
 ##Start of rope 
@@ -299,54 +305,31 @@ func exit_rope():
 	onRope = false
 	reparent(get_tree().current_scene)
 	rotation_degrees = 0
-	
 	await get_tree().create_timer(1).timeout
 	area_2d.monitoring = true
-	
+
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("rope") and onRope == false:
 		call_deferred("enter_rope", area)
 	elif area.is_in_group("wall"):
-		climb = false
-
+		wall_climb = false
+	elif area.is_in_group("stop_ledge"):
+		ledge_climb = false
+		floor_allow = false
 
 func _on_area_2d_area_exited(area: Area2D) -> void:
 	if area.is_in_group("rope") and onRope == true:
 		onRope = false
-	climb = true
-
-##------------------------------------------------
+	elif area.is_in_group("wall"):
+		wall_climb = true
+	elif area.is_in_group("stop_ledge"):
+		ledge_climb = true
+		floor_allow = true
+##---------------------
 ##Start of bar
 ##-----------------------------------------------
-func _setup_charge_bar() -> void:
-	if not charge_bar:
-		var bar = ProgressBar.new()
-		bar.name = "ChargeBar"
-		bar.unique_name_in_owner = true
-		add_child(bar)
-		charge_bar = bar
+func texture(is_charging: bool)-> void:
 	charge_bar.visible = false
-	charge_bar.show_percentage = false
-	charge_bar.min_value = 0.0
-	charge_bar.max_value = 100.0
-	charge_bar.size = Vector2(30, 5)
-	charge_bar.position = Vector2(-15, -18)
-	
-	var bg_style = StyleBoxFlat.new()
-	bg_style.bg_color = Color(0.1, 0.1, 0.15, 0.85)
-	bg_style.set_corner_radius_all(2)
-	bg_style.set_border_width_all(1)
-	bg_style.border_color = Color(0.35, 0.35, 0.45, 1.0)
-	charge_bar.add_theme_stylebox_override("background", bg_style)
-	
-	var fill_style = StyleBoxFlat.new()
-	fill_style.bg_color = Color(1.0, 0.75, 0.1, 1.0)
-	fill_style.set_corner_radius_all(2)
-	charge_bar.add_theme_stylebox_override("fill", fill_style)
-	
-func _update_charge_bar(is_charging: bool) -> void:
-	if not charge_bar:
-		return
 	if is_charging and abs(current_y) > 0:
 		charge_bar.visible = true
 		var ratio = clamp(abs(current_y) / abs(max_y), 0.0, 1.0)
@@ -354,9 +337,6 @@ func _update_charge_bar(is_charging: bool) -> void:
 		var fill_style: StyleBoxFlat = charge_bar.get_theme_stylebox("fill")
 		if fill_style:
 			if ratio >= 0.99:
-				fill_style.bg_color = Color(0.349, 0.326, 0.904, 1.0) # Bright green at 100% full
+				fill_style.bg_color = Color(0.2, 1.0, 0.4, 1.0) # Bright green at 100% full
 			else:
-				fill_style.bg_color = Color(0.515, 0.56, 0.98, 1.0) # Gold while charging
-	else:
-		charge_bar.visible = false
-		charge_bar.value = 0.0
+				fill_style.bg_color = Color(1.0, 0.75, 0.1, 1.0) # Gold while charging
