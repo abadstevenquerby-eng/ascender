@@ -1,8 +1,0 @@
-res://levels/level_3/player_3.tscn
-res://levels/level_3/level3.tscn
-res://levels/level_3/player_3.gd
-res://levels/level_3/blocks/static/3_static_2.tscn
-res://levels/level_3/blocks/falling/3_falling_1.tscn
-res://levels/level_3/blocks/falling/3_falling_1.gd
-res://level_selection.tscn
-res://level_selection.gd
