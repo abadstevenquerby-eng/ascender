@@ -1,6 +1,10 @@
+res://levels/level_3/blocks/falling/
+res://levels/level_3/blocks/static/
+res://levels/level 1/
+res://levels/testlevel/
+res://levels/level_3/
 res://levels/level_2/
 res://
-res://levels/level 1/
 res://assets/images/player/
 res://levels/level_2/blocks/falling/
 res://levels/level 1/blocks/falling_collapse/
@@ -8,11 +12,8 @@ res://elements/mushroom/
 res://elements/rope/
 res://levels/level_2/blocks/moving/
 res://levels/level_4/
-res://levels/testlevel/
-res://levels/level_3/
 res://elements/ui/bar/
 res://levels/level_4/block/static/
-res://levels/level_3/blocks/static/
 res://levels/level_2/blocks/static/
 C:/Users/steven/Documents/ascender-copied-new/levels/level 1/blocks/falling_collapse/
 res://levels/level 1/blocks/moving/
@@ -25,4 +26,3 @@ res://script/
 C:/Users/steven/Documents/ascender-copied-new/levels/level 1/
 res://levels/
 C:/Users/steven/Documents/ascender-copied-new/
-res://assets/images/tilemap/

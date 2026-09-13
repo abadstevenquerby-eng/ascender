@@ -122,7 +122,7 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_fu7sn")
 theme_override_styles/hover = SubResource("StyleBoxTexture_jix8l")
 text = "Level 4"
 
-[node name="Level5" type="Button" parent="Panel" unique_id=1067020151]
+[node name="Back" type="Button" parent="Panel" unique_id=1067020151]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -140,7 +140,7 @@ theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxTexture_7vrkn")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_fu7sn")
 theme_override_styles/hover = SubResource("StyleBoxTexture_jix8l")
-text = "Level 5"
+text = "Back"
 
 [node name="TextureRect" type="TextureRect" parent="Panel" unique_id=1295675770]
 layout_mode = 0

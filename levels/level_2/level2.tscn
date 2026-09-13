@@ -1150,7 +1150,7 @@ position = Vector2(1, -3085.5)
 shape = SubResource("RectangleShape2D_17iu4")
 
 [node name="player" parent="." unique_id=331636849 instance=ExtResource("6_yh11p")]
-position = Vector2(221.00002, 201)
+position = Vector2(154, 1152)
 
 [node name="blocks" type="Node2D" parent="." unique_id=733903127]
 
