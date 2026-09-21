@@ -22,9 +22,6 @@ func _on_body_entered(body: Node2D) -> void:
 		emit_signal(\"super_jump\", body)
 "
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_n6mef"]
-radius = 37.054016
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_p585i"]
 animations = [{
 "frames": [{
@@ -36,14 +33,19 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_75mvn"]
+radius = 15.0
+height = 68.0
+
 [node name="mushroom" type="Area2D" unique_id=1136547568]
 script = SubResource("GDScript_qtrix")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1877044056]
-position = Vector2(1, -19)
-shape = SubResource("CircleShape2D_n6mef")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=223903451]
 sprite_frames = SubResource("SpriteFrames_p585i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1877044056]
+position = Vector2(0, -36)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_75mvn")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

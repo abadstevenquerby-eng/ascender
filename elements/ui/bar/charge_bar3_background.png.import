@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cq6y2q80lpnp8"
-path="res://.godot/imported/walking.png-df52296717183b73fa994deec05fd074.ctex"
+uid="uid://du0ludsfbgwb1"
+path="res://.godot/imported/charge_bar3_background.png-6a79b56f85c65640e63b771861365cf6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://elements/ui/bar/walking.png"
-dest_files=["res://.godot/imported/walking.png-df52296717183b73fa994deec05fd074.ctex"]
+source_file="res://elements/ui/bar/charge_bar3_background.png"
+dest_files=["res://.godot/imported/charge_bar3_background.png-6a79b56f85c65640e63b771861365cf6.ctex"]
 
 [params]
 

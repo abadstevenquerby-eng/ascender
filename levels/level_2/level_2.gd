@@ -5,7 +5,7 @@ extends Node2D
 @onready var camera_4: Camera2D = %camera4
 @onready var camera_5: Camera2D = %camera5
 
-var current = 1
+var current = 4
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

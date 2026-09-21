@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c8jdunndmvrpv" path="res://assets/images/menu/main menu.png" id="1_rv05k"]
 [ext_resource type="Texture2D" uid="uid://c56gpco7uv64e" path="res://elements/ui/button.png" id="2_b6v5k"]
 [ext_resource type="Texture2D" uid="uid://du207copyn8te" path="res://elements/ui/hover.png" id="3_xfjqa"]
-[ext_resource type="Texture2D" uid="uid://bvrg7qc7f7oxp" path="res://elements/ui/logo.png" id="4_txqpt"]
+[ext_resource type="Texture2D" uid="uid://bvrg7qc7f7oxp" path="res://elements/ui/menu/logo.png" id="4_txqpt"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_06t4h"]
 texture = ExtResource("1_rv05k")
@@ -154,3 +154,4 @@ texture = ExtResource("4_txqpt")
 [connection signal="pressed" from="Panel/Level2" to="." method="_on_level_2_pressed"]
 [connection signal="pressed" from="Panel/Level3" to="." method="_on_level_3_pressed"]
 [connection signal="pressed" from="Panel/Level 4" to="." method="_on_level_4_pressed"]
+[connection signal="pressed" from="Panel/Back" to="." method="_on_back_pressed"]

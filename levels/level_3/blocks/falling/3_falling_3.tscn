@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://bvpekwuy3fnnl"]
+
+[ext_resource type="Script" uid="uid://cx6answja57wf" path="res://levels/level_3/blocks/falling/3_falling_3.gd" id="1_ic2yu"]
+[ext_resource type="Texture2D" uid="uid://b6fac20l3o3b3" path="res://levels/level_3/blocks/static/static_3.png" id="2_52wqd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cwj88"]
+size = Vector2(51, 117.875)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v68tb"]
+size = Vector2(36.5, 55.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ay3dh"]
+size = Vector2(391.66516, 126.99999)
+
+[node name="StaticBody2D" type="StaticBody2D" unique_id=1187791060]
+script = ExtResource("1_ic2yu")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=358690413]
+texture = ExtResource("2_52wqd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=498523994]
+unique_name_in_owner = true
+position = Vector2(-19, 4.9375)
+shape = SubResource("RectangleShape2D_cwj88")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=354781438]
+unique_name_in_owner = true
+position = Vector2(14, -26.125)
+shape = SubResource("RectangleShape2D_v68tb")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1305501482]
+visible = false
+position = Vector2(-10, -11)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=973880513]
+position = Vector2(5.0000014, 11.499998)
+scale = Vector2(0.2400009, 1)
+shape = SubResource("RectangleShape2D_ay3dh")
+
+[connection signal="body_entered" from="Area2D" to="." method="enter"]

@@ -291,31 +291,33 @@ func can_slide() -> bool: #used for wall sliding
 func bounce() -> void: #used to define how superjumps work
 	print("before y",velocity.y)
 	print("before x",velocity.x)
-	if velocity.y > 0 and velocity.x != 0 and velocity.y <= 250: #code 1
-		velocity.y *= -3
-		print("1")
-	elif velocity.y < 0 and velocity.x != 0 and velocity.y >= -250:#code 2
-		velocity.y *= 3
-		print("2")
-	elif velocity.y > 0 and velocity.x != 0 and velocity.y < 400 and velocity.y > 250: #code 3
-		velocity.y *= -2
-		print("3")
-	elif velocity.y < 0 and velocity.x != 0 and velocity.y > -400 and velocity.y < -250: #code 4
-		velocity.y *= 2
-		print("4")
-	elif velocity.y < 0 and velocity.x != 0 and velocity.y < -400 and velocity.y > -500: #code 5
-		velocity.y *= 1.50
-		print("5")
-	elif velocity.y > 0 and velocity.x != 0 and velocity.y > 400 and velocity.y < 500: #code 6
-		velocity.y *= -1.50
-		print("6")
-	elif velocity.x != 0 and velocity.y > 0 and velocity.y >= 500: #code 7
-		velocity.y *= -1.25
-		print("7")
-	elif velocity.x != 0 and velocity.y < 0 and velocity.y <= -500: #code 8
-		velocity.y *= 1.25
-		print("8")
-	if velocity.y != 0 and velocity.x != 0:
+	if velocity.x != 0 and velocity.y != 0:
+		if velocity.y > 0:
+			if velocity.y <= 251:
+				velocity.y *= -3
+				print("+1")
+			elif velocity.y > 251 and velocity.y <= 400:
+				velocity.y *= -2
+				print("+2")
+			elif velocity.y > 401 and velocity.y < 500:
+				velocity.y *= -1.50
+				print("+3")
+			else:
+				print("+4")
+				velocity.y *= -1.25
+		else:
+			if velocity.y >= -251:
+				velocity.y *= 3
+				print("-1")
+			elif velocity.y < -251 and velocity.y >= -400:
+				velocity.y *= 2
+				print("-2")
+			elif velocity.y < -401 and velocity.y > -500:
+				velocity.y *= 1.50
+				print("-3")
+			else:
+				velocity.y *= 1.25
+				print("-4")
 		sfx_bounce.play()
 	print("after y",velocity.y)
 	print("after x",velocity.x)

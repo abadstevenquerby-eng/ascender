@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://biy5qk5gkf7x"
+path="res://.godot/imported/on_release.mp3-ae3904e36ac948c5126815f71210e835.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/sound effects/ui/on_release.mp3"
+dest_files=["res://.godot/imported/on_release.mp3-ae3904e36ac948c5126815f71210e835.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -15,8 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://cljg0tsnd31g8" path="res://assets/images/player/run/sprite_0004.png" id="13_157dk"]
 [ext_resource type="Texture2D" uid="uid://cfr3td2g2rxyl" path="res://assets/images/player/run/sprite_0005.png" id="14_dipw4"]
 [ext_resource type="AudioStream" uid="uid://cum7qec2nl4rm" path="res://assets/audio/sound effects/jump/jump3.mp3" id="15_dbvih"]
-[ext_resource type="Texture2D" uid="uid://blcanfcl5fctu" path="res://elements/ui/bar/charge_bar2_background.png" id="16_mwjsj"]
-[ext_resource type="Texture2D" uid="uid://dyqxvbq2jrjf8" path="res://elements/ui/bar/charge_bar2_fill.png" id="17_xhobl"]
+[ext_resource type="Texture2D" uid="uid://du0ludsfbgwb1" path="res://elements/ui/bar/charge_bar3_background.png" id="16_n01hd"]
+[ext_resource type="Texture2D" uid="uid://sai7e3aale7n" path="res://elements/ui/bar/charge_bar3_fill.png" id="17_2t2jd"]
 [ext_resource type="AudioStream" uid="uid://dn8vqpx06uvol" path="res://assets/audio/sound effects/walking/mushroom_true.mp3" id="18_n01hd"]
 [ext_resource type="AudioStream" uid="uid://33ww61ybvutk" path="res://assets/audio/sound effects/bounce/bounce_sfx.mp3" id="18_q3dk7"]
 
@@ -175,13 +175,13 @@ volume_db = -26.0
 
 [node name="charge_bar" type="TextureProgressBar" parent="." unique_id=1661860776]
 unique_name_in_owner = true
-offset_left = -15.666669
-offset_top = -15.999999
-offset_right = 2099.3333
-offset_bottom = 319.0
+offset_left = -16.666664
+offset_top = -24.666666
+offset_right = 2155.3333
+offset_bottom = 699.3333
 scale = Vector2(0.015721314, 0.021902591)
-texture_under = ExtResource("16_mwjsj")
-texture_progress = ExtResource("17_xhobl")
+texture_under = ExtResource("16_n01hd")
+texture_progress = ExtResource("17_2t2jd")
 
 [node name="sfx_run" type="AudioStreamPlayer" parent="." unique_id=1099612578]
 unique_name_in_owner = true

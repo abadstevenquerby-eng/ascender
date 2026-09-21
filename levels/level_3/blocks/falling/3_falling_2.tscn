@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://bxgl712nwec4j"]
+
+[ext_resource type="Script" uid="uid://ccgrhl5h61kwh" path="res://levels/level_3/blocks/falling/3_falling_2.gd" id="1_epaml"]
+[ext_resource type="Texture2D" uid="uid://bjbmmwanxkt2x" path="res://levels/level_3/blocks/falling/mushroom1.png" id="2_epaml"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cwj88"]
+size = Vector2(84.5, 30.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ay3dh"]
+size = Vector2(362.49863, 31)
+
+[node name="StaticBody2D" type="StaticBody2D" unique_id=1187791060]
+script = ExtResource("1_epaml")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=358690413]
+texture = ExtResource("2_epaml")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=498523994]
+unique_name_in_owner = true
+position = Vector2(4.75, 25.625)
+shape = SubResource("RectangleShape2D_cwj88")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1305501482]
+position = Vector2(4, -36)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=973880513]
+position = Vector2(0.50000143, 51)
+scale = Vector2(0.2400009, 1)
+shape = SubResource("RectangleShape2D_ay3dh")
+
+[connection signal="body_entered" from="Area2D" to="." method="enter"]

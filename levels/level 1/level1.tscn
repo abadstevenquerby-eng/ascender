@@ -626,6 +626,7 @@ autoplay = true
 stream = ExtResource("4_14grb")
 volume_db = -5.0
 autoplay = true
+parameters/looping = true
 
 [node name="player" parent="." unique_id=331636849 instance=ExtResource("2_7vvte")]
 position = Vector2(204, 1147)

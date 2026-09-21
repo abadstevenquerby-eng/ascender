@@ -10,9 +10,41 @@
 [ext_resource type="Texture2D" uid="uid://jg5mw1h5w0sf" path="res://assets/images/tilemap/mushroom (2).png" id="6_aemwr"]
 [ext_resource type="PackedScene" uid="uid://b1qi4bl2rblao" path="res://levels/level_3/blocks/falling/3_falling_1.tscn" id="7_hng17"]
 [ext_resource type="PackedScene" uid="uid://cmsk6hhqcpam5" path="res://elements/mushroom/bouncy mushroom.tscn" id="7_mbqr2"]
+[ext_resource type="PackedScene" uid="uid://d355q4t8idpld" path="res://levels/level_3/blocks/moving/3_move_1.tscn" id="8_xt43a"]
+[ext_resource type="PackedScene" uid="uid://bxgl712nwec4j" path="res://levels/level_3/blocks/falling/3_falling_2.tscn" id="10_ntsj5"]
+[ext_resource type="PackedScene" uid="uid://h6bh41aa76t5" path="res://levels/level_3/blocks/static/3_static_3.tscn" id="11_iq152"]
+[ext_resource type="PackedScene" uid="uid://bvpekwuy3fnnl" path="res://levels/level_3/blocks/falling/3_falling_3.tscn" id="12_xce3f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nsygj"]
 size = Vector2(63, 76)
+
+[sub_resource type="Curve2D" id="Curve2D_xce3f"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1.7857056, -3.5714417, 0, 0, 0, 0, 364.28577, -3.5714417)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_8iwj3"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1.7857056, -3.5714417, 0, 0, 0, 0, -319.64294, -3.5714111)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_juprk"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1.7857056, -3.5714417, 0, 0, 0, 0, -319.64294, -3.5714111)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_wvpwy"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1.7857056, -3.5714417, 0, 0, 0, 0, -319.64294, -3.5714111)
+}
+point_count = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_psx5d"]
 size = Vector2(3001.1594, 148.24106)
@@ -22,6 +54,12 @@ size = Vector2(1904.6831, 148.24106)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mbqr2"]
 size = Vector2(30, 6293)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ntsj5"]
+size = Vector2(28, 269)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oed68"]
+size = Vector2(28, 269)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mbqr2"]
 texture = ExtResource("6_aemwr")
@@ -597,9 +635,13 @@ texture_region_size = Vector2i(32, 32)
 29:22/0 = 0
 30:22/0 = 0
 32:22/0 = 0
+32:22/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, 0, 16, 0, 16, 16, 0, 16)
 33:22/0 = 0
+33:22/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 0, 16, 0, 16, 16, -16, 16)
 34:22/0 = 0
+34:22/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 0, 16, 0, 16, 16, -16, 16)
 35:22/0 = 0
+35:22/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 0, 16, 0, 16, 16, -16, 16)
 36:22/0 = 0
 38:22/0 = 0
 39:22/0 = 0
@@ -626,9 +668,13 @@ texture_region_size = Vector2i(32, 32)
 29:23/0 = 0
 30:23/0 = 0
 32:23/0 = 0
+32:23/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -16, 16, -16, 16, -4, 0, -4)
 33:23/0 = 0
+33:23/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -4, -16, -4)
 34:23/0 = 0
+34:23/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -4, -16, -4)
 35:23/0 = 0
+35:23/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -4, -16, -4)
 36:23/0 = 0
 38:23/0 = 0
 39:23/0 = 0
@@ -791,12 +837,13 @@ texture_region_size = Vector2i(32, 32)
 13:30/0 = 0
 17:30/0 = 0
 18:30/0 = 0
+18:30/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 8, 16, 8, 16, 16, -16, 16)
 19:30/0 = 0
 21:30/0 = 0
 22:30/0 = 0
 24:30/0 = 0
 25:30/0 = 0
-25:30/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 12, 16, 12, 16, 16, -16, 16)
+25:30/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 8, 16, 8, 16, 16, -16, 16)
 26:30/0 = 0
 1:31/0 = 0
 2:31/0 = 0
@@ -815,6 +862,7 @@ texture_region_size = Vector2i(32, 32)
 15:31/0 = 0
 17:31/0 = 0
 18:31/0 = 0
+18:31/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 19:31/0 = 0
 21:31/0 = 0
 22:31/0 = 0
@@ -846,6 +894,7 @@ texture_region_size = Vector2i(32, 32)
 15:32/0 = 0
 17:32/0 = 0
 18:32/0 = 0
+18:32/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 19:32/0 = 0
 21:32/0 = 0
 22:32/0 = 0
@@ -884,6 +933,7 @@ texture_region_size = Vector2i(32, 32)
 15:33/0 = 0
 17:33/0 = 0
 18:33/0 = 0
+18:33/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 19:33/0 = 0
 21:33/0 = 0
 22:33/0 = 0
@@ -969,8 +1019,8 @@ texture = ExtResource("2_a1uf3")
 [node name="TextEdit" type="TextEdit" parent="background_text_audio" unique_id=1929744318]
 offset_left = 46.0
 offset_top = 954.0
-offset_right = 350.0
-offset_bottom = 1120.8159
+offset_right = 351.0
+offset_bottom = 1129.0
 text = "Jumping on the mushroom, 
 bounces you. Increasing the 
 maximum height you can achieve. 
@@ -982,16 +1032,21 @@ mushrooms."
 stream = ExtResource("3_mbqr2")
 volume_db = -3.0
 autoplay = true
+parameters/looping = true
 
 [node name="ambience" type="AudioStreamPlayer" parent="background_text_audio" unique_id=633695833]
 stream = ExtResource("4_0hsaw")
 volume_db = -5.0
 autoplay = true
+parameters/looping = true
+
+[node name="player" parent="background_text_audio" unique_id=783057828 instance=ExtResource("5_a1uf3")]
+position = Vector2(601, -4553)
 
 [node name="blocks" type="Node2D" parent="." unique_id=733903127]
 
 [node name="exit" type="Area2D" parent="blocks" unique_id=1710165466]
-position = Vector2(1214, -4849)
+position = Vector2(817, -4859)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="blocks/exit" unique_id=1661537372]
 position = Vector2(3, -10)
@@ -1012,6 +1067,93 @@ scale = Vector2(1.0890833, 1.0890833)
 [node name="block4" parent="blocks" unique_id=1467499881 instance=ExtResource("6_2c6kt")]
 position = Vector2(36, 148)
 scale = Vector2(-0.44, 0.48000002)
+
+[node name="block5" parent="blocks" unique_id=299928165 instance=ExtResource("8_xt43a")]
+position = Vector2(429, -85)
+scale = Vector2(0.56, 0.56)
+curve = SubResource("Curve2D_xce3f")
+
+[node name="block6" parent="blocks" unique_id=1758458696 instance=ExtResource("10_ntsj5")]
+position = Vector2(794.99994, -164)
+scale = Vector2(0.6578785, 0.6578785)
+
+[node name="block7" parent="blocks" unique_id=1981730979 instance=ExtResource("10_ntsj5")]
+position = Vector2(973.00006, -222)
+scale = Vector2(-0.6127128, 0.6127128)
+
+[node name="block8" parent="blocks" unique_id=1808007752 instance=ExtResource("10_ntsj5")]
+position = Vector2(1149, -293)
+scale = Vector2(-0.6127128, 0.6127128)
+
+[node name="block9" parent="blocks" unique_id=139851840 instance=ExtResource("8_xt43a")]
+position = Vector2(314, -715)
+rotation = 1.5707964
+scale = Vector2(0.56, 0.56)
+curve = SubResource("Curve2D_8iwj3")
+
+[node name="block10" parent="blocks" unique_id=1067147266 instance=ExtResource("11_iq152")]
+position = Vector2(770, -1225)
+scale = Vector2(-1, 1)
+
+[node name="block11" parent="blocks" unique_id=1837260123 instance=ExtResource("12_xce3f")]
+position = Vector2(1168, -1797)
+
+[node name="block12" parent="blocks" unique_id=762072541 instance=ExtResource("12_xce3f")]
+position = Vector2(842, -1547)
+scale = Vector2(-1, 1)
+
+[node name="block13" parent="blocks" unique_id=1451784843 instance=ExtResource("12_xce3f")]
+position = Vector2(826, -1968)
+scale = Vector2(-1, 1)
+
+[node name="block14" parent="blocks" unique_id=900155346 instance=ExtResource("6_2c6kt")]
+position = Vector2(159, -2210)
+rotation = -3.1415925
+scale = Vector2(0.44, -0.48000002)
+
+[node name="block15" parent="blocks" unique_id=316562491 instance=ExtResource("5_0hsaw")]
+position = Vector2(1027.9999, -2462.9998)
+scale = Vector2(0.74820197, 0.74820197)
+
+[node name="block16" parent="blocks" unique_id=1273043907 instance=ExtResource("5_0hsaw")]
+position = Vector2(1138, -2668)
+scale = Vector2(-0.4674675, 0.4674675)
+
+[node name="block17" parent="blocks" unique_id=1607418888 instance=ExtResource("8_xt43a")]
+position = Vector2(561, -3270)
+scale = Vector2(0.56, 0.56)
+curve = SubResource("Curve2D_juprk")
+
+[node name="block18" parent="blocks" unique_id=947628924 instance=ExtResource("8_xt43a")]
+position = Vector2(62, -3121)
+rotation = 1.5707964
+scale = Vector2(0.56, 0.56)
+curve = SubResource("Curve2D_wvpwy")
+
+[node name="block19" parent="blocks" unique_id=92041884 instance=ExtResource("12_xce3f")]
+position = Vector2(973, -3469)
+
+[node name="block20" parent="blocks" unique_id=978770943 instance=ExtResource("12_xce3f")]
+position = Vector2(629, -3697)
+scale = Vector2(-1, 1)
+
+[node name="block21" parent="blocks" unique_id=511704855 instance=ExtResource("6_2c6kt")]
+position = Vector2(598, -4490)
+rotation = -3.1415925
+scale = Vector2(0.44, -0.48000002)
+
+[node name="block22" parent="blocks" unique_id=627073088 instance=ExtResource("7_hng17")]
+position = Vector2(797.00006, -4474)
+scale = Vector2(1.0890833, 1.0890833)
+
+[node name="block23" parent="blocks" unique_id=1382128147 instance=ExtResource("7_hng17")]
+position = Vector2(1150.0001, -4618.0005)
+scale = Vector2(1.0890833, 1.0890833)
+
+[node name="block24" parent="blocks" unique_id=2062201439 instance=ExtResource("5_0hsaw")]
+position = Vector2(811, -4784)
+rotation = 3.1415927
+scale = Vector2(0.4674675, -0.4674675)
 
 [node name="cameras" type="Node2D" parent="." unique_id=1474003749]
 
@@ -1071,7 +1213,7 @@ position = Vector2(128.90625, 16.11316)
 shape = SubResource("RectangleShape2D_tj45o")
 
 [node name="switch_cam3_reentry" type="Area2D" parent="switch" unique_id=1073274446]
-position = Vector2(558, -2463)
+position = Vector2(558, -2408)
 scale = Vector2(0.649602, 0.48746526)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="switch/switch_cam3_reentry" unique_id=13815949]
@@ -1087,7 +1229,7 @@ position = Vector2(128.90625, 16.11316)
 shape = SubResource("RectangleShape2D_tj45o")
 
 [node name="switch_cam4_reentry" type="Area2D" parent="switch" unique_id=1898632611]
-position = Vector2(570, -3663.0002)
+position = Vector2(570, -3592)
 scale = Vector2(0.67517245, 0.5702925)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="switch/switch_cam4_reentry" unique_id=1549751663]
@@ -1107,7 +1249,7 @@ shape = SubResource("RectangleShape2D_tj45o")
 [node name="Area2D" type="Area2D" parent="areas" unique_id=654941818 groups=["wall"]]
 position = Vector2(-173, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="areas/Area2D" unique_id=2093142121 groups=["wall"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="areas/Area2D" unique_id=2093142121]
 position = Vector2(165, -1897.5)
 scale = Vector2(1.1252266, 1)
 shape = SubResource("RectangleShape2D_mbqr2")
@@ -1115,15 +1257,26 @@ shape = SubResource("RectangleShape2D_mbqr2")
 [node name="Area2D2" type="Area2D" parent="areas" unique_id=2117182031 groups=["wall"]]
 position = Vector2(1108, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="areas/Area2D2" unique_id=1767976634 groups=["wall"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="areas/Area2D2" unique_id=1767976634]
 position = Vector2(165, -1897.5)
 shape = SubResource("RectangleShape2D_mbqr2")
 
-[node name="player" parent="." unique_id=783057828 instance=ExtResource("5_a1uf3")]
-position = Vector2(47, -41)
+[node name="Area2D3" type="Area2D" parent="areas" unique_id=1614844600 groups=["stop_ledge"]]
+position = Vector2(1108, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="areas/Area2D3" unique_id=1126365500]
+position = Vector2(-762, -858)
+shape = SubResource("RectangleShape2D_ntsj5")
+
+[node name="Area2D4" type="Area2D" parent="areas" unique_id=574680431 groups=["stop_ledge"]]
+position = Vector2(97, -3214)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="areas/Area2D4" unique_id=1489611381]
+position = Vector2(-5, 5)
+shape = SubResource("RectangleShape2D_oed68")
 
 [node name="tile_map" type="TileMapLayer" parent="." unique_id=532157437]
-tile_map_data = PackedByteArray("AAAlADcAAAAcAAMAAAAnADcAAAAdAAMAAAApADcAAAAeAAMAAAArADcAAAAfAAMAAAAtADcAAAAjAAMAAAAlADkAAAAcAAQAAAAnADkAAAAdAAQAAAApADkAAAAeAAQAAAArADkAAAAiAAQAAAAtADkAAAAjAAQAAAAlADsAAAAcAAUAAAAnADsAAAAdAAUAAAApADsAAAAeAAUAAAAtADsAAAAjAAUAAAArADsAAAAiAAUAAABEADcAAAAGAB8AAABGADcAAAAHAB8AAABIADcAAAAHAB8AAABKADcAAAAHAB8AAABMADcAAAAHAB8AAABOADcAAAAIAB8AAABEADkAAAAGACAAAABGADkAAAAHACAAAABIADkAAAAeAAQAAABKADkAAAAeAAQAAABMADkAAAAeAAQAAABOADkAAAAeAAQAABBEADsAAAAGACEAAABGADsAAAAHACEAAABIADsAAAAHACEAABBKADsAAAAHACEAAABMADsAAAAHACEAAABOADsAAAAHACEAAABMADAAAAAjAAMAABBOADAAAAAiAAMAABBMADIAAAAjAAQAABBOADIAAAAiAAQAABBMADQAAAAjAAUAABBOADQAAAAiAAUAABABAAEAAAAdAAMAABADAAEAAAAcAAMAABADAAMAAAAcAAQAABABAAMAAAAdAAQAABABAAUAAAAdAAUAABADAAUAAAAcAAUAABA=")
+tile_map_data = PackedByteArray("AAAlADcAAAAcAAMAAAAnADcAAAAdAAMAAAApADcAAAAeAAMAAAArADcAAAAfAAMAAAAtADcAAAAjAAMAAAAlADkAAAAcAAQAAAAnADkAAAAdAAQAAAApADkAAAAeAAQAAAArADkAAAAiAAQAAAAtADkAAAAjAAQAAAAlADsAAAAcAAUAAAAnADsAAAAdAAUAAAApADsAAAAeAAUAAAAtADsAAAAjAAUAAAArADsAAAAiAAUAAABEADcAAAAGAB8AAABGADcAAAAHAB8AAABIADcAAAAHAB8AAABKADcAAAAHAB8AAABMADcAAAAHAB8AAABOADcAAAAIAB8AAABEADkAAAAGACAAAABGADkAAAAHACAAAABIADkAAAAeAAQAAABKADkAAAAeAAQAAABMADkAAAAeAAQAAABOADkAAAAeAAQAABBEADsAAAAGACEAAABGADsAAAAHACEAAABIADsAAAAHACEAABBKADsAAAAHACEAAABMADsAAAAHACEAAABOADsAAAAHACEAAABMADAAAAAjAAMAABBOADAAAAAiAAMAABBMADIAAAAjAAQAABBOADIAAAAiAAQAABBMADQAAAAjAAUAABBOADQAAAAiAAUAABABAAEAAAAdAAMAABADAAEAAAAcAAMAABADAAMAAAAcAAQAABABAAMAAAAdAAQAABABAAUAAAAdAAUAABADAAUAAAAcAAUAABA2AOP/AAAGAB8AAAA4AOP/AAAHAB8AAAA6AOP/AAAIAB8AAAA8AOP/AAAJAB8AAAA2AOX/AAAGACAAAAA4AOX/AAAHACAAAAA6AOX/AAAIACAAAAA8AOX/AAAJACAAAAA2AOf/AAAGACEAAAA4AOf/AAAHACEAAAA6AOf/AAAIACEAAAA8AOf/AAAJACEAAAArAOP/AAApAB0AAAApAOP/AAAoAB0AAAAtAOP/AAAqAB0AAAArAOH/AAApABwAAAAtAOH/AAAqABwAAAAqAOH/AAAoABwAAAApAOH/AAAoABwAAAAzAM7/AAApABwAAAAxAM7/AAAoABwAAAA1AM7/AAAqABwAAAAxAND/AAAoAB0AAAAzAND/AAApAB0AAAA1AND/AAAqAB0AAABGALv/AAASACEAAABIALv/AAATACEAAABIALn/AAATACAAAABGALn/AAASACAAAABIALf/AAATAB8AAABGALf/AAASAB8AAABIALX/AAATAB4AAABGALX/AAASAB4AAABEALX/AAARAB4AAABEALf/AAARAB8AAABEALn/AAARACAAAABEALv/AAARACEAAABGAL3/AAASACIAAABJAL3/AAATACIAAABIAL3/AAATACIAAABEAL3/AAARACIAAABJAKj/AAAjAAMAABBJAKr/AAAjAAQAABBLAKj/AAAiAAMAABBNAKj/AAAhAAMAABBPAKj/AAAgAAMAABBLAKr/AAAiAAQAABBNAKr/AAAhAAQAABBPAKr/AAAgAAQAABBJAKz/AAAjAAUAABBLAKz/AAAiAAUAABBNAKz/AAAhAAUAABBPAKz/AAAgAAUAABAZAIj/AAAcAAsAAAAbAIj/AAAdAAsAAAAdAIj/AAAeAAsAAAAZAIr/AAAcAAwAAAAbAIr/AAAdAAwAAAAdAIr/AAAeAAwAAAApAG3/AAAdAAsAAAAnAG3/AAAcAAsAAAArAG3/AAAeAAsAAAAnAG//AAAcAAwAAAApAG//AAAdAAwAAAArAG//AAAeAAwAAAAlAFX/AAApAB0AAAAnAFX/AAAqAB0AAAAjAFX/AAAoAB0AAAAlAFP/AAApABwAAAAnAFP/AAAqABwAAAAjAFP/AAAoABwAAAANAEf/AAAjABYAAAAPAEf/AAAkABYAAAALAEf/AAAiABYAAAAJAEf/AAAhABYAAAAHAEf/AAAgABYAAAAJAEX/AAAhABUAAAANAEn/AAAjABcAAAAPAEn/AAAkABcAAAALAEn/AAAiABcAAAAJAEn/AAAhABcAAAAHAEn/AAAgABcAAAAHAEX/AAAgABUAAAAOAAT/AAAjAAMAAAAOAAb/AAAjAAQAAAAMAAT/AAAiAAMAAAAKAAT/AAAhAAMAAAAIAAT/AAAgAAMAAAAGAAT/AAAdAAMAAAAEAAT/AAAcAAMAAAAGAAb/AAAdAAQAAAAEAAb/AAAcAAQAAAAEAAj/AAAcAAUAAAAGAAj/AAAdAAUAAAAMAAb/AAAiAAQAAAAKAAb/AAAhAAQAAAAIAAb/AAAgAAQAAAAOAAj/AAAjAAUAAAAMAAj/AAAiAAUAAAAKAAj/AAAhAAUAAAAIAAj/AAAgAAUAAAADAPz+AAAZACEAAAAFAPz+AAAaACEAAAABAPz+AAAYACEAAAAFAPr+AAAaACAAAAADAPr+AAAZACAAAAABAPr+AAAYACAAAAADAPj+AAAZAB8AAAADAPb+AAAZAB4AAAAFAPj+AAAaAB8AAAABAPj+AAAYAB8AAAAFAPb+AAAaAB4AAAABAPb+AAAYAB4AAAAFAP7+AAAaACEAAAADAP7+AAAZACEAABADAAD/AAAZACEAAAABAP7+AAAYACAAAAABAAD/AAAYACEAAAAFAAD/AAAaACEAAAADAAL/AAAZACIAAAAFAAL/AAAaACIAAAABAAL/AAAYACIAAAA=")
 tile_set = SubResource("TileSet_0hsaw")
 
 [node name="wall" type="TileMapLayer" parent="tile_map" unique_id=1802757651]
@@ -1139,6 +1292,34 @@ scale = Vector2(0.7200024, 0.7200024)
 [node name="mushroom2" parent="bouncing_mushroom" unique_id=1280877687 instance=ExtResource("7_mbqr2")]
 position = Vector2(1177.0001, 853)
 scale = Vector2(0.7200024, 0.7200024)
+
+[node name="mushroom3" parent="bouncing_mushroom" unique_id=1579184020 instance=ExtResource("7_mbqr2")]
+position = Vector2(693, -538)
+scale = Vector2(1.0800024, 1.0800024)
+
+[node name="mushroom4" parent="bouncing_mushroom" unique_id=1263947765 instance=ExtResource("7_mbqr2")]
+position = Vector2(823, -842)
+scale = Vector2(1.0800024, 1.0800024)
+
+[node name="mushroom5" parent="bouncing_mushroom" unique_id=1378332174 instance=ExtResource("7_mbqr2")]
+position = Vector2(433.99994, -1968)
+scale = Vector2(1.0800024, 1.0800024)
+
+[node name="mushroom6" parent="bouncing_mushroom" unique_id=1950373175 instance=ExtResource("7_mbqr2")]
+position = Vector2(656, -2401)
+scale = Vector2(1.0800024, 1.0800024)
+
+[node name="mushroom7" parent="bouncing_mushroom" unique_id=524007048 instance=ExtResource("7_mbqr2")]
+position = Vector2(598, -2810.9998)
+scale = Vector2(1.0800024, 1.0800024)
+
+[node name="mushroom8" parent="bouncing_mushroom" unique_id=1025795932 instance=ExtResource("7_mbqr2")]
+position = Vector2(420, -3865)
+scale = Vector2(1.0800024, 1.0800024)
+
+[node name="mushroom9" parent="bouncing_mushroom" unique_id=1678096070 instance=ExtResource("7_mbqr2")]
+position = Vector2(384.99997, -4236)
+scale = Vector2(1.0800024, 1.0800024)
 
 [connection signal="body_entered" from="blocks/exit" to="." method="_on_exit_body_entered"]
 [connection signal="body_entered" from="switch/switch_cam1" to="." method="_on_switch_cam_1_body_entered"]

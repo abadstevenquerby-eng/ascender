@@ -15,4 +15,3 @@ func _physics_process(delta: float) -> void:
 	elif direction == -1 and path_follow_2d.progress_ratio == 0:
 		direction = 1
 	pos = path_follow_2d.progress_ratio
-	
