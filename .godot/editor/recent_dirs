@@ -1,9 +1,10 @@
 res://levels/level_2/
 res://levels/level 1/
+res://
+res://levels/level_4/
 res://levels/level_3/blocks/falling/
 res://levels/level_3/blocks/static/
 res://levels/level_3/blocks/moving/
-res://
 res://levels/level_2/blocks/moving/
 res://levels/testlevel/
 res://levels/level_3/
@@ -12,7 +13,6 @@ res://levels/level_2/blocks/falling/
 res://levels/level 1/blocks/falling_collapse/
 res://elements/mushroom/
 res://elements/rope/
-res://levels/level_4/
 res://elements/ui/bar/
 res://levels/level_4/block/static/
 res://levels/level_2/blocks/static/

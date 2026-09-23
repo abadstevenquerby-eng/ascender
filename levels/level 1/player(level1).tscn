@@ -123,13 +123,11 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d21ai"]
 size = Vector2(16.333334, 23.5)
 
-[node name="2dnode" type="Node2D" unique_id=331636849]
-
-[node name="player" type="CharacterBody2D" parent="." unique_id=1532563660]
+[node name="player" type="CharacterBody2D" unique_id=1532563660]
 scale = Vector2(3, 3)
 script = ExtResource("1_4klxy")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="player" unique_id=1930288591]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1930288591]
 texture_filter = 1
 position = Vector2(0.6666668, 3.3333335)
 scale = Vector2(0.07735083, 0.07735082)
@@ -137,46 +135,49 @@ sprite_frames = SubResource("SpriteFrames_q5dlx")
 animation = &"run"
 frame_progress = 0.5439099
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="player" unique_id=1767063805]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1767063805]
 unique_name_in_owner = true
 position = Vector2(0.50000024, 2.75)
 shape = SubResource("RectangleShape2D_d21ai")
 
-[node name="ledge" type="RayCast2D" parent="player" unique_id=1959106769]
+[node name="ledge" type="RayCast2D" parent="." unique_id=1959106769]
 unique_name_in_owner = true
 position = Vector2(1, -7.6666665)
 scale = Vector2(0.33333334, 0.33333334)
 target_position = Vector2(31, 33)
 
-[node name="space" type="RayCast2D" parent="player" unique_id=758371244]
+[node name="space" type="RayCast2D" parent="." unique_id=758371244]
 unique_name_in_owner = true
 position = Vector2(-9.666667, 14)
 scale = Vector2(0.33333334, 0.33333334)
 target_position = Vector2(1, -77)
 
-[node name="Area2D" type="Area2D" parent="player" unique_id=1887074130]
+[node name="Area2D" type="Area2D" parent="." unique_id=1887074130]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="player/Area2D" unique_id=1534566100]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1534566100]
 position = Vector2(0.6666667, 2.6666667)
 shape = SubResource("RectangleShape2D_d21ai")
 
-[node name="sfx_run" type="AudioStreamPlayer" parent="player" unique_id=1309280310]
+[node name="sfx_run" type="AudioStreamPlayer" parent="." unique_id=1309280310]
 unique_name_in_owner = true
 stream = ExtResource("9_tbfi5")
 volume_db = -2.521
 
-[node name="sfx_jump" type="AudioStreamPlayer" parent="player" unique_id=735030403]
+[node name="sfx_jump" type="AudioStreamPlayer" parent="." unique_id=735030403]
 unique_name_in_owner = true
 stream = ExtResource("10_yqi8s")
 volume_db = -26.0
 
-[node name="ChargeBar2" parent="player" unique_id=75933198 instance=ExtResource("11_yqi8s")]
+[node name="ChargeBar2" parent="." unique_id=75933198 instance=ExtResource("11_yqi8s")]
 unique_name_in_owner = true
 offset_left = -16.333336
 offset_top = -18.333334
 offset_right = 1422.6666
 offset_bottom = 135.66667
 scale = Vector2(0.022748126, 0.040918596)
+metadata/_edit_use_anchors_ = true
 
-[connection signal="area_entered" from="player/Area2D" to="player" method="_on_area_2d_area_entered"]
-[connection signal="area_exited" from="player/Area2D" to="player" method="_on_area_2d_area_exited"]
+[node name="2dnode" type="Node2D" parent="." unique_id=331636849]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

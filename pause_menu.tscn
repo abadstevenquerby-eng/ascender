@@ -1,0 +1,403 @@
+[gd_scene format=3 uid="uid://cxvd4u8l6a7p2"]
+
+[ext_resource type="Script" uid="uid://db3eoidg0nhv3" path="res://pause_menu.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://c56gpco7uv64e" path="res://elements/ui/button.png" id="2_btn"]
+[ext_resource type="Texture2D" uid="uid://du207copyn8te" path="res://elements/ui/hover.png" id="3_hover"]
+[ext_resource type="Texture2D" uid="uid://bvrg7qc7f7oxp" path="res://elements/ui/menu/logo.png" id="4_logo"]
+[ext_resource type="AudioStream" uid="uid://docrph6c6fhtq" path="res://assets/audio/sound effects/ui/on_press.mp3" id="5_2nc7s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_overlay"]
+bg_color = Color(0, 0, 0, 0.65)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.105882, 0.0823529, 0.14902, 0.92)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.560784, 0.431373, 0.819608, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.5)
+shadow_size = 12
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_btn_normal"]
+texture = ExtResource("2_btn")
+texture_margin_left = 12.0
+texture_margin_top = 8.0
+texture_margin_right = 12.0
+texture_margin_bottom = 14.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_btn_pressed"]
+texture = ExtResource("3_hover")
+texture_margin_left = 12.0
+texture_margin_top = 8.0
+texture_margin_right = 12.0
+texture_margin_bottom = 14.0
+modulate_color = Color(0.580228, 0.580228, 0.580228, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_btn_hover"]
+texture = ExtResource("3_hover")
+texture_margin_left = 12.0
+texture_margin_top = 8.0
+texture_margin_right = 12.0
+texture_margin_bottom = 14.0
+
+[node name="PauseMenu" type="CanvasLayer" unique_id=375924707]
+process_mode = 3
+layer = 100
+script = ExtResource("1_script")
+
+[node name="Control" type="Control" parent="." unique_id=1574579770]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DimOverlay" type="Panel" parent="Control" unique_id=1698890646]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_overlay")
+
+[node name="MainPausePanel" type="Panel" parent="Control" unique_id=1474070543]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -450.0
+offset_right = 300.0
+offset_bottom = 450.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="VBox" type="VBoxContainer" parent="Control/MainPausePanel" unique_id=924300575]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = 25.0
+offset_right = -40.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="LogoRect" type="TextureRect" parent="Control/MainPausePanel/VBox" unique_id=2133890068]
+custom_minimum_size = Vector2(0, 110)
+layout_mode = 2
+texture = ExtResource("4_logo")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TitleLabel" type="Label" parent="Control/MainPausePanel/VBox" unique_id=1566937957]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "GAME PAUSED"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="Control/MainPausePanel/VBox" unique_id=487263376]
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 2
+
+[node name="ResumeBtn" type="Button" parent="Control/MainPausePanel/VBox" unique_id=1506292569]
+custom_minimum_size = Vector2(0, 78)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxTexture_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxTexture_btn_hover")
+text = "Resume"
+
+[node name="RestartBtn" type="Button" parent="Control/MainPausePanel/VBox" unique_id=91143934]
+custom_minimum_size = Vector2(0, 78)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxTexture_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxTexture_btn_hover")
+text = "Restart Level"
+
+[node name="MechanicsBtn" type="Button" parent="Control/MainPausePanel/VBox" unique_id=129542853]
+custom_minimum_size = Vector2(0, 78)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxTexture_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxTexture_btn_hover")
+text = "Mechanics & Controls"
+
+[node name="SettingsBtn" type="Button" parent="Control/MainPausePanel/VBox" unique_id=1932391201]
+custom_minimum_size = Vector2(0, 78)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxTexture_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxTexture_btn_hover")
+text = "Settings"
+
+[node name="SaveAndExitBtn" type="Button" parent="Control/MainPausePanel/VBox" unique_id=1512355321]
+custom_minimum_size = Vector2(0, 78)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxTexture_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxTexture_btn_hover")
+text = "Save & Exit Level"
+
+[node name="SaveStatusLabel" type="Label" parent="Control/MainPausePanel" unique_id=1993919393]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.486275, 0.988235, 0.545098, 1)
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
+[node name="MechanicsPanel" type="Panel" parent="Control" unique_id=573155267]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -340.0
+offset_top = -420.0
+offset_right = 340.0
+offset_bottom = 420.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MechanicsPanel" unique_id=1124719625]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = 35.0
+offset_right = -40.0
+offset_bottom = -35.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="Control/MechanicsPanel/VBoxContainer" unique_id=1966706504]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "MECHANICS & CONTROLS"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Control/MechanicsPanel/VBoxContainer" unique_id=845996288]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/MechanicsPanel/VBoxContainer" unique_id=2062874918]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="InfoVBox" type="VBoxContainer" parent="Control/MechanicsPanel/VBoxContainer/ScrollContainer" unique_id=1639828130]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 14
+
+[node name="ControlsHeader" type="Label" parent="Control/MechanicsPanel/VBoxContainer/ScrollContainer/InfoVBox" unique_id=1987361772]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.968627, 0.776471, 0.321569, 1)
+theme_override_font_sizes/font_size = 26
+text = "[ CONTROLS ]"
+
+[node name="ControlsText" type="Label" parent="Control/MechanicsPanel/VBoxContainer/ScrollContainer/InfoVBox" unique_id=2092780791]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "• Move Left / Right:  A / D  or  Arrow Keys
+• Charge Jump:  Hold SPACE then release
+• Climb Ropes:  W / S  or  Up / Down
+• Wall Slide & Jump:  Push against wall + SPACE
+• Pause Game:  ESC or P"
+
+[node name="MechanicsHeader" type="Label" parent="Control/MechanicsPanel/VBoxContainer/ScrollContainer/InfoVBox" unique_id=1475664407]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.968627, 0.776471, 0.321569, 1)
+theme_override_font_sizes/font_size = 26
+text = "[ MECHANICS ]"
+
+[node name="MechanicsText" type="Label" parent="Control/MechanicsPanel/VBoxContainer/ScrollContainer/InfoVBox" unique_id=133403155]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "• Jump Charge: The longer you hold Space, the higher you launch.
+• Bouncy Mushrooms: Jump on mushrooms for an extra launch boost.
+• Collapsing Blocks: Step quickly before platforms fall!
+• Moving Platforms: Ride them carefully to reach higher heights."
+autowrap_mode = 2
+
+[node name="BackBtn" type="Button" parent="Control/MechanicsPanel/VBoxContainer" unique_id=939333587]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxTexture_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxTexture_btn_hover")
+text = "Back to Menu"
+
+[node name="SettingsPanel" type="Panel" parent="Control" unique_id=1879652195]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -460.0
+offset_right = 320.0
+offset_bottom = 460.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/SettingsPanel" unique_id=1807556103]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 45.0
+offset_top = 35.0
+offset_right = -45.0
+offset_bottom = -35.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 25
+
+[node name="Title" type="Label" parent="Control/SettingsPanel/VBoxContainer" unique_id=2134187158]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "SETTINGS"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Control/SettingsPanel/VBoxContainer" unique_id=1679287893]
+layout_mode = 2
+
+[node name="MasterVolume" type="VBoxContainer" parent="Control/SettingsPanel/VBoxContainer" unique_id=1168874558]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Control/SettingsPanel/VBoxContainer/MasterVolume" unique_id=386154792]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Master Volume"
+
+[node name="HSlider" type="HSlider" parent="Control/SettingsPanel/VBoxContainer/MasterVolume" unique_id=353735029]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+value = 0.8
+
+[node name="MusicVolume" type="VBoxContainer" parent="Control/SettingsPanel/VBoxContainer" unique_id=1308738616]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Control/SettingsPanel/VBoxContainer/MusicVolume" unique_id=1401342049]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Music Volume"
+
+[node name="HSlider" type="HSlider" parent="Control/SettingsPanel/VBoxContainer/MusicVolume" unique_id=658206933]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+value = 0.8
+
+[node name="AmbienceVolume" type="VBoxContainer" parent="Control/SettingsPanel/VBoxContainer" unique_id=2045614238]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Control/SettingsPanel/VBoxContainer/AmbienceVolume" unique_id=503917714]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Ambience Volume"
+
+[node name="HSlider" type="HSlider" parent="Control/SettingsPanel/VBoxContainer/AmbienceVolume" unique_id=2077338579]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+value = 0.8
+
+[node name="SFXVolume" type="VBoxContainer" parent="Control/SettingsPanel/VBoxContainer" unique_id=244181978]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Control/SettingsPanel/VBoxContainer/SFXVolume" unique_id=1141876207]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "SFX Volume"
+
+[node name="HSlider" type="HSlider" parent="Control/SettingsPanel/VBoxContainer/SFXVolume" unique_id=781842224]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+value = 0.8
+
+[node name="Fullscreen" type="HBoxContainer" parent="Control/SettingsPanel/VBoxContainer" unique_id=896066027]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/SettingsPanel/VBoxContainer/Fullscreen" unique_id=554668694]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "Fullscreen Mode"
+
+[node name="CheckBox" type="CheckBox" parent="Control/SettingsPanel/VBoxContainer/Fullscreen" unique_id=326860310]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="Control/SettingsPanel/VBoxContainer" unique_id=681243322]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BackBtn" type="Button" parent="Control/SettingsPanel/VBoxContainer" unique_id=1627561219]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxTexture_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxTexture_btn_hover")
+text = "Back to Menu"
+
+[node name="sfx_click" type="AudioStreamPlayer" parent="." unique_id=252169780]
+unique_name_in_owner = true
+stream = ExtResource("5_2nc7s")
+volume_db = 4.0
+
+[connection signal="pressed" from="Control/MainPausePanel/VBox/ResumeBtn" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Control/MainPausePanel/VBox/RestartBtn" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="Control/MainPausePanel/VBox/MechanicsBtn" to="." method="_on_mechanics_pressed"]
+[connection signal="pressed" from="Control/MainPausePanel/VBox/SettingsBtn" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Control/MainPausePanel/VBox/SaveAndExitBtn" to="." method="_on_save_and_exit_pressed"]
+[connection signal="pressed" from="Control/MechanicsPanel/VBoxContainer/BackBtn" to="." method="_on_back_to_menu_pressed"]
+[connection signal="value_changed" from="Control/SettingsPanel/VBoxContainer/MasterVolume/HSlider" to="." method="_on_master_volume_changed"]
+[connection signal="value_changed" from="Control/SettingsPanel/VBoxContainer/MusicVolume/HSlider" to="." method="_on_music_volume_changed"]
+[connection signal="value_changed" from="Control/SettingsPanel/VBoxContainer/AmbienceVolume/HSlider" to="." method="_on_ambience_volume_changed"]
+[connection signal="value_changed" from="Control/SettingsPanel/VBoxContainer/SFXVolume/HSlider" to="." method="_on_sfx_volume_changed"]
+[connection signal="toggled" from="Control/SettingsPanel/VBoxContainer/Fullscreen/CheckBox" to="." method="_on_fullscreen_toggled"]
+[connection signal="pressed" from="Control/SettingsPanel/VBoxContainer/BackBtn" to="." method="_on_back_to_menu_pressed"]

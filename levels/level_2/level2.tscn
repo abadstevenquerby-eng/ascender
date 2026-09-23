@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cv76pumti8f0q" path="res://levels/level_2/blocks/falling/fall.tscn" id="11_3devp"]
 [ext_resource type="PackedScene" uid="uid://r47v5vqw7ovr" path="res://levels/level_2/blocks/static/block4.tscn" id="12_q87sp"]
 [ext_resource type="PackedScene" uid="uid://1dgvtnn1qnil" path="res://levels/level_2/blocks/moving/wallmove1.tscn" id="13_i2sr1"]
+[ext_resource type="PackedScene" uid="uid://cxvd4u8l6a7p2" path="res://pause_menu.tscn" id="14_rtk7f"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_17iu4"]
 texture = ExtResource("5_2h0li")
@@ -974,42 +975,42 @@ size = Vector2(18, 6221)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nsygj"]
 size = Vector2(63, 76)
 
-[sub_resource type="Curve2D" id="Curve2D_i2sr1"]
+[sub_resource type="Curve2D" id="Curve2D_rtk7f"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -8.75, -30, 0, 0, 0, 0, -343.75, -30)
 }
 point_count = 2
 
-[sub_resource type="Curve2D" id="Curve2D_rtk7f"]
+[sub_resource type="Curve2D" id="Curve2D_dpnv2"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -8.75, -30, 0, 0, 0, 0, -293.74994, -30)
 }
 point_count = 2
 
-[sub_resource type="Curve2D" id="Curve2D_dpnv2"]
+[sub_resource type="Curve2D" id="Curve2D_42t8u"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -1, -7, 0, 0, 0, 0, -221, -7)
 }
 point_count = 2
 
-[sub_resource type="Curve2D" id="Curve2D_42t8u"]
+[sub_resource type="Curve2D" id="Curve2D_si07u"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 20, 1, 0, 0, 0, 0, 20, -206)
 }
 point_count = 2
 
-[sub_resource type="Curve2D" id="Curve2D_si07u"]
+[sub_resource type="Curve2D" id="Curve2D_roeys"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 20, 1, 0, 0, 0, 0, 21, -272.99997)
 }
 point_count = 2
 
-[sub_resource type="Curve2D" id="Curve2D_roeys"]
+[sub_resource type="Curve2D" id="Curve2D_evs2c"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -1, -8, 0, 0, 0, 0, 420, -8.000061)
@@ -1040,7 +1041,7 @@ size = Vector2(64.33215, 27.303696)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_si07u"]
 size = Vector2(92.23297, 158.23169)
 
-[node name="Node2D" type="Node2D" unique_id=1233610334]
+[node name="level2" type="Node2D" unique_id=1233610334]
 script = ExtResource("1_2h0li")
 
 [node name="background_text_audio" type="Node2D" parent="." unique_id=868234266]
@@ -1126,7 +1127,8 @@ position = Vector2(1, -3085.5)
 shape = SubResource("RectangleShape2D_17iu4")
 
 [node name="player" parent="." unique_id=331636849 instance=ExtResource("6_yh11p")]
-position = Vector2(977, -2787)
+unique_name_in_owner = true
+position = Vector2(111.00006, 1172)
 
 [node name="blocks" type="Node2D" parent="." unique_id=733903127]
 
@@ -1157,7 +1159,7 @@ scale = Vector2(1.1982532, 1.1982532)
 [node name="block5" parent="blocks" unique_id=299928165 instance=ExtResource("10_yh11p")]
 position = Vector2(673, -302)
 scale = Vector2(0.8, 0.8)
-curve = SubResource("Curve2D_i2sr1")
+curve = SubResource("Curve2D_rtk7f")
 
 [node name="block6" parent="blocks" unique_id=1187791060 instance=ExtResource("11_3devp")]
 position = Vector2(187.99998, -480)
@@ -1168,7 +1170,7 @@ scale = Vector2(0.64, 0.64)
 position = Vector2(447, -832)
 rotation = 4.712389
 scale = Vector2(0.8, 0.8)
-curve = SubResource("Curve2D_rtk7f")
+curve = SubResource("Curve2D_dpnv2")
 
 [node name="block 8" parent="blocks" unique_id=1796238372 instance=ExtResource("12_q87sp")]
 position = Vector2(171, -184)
@@ -1181,11 +1183,11 @@ scale = Vector2(0.6, 0.6)
 [node name="block10" parent="blocks" unique_id=226667827 instance=ExtResource("10_yh11p")]
 position = Vector2(1115, -1945)
 rotation = 4.712389
-curve = SubResource("Curve2D_dpnv2")
+curve = SubResource("Curve2D_42t8u")
 
 [node name="block11" parent="blocks" unique_id=405669379 groups=["moving"] instance=ExtResource("13_i2sr1")]
 position = Vector2(800, -1453)
-curve = SubResource("Curve2D_42t8u")
+curve = SubResource("Curve2D_si07u")
 
 [node name="block12" parent="blocks" unique_id=932281419 instance=ExtResource("8_efs3d")]
 position = Vector2(1023.00006, -2516)
@@ -1227,12 +1229,12 @@ scale = Vector2(0.89331716, 0.89331716)
 [node name="block21" parent="blocks" unique_id=666191557 groups=["moving"] instance=ExtResource("13_i2sr1")]
 position = Vector2(687, -3166)
 rotation = -1.5707964
-curve = SubResource("Curve2D_si07u")
+curve = SubResource("Curve2D_roeys")
 
 [node name="block22" parent="blocks" unique_id=1283559795 instance=ExtResource("10_yh11p")]
 position = Vector2(976, -3884)
 rotation = 1.5707964
-curve = SubResource("Curve2D_roeys")
+curve = SubResource("Curve2D_evs2c")
 
 [node name="block23" parent="blocks" unique_id=1608573909 instance=ExtResource("11_3devp")]
 position = Vector2(814.99994, -4125)
@@ -1413,6 +1415,8 @@ scale = Vector2(0.3995555, 1.8268186)
 position = Vector2(-708.28674, -299.4276)
 scale = Vector2(1, 0.99999964)
 shape = SubResource("RectangleShape2D_si07u")
+
+[node name="PauseMenu" parent="." unique_id=375924707 instance=ExtResource("14_rtk7f")]
 
 [connection signal="body_entered" from="blocks/exit" to="." method="_on_exit_body_entered"]
 [connection signal="body_entered" from="switch/switch_cam1" to="." method="_on_switch_cam_1_body_entered"]

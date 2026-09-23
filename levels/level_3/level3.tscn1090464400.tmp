@@ -1043,7 +1043,7 @@ parameters/looping = true
 
 [node name="player" parent="background_text_audio" unique_id=783057828 instance=ExtResource("5_a1uf3")]
 unique_name_in_owner = true
-position = Vector2(104, 1105)
+position = Vector2(601, -4553)
 
 [node name="blocks" type="Node2D" parent="." unique_id=733903127]
 
@@ -1324,7 +1324,6 @@ position = Vector2(384.99997, -4236)
 scale = Vector2(1.0800024, 1.0800024)
 
 [node name="PauseMenu" parent="." unique_id=375924707 instance=ExtResource("15_8iwj3")]
-unique_name_in_owner = true
 
 [connection signal="body_entered" from="blocks/exit" to="." method="_on_exit_body_entered"]
 [connection signal="body_entered" from="switch/switch_cam1" to="." method="_on_switch_cam_1_body_entered"]

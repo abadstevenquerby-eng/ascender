@@ -13,25 +13,19 @@
 [ext_resource type="PackedScene" uid="uid://ctjc8s37yjwvw" path="res://levels/level 1/blocks/falling_collapse/falling_slow.tscn" id="9_hngal"]
 [ext_resource type="PackedScene" uid="uid://dungggdj1db0q" path="res://levels/level 1/blocks/falling_collapse/falling_fast.tscn" id="10_d4aew"]
 [ext_resource type="PackedScene" uid="uid://bqqn7ts2e7ty1" path="res://levels/level 1/blocks/moving/moving.tscn" id="11_nsygj"]
+[ext_resource type="PackedScene" uid="uid://cxvd4u8l6a7p2" path="res://pause_menu.tscn" id="14_khgbs"]
 
-[sub_resource type="Curve2D" id="Curve2D_14grb"]
+[sub_resource type="Curve2D" id="Curve2D_khgbs"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -2.1875, -2.1875, 0, 0, 0, 0, 1126.561, -8.75)
 }
 point_count = 2
 
-[sub_resource type="Curve2D" id="Curve2D_khgbs"]
-resource_local_to_scene = true
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -2.1875, -2.1875, 0, 0, 0, 0, 1008.4363, -4.3745117)
-}
-point_count = 2
-
 [sub_resource type="Curve2D" id="Curve2D_lirpf"]
 resource_local_to_scene = true
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -2.1875, -2.1875, 0, 0, 0, 0, -10.9375, -435.31152)
+"points": PackedVector2Array(0, 0, 0, 0, -2.1875, -2.1875, 0, 0, 0, 0, 1008.4363, -4.3745117)
 }
 point_count = 2
 
@@ -43,6 +37,13 @@ _data = {
 point_count = 2
 
 [sub_resource type="Curve2D" id="Curve2D_3iamj"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -2.1875, -2.1875, 0, 0, 0, 0, -10.9375, -435.31152)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_jexxc"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -2.1875, -2.1875, 0, 0, 0, 0, 1017.1862, -8.749023)
@@ -557,7 +558,7 @@ size = Vector2(3001.1594, 148.24106)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tj45o"]
 size = Vector2(1904.6831, 148.24106)
 
-[node name="Node2D" type="Node2D" unique_id=1233610334]
+[node name="level1" type="Node2D" unique_id=1233610334]
 script = ExtResource("1_7mql6")
 
 [node name="background_text_audio" type="Node2D" parent="." unique_id=868234266]
@@ -629,6 +630,7 @@ autoplay = true
 parameters/looping = true
 
 [node name="player" parent="." unique_id=331636849 instance=ExtResource("2_7vvte")]
+unique_name_in_owner = true
 position = Vector2(204, 1147)
 
 [node name="blocks" type="Node2D" parent="." unique_id=733903127]
@@ -701,7 +703,7 @@ scale = Vector2(0.36, 0.36)
 [node name="block18" parent="blocks" unique_id=299928165 instance=ExtResource("11_nsygj")]
 position = Vector2(475.00003, -2131)
 scale = Vector2(0.45714343, 0.45714343)
-curve = SubResource("Curve2D_14grb")
+curve = SubResource("Curve2D_khgbs")
 
 [node name="block19" parent="blocks" unique_id=1894768943 instance=ExtResource("10_d4aew")]
 position = Vector2(862, -2366)
@@ -717,12 +719,12 @@ position = Vector2(178, -2435)
 [node name="block22" parent="blocks" unique_id=738749660 instance=ExtResource("11_nsygj")]
 position = Vector2(408, -2803.0002)
 scale = Vector2(0.45714343, 0.45714343)
-curve = SubResource("Curve2D_khgbs")
+curve = SubResource("Curve2D_lirpf")
 
 [node name="block23" parent="blocks" unique_id=808886132 instance=ExtResource("11_nsygj")]
 position = Vector2(928, -2853.0002)
 scale = Vector2(0.45714343, 0.45714343)
-curve = SubResource("Curve2D_lirpf")
+curve = SubResource("Curve2D_o246c")
 
 [node name="block24" parent="blocks" unique_id=1725623866 instance=ExtResource("6_8xv0u")]
 position = Vector2(718.00006, -3174)
@@ -743,7 +745,7 @@ position = Vector2(174, 751)
 [node name="block28" parent="blocks" unique_id=223309182 instance=ExtResource("11_nsygj")]
 position = Vector2(701, -3680)
 scale = Vector2(0.45714343, 0.45714343)
-curve = SubResource("Curve2D_o246c")
+curve = SubResource("Curve2D_3iamj")
 
 [node name="block29" parent="blocks" unique_id=1435836420 instance=ExtResource("10_d4aew")]
 position = Vector2(353, -3830)
@@ -764,7 +766,7 @@ scale = Vector2(0.67999876, 0.67999876)
 [node name="block33" parent="blocks" unique_id=421978647 instance=ExtResource("11_nsygj")]
 position = Vector2(337.00003, -4694.0005)
 scale = Vector2(0.45714343, 0.45714343)
-curve = SubResource("Curve2D_3iamj")
+curve = SubResource("Curve2D_jexxc")
 
 [node name="block34" parent="blocks" unique_id=372969384 instance=ExtResource("7_k8j64")]
 position = Vector2(1185.9999, -4732)
@@ -870,6 +872,8 @@ scale = Vector2(0.67517245, 0.6843566)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="switch/switch_cam5" unique_id=450714995]
 position = Vector2(128.90625, 16.11316)
 shape = SubResource("RectangleShape2D_tj45o")
+
+[node name="PauseMenu" parent="." unique_id=375924707 instance=ExtResource("14_khgbs")]
 
 [connection signal="body_entered" from="blocks/exit" to="." method="_on_exit_body_entered"]
 [connection signal="body_entered" from="switch/switch_cam1" to="." method="_on_switch_cam_1_body_entered"]

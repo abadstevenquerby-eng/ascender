@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://ckc8pkxkx4n21" path="res://elements/mushroom/mushrooom1.png" id="9_b7lqr"]
 [ext_resource type="PackedScene" uid="uid://vpgcwvx45ec4" path="res://levels/level_4/block/static/4_static_4.tscn" id="9_mvcgd"]
 [ext_resource type="Texture2D" uid="uid://bhcn8stt8mpi2" path="res://elements/mushroom/mushroom.png" id="10_mvcgd"]
+[ext_resource type="PackedScene" uid="uid://cxvd4u8l6a7p2" path="res://pause_menu.tscn" id="12_6p2x5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nsygj"]
 size = Vector2(63, 76)
@@ -24,7 +25,7 @@ size = Vector2(1904.6831, 148.24106)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3devp"]
 size = Vector2(102.742584, 202.75018)
 
-[node name="Node2D" type="Node2D" unique_id=1233610334]
+[node name="level4" type="Node2D" unique_id=1233610334]
 script = ExtResource("1_n40w4")
 
 [node name="background_text_audio" type="Node2D" parent="." unique_id=868234266]
@@ -261,6 +262,8 @@ texture = ExtResource("9_b7lqr")
 position = Vector2(664, -1727)
 scale = Vector2(0.05588893, 0.05588893)
 texture = ExtResource("10_mvcgd")
+
+[node name="PauseMenu" parent="." unique_id=375924707 instance=ExtResource("12_6p2x5")]
 
 [connection signal="body_entered" from="blocks/exit" to="." method="_on_exit_body_entered"]
 [connection signal="body_entered" from="switch/switch_cam1" to="." method="_on_switch_cam_1_body_entered"]
