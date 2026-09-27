@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://d2u4et2ke2eln"]
+
+[ext_resource type="Texture2D" uid="uid://dw1awpatobvom" path="res://levels/temporary_placeholders/Checkpoint (Flag Idle)(64x64).png" id="1_gpxo8"]
+[ext_resource type="Script" uid="uid://bxf4a2b835a7g" path="res://levels/temporary_placeholders/checkpoint.gd" id="1_kjqfp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kjqfp"]
+atlas = ExtResource("1_gpxo8")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bd5fh"]
+atlas = ExtResource("1_gpxo8")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x4wbh"]
+atlas = ExtResource("1_gpxo8")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hbbxl"]
+atlas = ExtResource("1_gpxo8")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_voade"]
+atlas = ExtResource("1_gpxo8")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_erqx7"]
+atlas = ExtResource("1_gpxo8")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ne8u2"]
+atlas = ExtResource("1_gpxo8")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0qjb2"]
+atlas = ExtResource("1_gpxo8")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cuql1"]
+atlas = ExtResource("1_gpxo8")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bkyme"]
+atlas = ExtResource("1_gpxo8")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j2pkp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjqfp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bd5fh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x4wbh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hbbxl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_voade")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_erqx7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ne8u2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0qjb2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cuql1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bkyme")
+}],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bd5fh"]
+radius = 4.7832527
+height = 47.970253
+
+[node name="Area2D" type="Area2D" unique_id=725487488]
+script = ExtResource("1_kjqfp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=69699106]
+sprite_frames = SubResource("SpriteFrames_j2pkp")
+frame_progress = 0.14153208
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=365435502]
+unique_name_in_owner = true
+position = Vector2(-8.474426, 9.677916)
+shape = SubResource("CapsuleShape2D_bd5fh")
+
+[node name="Label" type="Label" parent="." unique_id=157186680]
+unique_name_in_owner = true
+offset_left = -76.7745
+offset_top = -38.202843
+offset_right = 58.225502
+offset_bottom = -15.202843
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

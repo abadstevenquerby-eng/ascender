@@ -65,22 +65,8 @@ func _physics_process(delta: float) -> void:
 		else:
 			current_x= move_toward(current_x, max_y, increment * delta)
 		current_y= move_toward(current_y, max_y, increment * delta)
-		animated_sprite_2d.offset = Vector2(0, 34 )
+		animated_sprite_2d.offset = Vector2(0, 38)
 		animated_sprite_2d.animation = "hold"
-		
-	elif Input.is_action_pressed("jump") and animated_sprite_2d.animation == "wall climb":
-		if flipped == true: #if flipped uses negative horizontal values otherwise use positive values for default
-			current_x = move_toward(current_x, max_x , increment *delta)
-		else:
-			current_x= move_toward(current_x, max_y, increment * delta)
-		current_y= move_toward(current_y, max_y, increment * delta)
-	elif Input.is_action_pressed("jump") and animated_sprite_2d.animation == "swing":
-		if flipped == false: #if flipped uses negative horizontal values otherwise use positive values for default
-			current_x = move_toward(current_x, max_x , increment *delta)
-		else:
-			current_x= move_toward(current_x, max_y, increment * delta)
-		current_y= move_toward(current_y, max_y, increment * delta)
-		
 	elif animated_sprite_2d.animation == "run":
 		if not sfx_run.playing:
 			sfx_run.play()
@@ -109,34 +95,29 @@ func switch_state(to_state: State) -> void:
 	
 		State.Jump:
 			animated_sprite_2d.animation = "jump"
-		
-		State.Slide:
-			animated_sprite_2d.animation = "wall climb"
-			velocity.y = 0
+
 
 		State.Climb:
 			animated_sprite_2d.play("ledge climb") #work in progress (no sprite yet)
 			velocity = Vector2.ZERO
 			global_position.y = ledge.get_collision_point().y
-			
-		State.Swing:
-			animated_sprite_2d.animation = "swing"
-			rotation_degrees = 0
-			velocity = Vector2.ZERO
 
 #Defines what each states does.
 func process_state(delta: float) -> void:
 	match active_state:
 		State.Fall:
 			velocity.y = move_toward(velocity.y, fall_velocity, fall_gravity * delta)
+			current_x = 0
+			current_y = 0
+			animated_sprite_2d.offset = Vector2(0, 0)
 			if is_on_floor():
+				can_move = true
 				switch_state(State.Floor)
 			elif is_input_facing() and is_ledge() and is_space():
 				switch_state(State.Climb)
 			elif onRope == true:
 				switch_state(State.Swing)
-			current_x = 0
-			current_y = 0
+			
 
 		State.Floor:
 			if Input.get_axis("left", "right") and can_move == true:
@@ -168,6 +149,7 @@ func process_state(delta: float) -> void:
 
 		State.Climb:
 			if not animated_sprite_2d.is_playing(): #ensures the animation is over before changing the character position
+				velocity = get_platform_velocity()
 				var offset = ledge_offset()
 				offset.x *= facing_direction
 				global_position += offset *2
@@ -217,50 +199,6 @@ func set_facing_direction(direction: float) -> void:
 		ledge.position.x = direction * absf(ledge.position.x)
 		ledge.target_position.x = direction * absf(ledge.target_position.x)
 
-
-func bounce() -> void: #used to define how superjumps work
-	if velocity.y > 0 and velocity.x != 0 and velocity.y <= 250:
-		velocity.y *= -3
-	elif velocity.y < 0 and velocity.x != 0 and velocity.y >= -250:
-		velocity.y *= 3
-	if velocity.y > 0 and velocity.x != 0 and velocity.y <500 and velocity.y > 250:
-		velocity.y *= -2
-	elif velocity.y < 0 and velocity.x != 0 and velocity.y > -500 and velocity.y > -250:
-		velocity.y *= 2
-	elif velocity.x != 0 and velocity.y > 0 and velocity.y > 500:
-		velocity.y *= -1.25
-	elif velocity.x != 0 and velocity.y < 0 and velocity.y < -500:
-		velocity.y *= 1.25
-	print(velocity.y)
-	
-
-
-##------------------------------------------------
-##Start of rope 
-##-----------------------------------------------
-func enter_rope(area):
-	onRope = true
-	reparent(area)
-	global_position = area.get_rope_position(self)
-
-func exit_rope():
-	area_2d.monitoring = false
-	onRope = false
-	reparent(get_tree().current_scene)
-	rotation_degrees = 0
-	
-	await get_tree().create_timer(1).timeout
-	area_2d.monitoring = true
-	
-func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area.is_in_group("rope") and onRope == false:
-		call_deferred("enter_rope", area)
-
-
-func _on_area_2d_area_exited(area: Area2D) -> void:
-	if area.is_in_group("rope") and onRope == true:
-		onRope = false
-		
 ##------------------------------------------------
 ##Start of bar
 ##-----------------------------------------------

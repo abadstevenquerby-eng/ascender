@@ -1,11 +1,12 @@
 [gd_scene format=4 uid="uid://ukcl7s64eh2q"]
 
-[ext_resource type="Script" uid="uid://rah5e5nwx6un" path="res://levels/testlevel/testmushroom.gd" id="1_8h8sm"]
+[ext_resource type="Script" uid="uid://rah5e5nwx6un" path="res://levels/temporary_placeholders/testmushroom.gd" id="1_8h8sm"]
 [ext_resource type="Texture2D" uid="uid://jg5mw1h5w0sf" path="res://assets/images/tilemap/mushroom (2).png" id="1_lqw0w"]
 [ext_resource type="Texture2D" uid="uid://lo7jctapd4ox" path="res://assets/images/backgrounds/mushroom.png" id="1_nkjps"]
 [ext_resource type="PackedScene" uid="uid://cmsk6hhqcpam5" path="res://elements/mushroom/bouncy mushroom.tscn" id="3_g0qq0"]
 [ext_resource type="PackedScene" uid="uid://db7ka3fdblgvy" path="res://elements/rope/rope.tscn" id="4_mvrq8"]
 [ext_resource type="PackedScene" uid="uid://kmrmipo0u0tp" path="res://levels/level_2/player_level2.tscn" id="6_8h8sm"]
+
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ltu0j"]
 texture = ExtResource("1_lqw0w")

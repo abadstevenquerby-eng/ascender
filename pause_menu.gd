@@ -19,6 +19,9 @@ extends CanvasLayer
 @onready var sfx_click: AudioStreamPlayer = %sfx_click
 var is_paused: bool = false
 var camera: int
+var finished = false
+var starting_pos: Vector2
+
 
 # Save file path
 const SAVE_PATH = "user://save_game.json"
@@ -39,6 +42,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	# Toggle pause menu with Escape key (ui_cancel) or P key
 	if event.is_action_pressed("ui_cancel") or (event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_P):
 		# If inside a submenu (Settings or Mechanics), pressing Escape returns to the main pause menu first
+		save_current_position() #Saves the current player position the moment the pause menu shows up
 		if mechanics_panel.visible or settings_panel.visible:
 			_show_main_menu()
 			_play_click_sfx()
@@ -71,8 +75,6 @@ func _show_main_menu() -> void:
 	main_pause_panel.visible = true
 	mechanics_panel.visible = false
 	settings_panel.visible = false
-	if save_status_label:
-		save_status_label.text = ""
 
 
 ## Flowchart: [Resume] -> End Pause
@@ -84,9 +86,21 @@ func _on_resume_pressed() -> void:
 ## Restarts the current active level
 func _on_restart_pressed() -> void:
 	_play_click_sfx()
-	# Always unpause the tree before reloading so physics & input resume immediately
+	# 1. Loads the raw data straight from the file path
+	var json_text = FileAccess.get_file_as_string(SAVE_PATH)
+	
+	# 2. Automatically parses it into a Dictionary or Array
+	var data = JSON.parse_string(json_text)
+	
+	if data == null:
+		print("Failed to parse JSON. Invalid format.")
+	get_parent().restarted = true
 	get_tree().paused = false
+	get_parent().restarted = true
 	get_tree().reload_current_scene()
+	get_parent().restarted = true
+	pass
+	
 
 
 ## Flowchart: [View the mechanics?] -> Yes -> Mechanic and Controls
@@ -115,11 +129,8 @@ func _on_back_to_menu_pressed() -> void:
 func _on_save_and_exit_pressed() -> void:
 	_play_click_sfx()
 	
-	# Step 1: Save player position and current level
-	save_current_position()
-	
 	if save_status_label:
-		save_status_label.text = "Position Saved! Exiting..."
+		save_status_label.text = "Exiting..."
 	
 	# Small delay so the player can see the confirmation and hear the click
 	await get_tree().create_timer(0.4, true, false, true).timeout
@@ -140,6 +151,9 @@ func save_current_position() -> void:
 	var player_node = _find_player_in_tree()
 	var player_pos: Vector2 = Vector2.ZERO
 	
+	if save_status_label:
+		save_status_label.text = "Position saved"
+	
 	if player_node:
 		player_pos = player_node.global_position
 		print("[PauseMenu] Saved player position: ", player_pos)
@@ -149,57 +163,36 @@ func save_current_position() -> void:
 	var current_scene = ""
 	if get_tree().current_scene:
 		current_scene = get_tree().current_scene.name
-	var save_data = {
-			"level1": {
-			"player_x": 0,
-			"player_y": 0,
-			"started": false,
-			"camera": 1},
-			"level2": {
-			"player_x": 0,
-			"player_y": 0,
-			"started": false,
-			"camera": 1},
-			"level3": {
-			"player_x": 0,
-			"player_y": 0,
-			"started": false,
-			"camera": 1},
-			"level4": {
-			"player_x": 0,
-			"player_y": 0,
-			"started": false,
-			"camera": 1}
-		}
-		
+
 	var data: Dictionary = {}
 	if FileAccess.file_exists(SAVE_PATH):
 		var file = FileAccess.open(SAVE_PATH, FileAccess.READ)
 		var json_string = file.get_as_text()
 		file.close()
-		
 		var json = JSON.new()
 		var error = json.parse(json_string)
 		if error == OK:
 			var result = json.get_data()
 			if result is Dictionary:
 				data = result
-		data[current_scene]["player_x"] = player_pos.x
-		data[current_scene]["player_y"] = player_pos.y
+		if finished == true:
+			data[current_scene]["finished"] = finished
+			data[current_scene]["player_x"] = starting_pos.x
+			data[current_scene]["player_y"] = starting_pos.y
+			data[current_scene]["camera"] = 1
+			data[current_scene]["checkpoint_x"] = starting_pos.x
+			data[current_scene]["checkpoint_y"] = starting_pos.y
+		else:
+			data[current_scene]["player_y"] = player_pos.y
+			data[current_scene]["player_x"] = player_pos.x
+			data[current_scene]["camera"] = get_parent().current
+			if get_parent().checkpointed:
+				data[current_scene]["checkpoint_x"] = get_parent().checkpoint.x
+				data[current_scene]["checkpoint_y"] = get_parent().checkpoint.y
 		data[current_scene]["started"] = true
-		data[current_scene]["camera"] = get_parent().current
+		
 		file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 		json_string = JSON.stringify(data, "\t")
-		file.store_string(json_string)
-		file.close()
-		print("[PauseMenu] Game successfully saved to ", SAVE_PATH)
-	else:
-		var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
-		save_data[current_scene]["player_x"] = player_pos.x
-		save_data[current_scene]["player_y"] = player_pos.y
-		save_data[current_scene]["started"] = true
-		save_data[current_scene]["camera"] = camera
-		var json_string = JSON.stringify(save_data, "\t")
 		file.store_string(json_string)
 		file.close()
 		print("[PauseMenu] Game successfully saved to ", SAVE_PATH)

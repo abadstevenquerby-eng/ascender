@@ -990,6 +990,7 @@ offset_bottom = 1270.0
 texture = ExtResource("2_a1uf3")
 
 [node name="back2" type="TextureRect" parent="background_text_audio" unique_id=203599830]
+modulate = Color(0.7412284, 0.61754125, 0.41793007, 1)
 offset_left = -14.0
 offset_top = -1338.0
 offset_right = 1952.5109
@@ -1041,9 +1042,9 @@ volume_db = -5.0
 autoplay = true
 parameters/looping = true
 
-[node name="player" parent="background_text_audio" unique_id=783057828 instance=ExtResource("5_a1uf3")]
+[node name="player" parent="." unique_id=783057828 instance=ExtResource("5_a1uf3")]
 unique_name_in_owner = true
-position = Vector2(104, 1105)
+position = Vector2(64, 1148)
 
 [node name="blocks" type="Node2D" parent="." unique_id=733903127]
 

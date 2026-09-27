@@ -142,9 +142,9 @@ shape = SubResource("RectangleShape2D_d21ai")
 
 [node name="ledge" type="RayCast2D" parent="." unique_id=1959106769]
 unique_name_in_owner = true
-position = Vector2(1, -7.6666665)
+position = Vector2(1.3333334, -7.333333)
 scale = Vector2(0.33333334, 0.33333334)
-target_position = Vector2(31, 33)
+target_position = Vector2(39, 40)
 
 [node name="space" type="RayCast2D" parent="." unique_id=758371244]
 unique_name_in_owner = true

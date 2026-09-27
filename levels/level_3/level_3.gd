@@ -8,14 +8,15 @@ extends Node2D
 
 const SAVE_PATH = "user://save_game.json"
 
+var data = load_json_file(SAVE_PATH)
 var current = 1
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	stop()
 	cam(current)
 	set_up_superjump()
-	var data = load_json_file(SAVE_PATH)
 	if data and data[get_tree().current_scene.name]["started"] == true:
 		player.position.x = data[get_tree().current_scene.name]["player_x"]
 		player.position.y = data[get_tree().current_scene.name]["player_y"]
@@ -80,6 +81,10 @@ func _on_switch_cam_5_body_entered(body: Node2D) -> void:
 
 func _on_exit_body_entered(body: Node2D) -> void:
 	if body.name =="player":
+		await get_tree().create_timer(2).timeout
+		$PauseMenu.finished = true
+		$PauseMenu.starting_pos = Vector2(90, 1137)
+		$PauseMenu.save_current_position()
 		get_tree().change_scene_to_file("res://level_selection.tscn")
 
 func cam(int) -> void:

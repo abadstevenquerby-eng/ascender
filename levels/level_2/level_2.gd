@@ -6,6 +6,7 @@ extends Node2D
 @onready var camera_5: Camera2D = %camera5
 @onready var player: CharacterBody2D = %player
 
+var data = load_json_file(SAVE_PATH)
 var current = 1
 
 const SAVE_PATH = "user://save_game.json"
@@ -14,7 +15,6 @@ const SAVE_PATH = "user://save_game.json"
 func _ready() -> void:
 	stop()
 	cam(current)
-	var data = load_json_file(SAVE_PATH)
 	if data and data[get_tree().current_scene.name]["started"] == true:
 		player.position.x = data[get_tree().current_scene.name]["player_x"]
 		player.position.y = data[get_tree().current_scene.name]["player_y"]
@@ -78,7 +78,11 @@ func _on_switch_cam_5_body_entered(body: Node2D) -> void:
 		cam(current)
 
 func _on_exit_body_entered(body: Node2D) -> void:
-	if body.name =="player":
+	if body.name == "player":
+		await get_tree().create_timer(2).timeout
+		$PauseMenu.finished = true
+		$PauseMenu.starting_pos = Vector2(154, 1176)
+		$PauseMenu.save_current_position()
 		get_tree().change_scene_to_file("res://level_selection.tscn")
 
 func cam(int) -> void:

@@ -1,14 +1,14 @@
+Label
 CollisionShape2D
 Area2D
+AnimatedSprite2D
+Node2D
 AudioStreamPlayer
 Sprite2D
 StaticBody2D
-Node2D
 TileMapLayer
-AnimatedSprite2D
 TextureProgressBar
 CanvasLayer
 TextureRect
 CollisionPolygon2D
 AnimatableBody2D
-RemoteTransform2D

@@ -67,7 +67,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			current_x= move_toward(current_x, max_y, increment * delta)
 		current_y= move_toward(current_y, max_y, increment * delta)
-		animated_sprite_2d.offset = Vector2(0, 34 )
+		animated_sprite_2d.offset = Vector2(0, 38)
 		animated_sprite_2d.animation = "hold"
 	elif Input.is_action_pressed("jump") and animated_sprite_2d.animation == "wall climb":
 		if flipped == true: #if flipped uses negative horizontal values otherwise use positive values for default
@@ -126,7 +126,10 @@ func process_state(delta: float) -> void:
 	match active_state:
 		State.Fall:
 			velocity.y = move_toward(velocity.y, fall_velocity, fall_gravity * delta)
+			current_x = 0
+			current_y = 0
 			if is_on_floor() and floor_allow:
+				can_move = true
 				switch_state(State.Floor)
 			elif !floor_allow and !can_slide() and !is_ledge():
 				velocity.x += facing_direction 
@@ -136,8 +139,8 @@ func process_state(delta: float) -> void:
 				switch_state(State.Climb)
 			elif onRope == true:
 				switch_state(State.Swing)
-			current_x = 0
-			current_y = 0
+			
+			
 			
 
 		State.Floor:

@@ -151,7 +151,7 @@ target_position = Vector2(49, 2.861023e-06)
 unique_name_in_owner = true
 position = Vector2(1, -7.6666665)
 scale = Vector2(0.33333334, 0.33333334)
-target_position = Vector2(31, 33)
+target_position = Vector2(40, 38)
 
 [node name="space" type="RayCast2D" parent="." unique_id=1249187318]
 unique_name_in_owner = true

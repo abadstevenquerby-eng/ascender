@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://c4sd7vadlqcp5" path="res://elements/ui/menu/leaderboard.png" id="5_dy7ct"]
 [ext_resource type="Texture2D" uid="uid://cjaurfqvxg441" path="res://elements/ui/menu/TAC.png" id="6_0o4t1"]
 [ext_resource type="Texture2D" uid="uid://dytx12d3ex7ik" path="res://elements/ui/menu/exit.png" id="7_0k4wn"]
+[ext_resource type="PackedScene" uid="uid://bffy8nc7jotdb" path="res://confirmation.tscn" id="9_0k4wn"]
 [ext_resource type="AudioStream" uid="uid://docrph6c6fhtq" path="res://assets/audio/sound effects/ui/on_press.mp3" id="9_0o4t1"]
 [ext_resource type="AudioStream" uid="uid://biy5qk5gkf7x" path="res://assets/audio/sound effects/ui/on_release.mp3" id="10_0o4t1"]
 
@@ -40,6 +41,7 @@ modulate_color = Color(0.38431373, 0.38431373, 0.38431373, 1)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w44g7"]
 texture = ExtResource("4_8qtwp")
 texture_margin_bottom = 10.0
+modulate_color = Color(0.53333336, 0.53333336, 0.53333336, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cm266"]
 texture = ExtResource("5_dy7ct")
@@ -51,7 +53,7 @@ texture_margin_bottom = 10.0
 modulate_color = Color(0.38431373, 0.38431373, 0.38431373, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8u0te"]
-texture = ExtResource("6_0o4t1")
+texture = ExtResource("5_dy7ct")
 texture_margin_bottom = 10.0
 modulate_color = Color(0.53333336, 0.53333336, 0.53333336, 1)
 
@@ -215,6 +217,9 @@ volume_db = 5.0
 unique_name_in_owner = true
 stream = ExtResource("10_0o4t1")
 volume_db = 5.0
+
+[node name="PauseMenu" parent="." unique_id=375924707 instance=ExtResource("9_0k4wn")]
+unique_name_in_owner = true
 
 [connection signal="button_down" from="Panel/Start game" to="." method="_on_start_game_button_down"]
 [connection signal="button_up" from="Panel/Start game" to="." method="_on_start_game_button_up"]

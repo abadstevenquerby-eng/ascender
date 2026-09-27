@@ -4,25 +4,36 @@ extends Node2D
 @onready var camera_1: Camera2D = %camera1
 @onready var camera_4: Camera2D = %camera4
 @onready var camera_5: Camera2D = %camera5
-@onready var player: CharacterBody2D = %player
 @onready var pause_menu: CanvasLayer = %PauseMenu
+@onready var player: CharacterBody2D = %player
 
+
+var data = load_json_file(SAVE_PATH)
 var current = 1
+var checkpoint: Vector2
+var checkpointed= false
+var restarted= false
 
 const SAVE_PATH = "user://save_game.json"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	stop()
-	var data = load_json_file(SAVE_PATH)
-	if data and data[get_tree().current_scene.name]["started"] == true:
+	
+	print("level1", checkpoint)
+	if data and data[get_tree().current_scene.name]["started"] == true and restarted == false:
 		print("undefaulted")
 		player.position.x = data[get_tree().current_scene.name]["player_x"]
 		player.position.y = data[get_tree().current_scene.name]["player_y"]
 		current = data[get_tree().current_scene.name]["camera"]
 		cam(current)
+	elif restarted == true:
+		print("restarted")
+		player.position.x = data[get_tree().current_scene.name]["checkpoint_x"]
+		player.position.y = data[get_tree().current_scene.name]["checkpoint_y"]
+		current = data[get_tree().current_scene.name]["camera"]
+		cam(current)
 	else:
-		print("defaulted")
 		cam(current)
 
 
@@ -82,7 +93,11 @@ func _on_switch_cam_5_body_entered(body: Node2D) -> void:
 		cam(current)
 
 func _on_exit_body_entered(body: Node2D) -> void:
-	if body.name =="player":
+	if body.name == "player":
+		await get_tree().create_timer(2).timeout
+		$PauseMenu.finished = true
+		$PauseMenu.starting_pos = Vector2(154, 1176)
+		$PauseMenu.save_current_position()
 		get_tree().change_scene_to_file("res://level_selection.tscn")
 
 func cam(int) -> void:
@@ -102,10 +117,10 @@ func load_json_file(SAVE_PATH: String) -> Variant:
 		print("File does not exist: ", SAVE_PATH)
 		return null
 		
-	# 1. Read the file as a string
+	#Used to read the file as a string
 	var json_as_text = FileAccess.get_file_as_string(SAVE_PATH)
 	
-	# 2. Parse the string into a Godot Variant (Dictionary or Array)
+	# 2. Parse the string into a dictionary
 	var parsed_data = JSON.parse_string(json_as_text)
 	
 	if parsed_data == null:

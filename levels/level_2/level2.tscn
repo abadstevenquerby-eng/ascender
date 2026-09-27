@@ -600,15 +600,15 @@ texture_region_size = Vector2i(32, 32)
 42:15/0 = 0
 43:15/0 = 0
 34:16/0 = 0
-34:16/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, 0, 16, 0, 16, 16, 0, 16)
+34:16/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, 8, 16, 8, 16, 16, 0, 16)
 35:16/0 = 0
-35:16/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 0, 16, 0, 16, 16, -16, 16)
+35:16/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 8, 16, 8, 16, 16, -16, 16)
 36:16/0 = 0
-36:16/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 0, 16, 0, 16, 16, -16, 16)
+36:16/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 8, 16, 8, 16, 16, -16, 16)
 37:16/0 = 0
-37:16/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 0, 16, 0, 16, 16, -16, 16)
+37:16/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 8, 16, 8, 16, 16, -16, 16)
 38:16/0 = 0
-38:16/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 0, 8, 0, 8, 16, -16, 16)
+38:16/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 8, 8, 8, 8, 16, -16, 16)
 39:16/0 = 0
 40:16/0 = 0
 41:16/0 = 0
@@ -662,7 +662,7 @@ texture_region_size = Vector2i(32, 32)
 34:21/0 = 0
 35:21/0 = 0
 36:21/0 = 0
-36:21/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -4, 16, -4, 16, 16, -16, 16)
+36:21/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 0, 16, 0, 16, 16, -16, 16)
 37:21/0 = 0
 38:21/0 = 0
 39:21/0 = 0
@@ -1049,35 +1049,35 @@ script = ExtResource("1_2h0li")
 [node name="back1" type="TextureRect" parent="background_text_audio" unique_id=340445138]
 offset_left = -7.0
 offset_top = -35.0
-offset_right = 1959.5109
+offset_right = 1286.0
 offset_bottom = 1270.0
 texture = ExtResource("2_q87sp")
 
 [node name="back2" type="TextureRect" parent="background_text_audio" unique_id=203599830]
 offset_left = -14.0
 offset_top = -1338.0
-offset_right = 1952.5109
+offset_right = 1292.0
 offset_bottom = -33.0
 texture = ExtResource("2_q87sp")
 
 [node name="back3" type="TextureRect" parent="background_text_audio" unique_id=2142462074]
 offset_left = -7.0
 offset_top = -2563.0
-offset_right = 1959.5109
+offset_right = 1299.0
 offset_bottom = -1258.0
 texture = ExtResource("2_q87sp")
 
 [node name="back4" type="TextureRect" parent="background_text_audio" unique_id=1843903944]
 offset_left = -7.0
 offset_top = -3864.0
-offset_right = 1959.5109
+offset_right = 1284.0
 offset_bottom = -2559.0
 texture = ExtResource("2_q87sp")
 
 [node name="back5" type="TextureRect" parent="background_text_audio" unique_id=1180421241]
 offset_left = -7.0
 offset_top = -5000.0
-offset_right = 1959.5109
+offset_right = 1299.0
 offset_bottom = -3695.0
 texture = ExtResource("2_q87sp")
 
@@ -1128,7 +1128,8 @@ shape = SubResource("RectangleShape2D_17iu4")
 
 [node name="player" parent="." unique_id=331636849 instance=ExtResource("6_yh11p")]
 unique_name_in_owner = true
-position = Vector2(111.00006, 1172)
+z_index = 1
+position = Vector2(80, 1186)
 
 [node name="blocks" type="Node2D" parent="." unique_id=733903127]
 
@@ -1417,6 +1418,7 @@ scale = Vector2(1, 0.99999964)
 shape = SubResource("RectangleShape2D_si07u")
 
 [node name="PauseMenu" parent="." unique_id=375924707 instance=ExtResource("14_rtk7f")]
+visible = false
 
 [connection signal="body_entered" from="blocks/exit" to="." method="_on_exit_body_entered"]
 [connection signal="body_entered" from="switch/switch_cam1" to="." method="_on_switch_cam_1_body_entered"]
