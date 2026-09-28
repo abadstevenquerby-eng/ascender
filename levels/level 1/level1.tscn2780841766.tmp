@@ -553,9 +553,6 @@ size = Vector2(3001.1594, 148.24106)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tj45o"]
 size = Vector2(1904.6831, 148.24106)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lirpf"]
-bg_color = Color(0.5368773, 0, 0.016361615, 1)
-
 [node name="level1" type="Node2D" unique_id=1233610334]
 script = ExtResource("1_7mql6")
 metadata/_edit_vertical_guides_ = [-61.0]
@@ -631,7 +628,7 @@ parameters/looping = true
 [node name="player" parent="." unique_id=331636849 instance=ExtResource("2_7vvte")]
 unique_name_in_owner = true
 z_index = 1
-position = Vector2(170, 1163)
+position = Vector2(109, 1174)
 
 [node name="blocks" type="Node2D" parent="." unique_id=733903127]
 
@@ -774,7 +771,6 @@ rotation = 3.1415927
 scale = Vector2(0.4439024, -0.46239832)
 
 [node name="exit" type="Area2D" parent="blocks" unique_id=1710165466]
-unique_name_in_owner = true
 position = Vector2(1214, -4849)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="blocks/exit" unique_id=1661537372]
@@ -875,31 +871,20 @@ position = Vector2(128.90625, 16.11316)
 shape = SubResource("RectangleShape2D_tj45o")
 
 [node name="Area2D" parent="areas" unique_id=725487488 instance=ExtResource("14_lirpf")]
-position = Vector2(1184, -111)
+position = Vector2(254.00003, 1166)
 scale = Vector2(1.537, 1.537)
 
 [node name="Area2D2" parent="areas" unique_id=479409311 instance=ExtResource("14_lirpf")]
-position = Vector2(153.00006, -2013)
+position = Vector2(974, -1658)
 scale = Vector2(1.537, 1.537)
 
 [node name="Area2D3" parent="areas" unique_id=1594245528 instance=ExtResource("14_lirpf")]
-position = Vector2(1096, -3636)
+position = Vector2(744.00006, -3250.0002)
 scale = Vector2(1.537, 1.537)
 
 [node name="PauseMenu" parent="." unique_id=375924707 instance=ExtResource("14_khgbs")]
 unique_name_in_owner = true
 visible = false
-
-[node name="heightmeter" type="ProgressBar" parent="." unique_id=1358671775]
-unique_name_in_owner = true
-offset_left = 5.0
-offset_top = 37.0
-offset_right = 9.0
-offset_bottom = 64.0
-scale = Vector2(4.8587, 4.8587)
-theme_override_styles/fill = SubResource("StyleBoxFlat_lirpf")
-fill_mode = 3
-show_percentage = false
 
 [connection signal="body_entered" from="blocks/exit" to="." method="_on_exit_body_entered"]
 [connection signal="body_entered" from="areas/switch_cam1" to="." method="_on_switch_cam_1_body_entered"]

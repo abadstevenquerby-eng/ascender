@@ -21,6 +21,8 @@ var is_paused: bool = false
 var camera: int
 var finished = false
 var starting_pos: Vector2
+var restarted = false
+var checkpointed = false
 
 
 # Save file path
@@ -94,11 +96,10 @@ func _on_restart_pressed() -> void:
 	
 	if data == null:
 		print("Failed to parse JSON. Invalid format.")
-	get_parent().restarted = true
+	restarted = true
+	save_current_position()
 	get_tree().paused = false
-	get_parent().restarted = true
 	get_tree().reload_current_scene()
-	get_parent().restarted = true
 	pass
 	
 
@@ -182,13 +183,20 @@ func save_current_position() -> void:
 			data[current_scene]["camera"] = 1
 			data[current_scene]["checkpoint_x"] = starting_pos.x
 			data[current_scene]["checkpoint_y"] = starting_pos.y
+			data[current_scene]["checkpoint_cam"] = 1
 		else:
 			data[current_scene]["player_y"] = player_pos.y
 			data[current_scene]["player_x"] = player_pos.x
 			data[current_scene]["camera"] = get_parent().current
-			if get_parent().checkpointed:
+			if restarted and data[current_scene]["checkpoint_x"] != 0:
+				data[current_scene]["player_x"] = data[current_scene]["checkpoint_x"]
+				data[current_scene]["player_y"] = data[current_scene]["checkpoint_y"]
+				data[current_scene]["camera"] = data[current_scene]["checkpoint_cam"]
+			elif checkpointed:
 				data[current_scene]["checkpoint_x"] = get_parent().checkpoint.x
 				data[current_scene]["checkpoint_y"] = get_parent().checkpoint.y
+				data[current_scene]["checkpoint_cam"] = data[current_scene]["camera"]
+				checkpointed = false
 		data[current_scene]["started"] = true
 		
 		file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)

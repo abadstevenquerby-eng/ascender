@@ -1,27 +1,2 @@
-res://pause_menu.gd
-res://confirmation.tscn
-res://pause_menu.tscn
 res://levels/level 1/level1.tscn
-res://levels/level 1/player(level1).tscn
-res://levels/level 1/level_1.gd
-res://level_selection.gd
-res://level_selection.tscn
-res://main_menu.tscn
-res://main_menu.gd
-res://levels/level_2/level2.tscn
-res://levels/level_2/level_2.gd
-res://levels/level_3/level3.tscn
-res://levels/level_3/level_3.gd
-res://levels/level 1/blocks/static/block_2.tscn
-res://levels/level 1/blocks/static/block4.tscn
-res://levels/level 1/blocks/falling_collapse/falling_slow.tscn
-res://levels/level 1/playerlvl1.gd
-res://levels/level 1/blocks/falling_collapse/falling_fast.tscn
-res://levels/level 1/blocks/moving/moving.tscn
-res://levels/level 1/blocks/moving/moving.gd
-res://levels/level_2/player_level2.tscn
-res://levels/level_2/player_lvl2.gd
-res://levels/level_2/blocks/static/block1.tscn
-res://levels/level_2/blocks/static/block2.tscn
-res://levels/temporary_placeholders/checkpoint.gd
-res://levels/temporary_placeholders/checkpoint.tscn
+res://pause_menu.gd

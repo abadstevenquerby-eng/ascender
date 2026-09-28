@@ -45,7 +45,8 @@ func create_json() -> void:
 			"finished": false,
 			"path2d": 0, #all path2d not currently used
 			"checkpoint_x" : 0,
-			"checkpoint_y" : 0},
+			"checkpoint_y" : 0,
+			"checkpoint_cam": 1},
 			"level2": {
 			"player_x": 0,
 			"player_y": 0,
@@ -54,7 +55,8 @@ func create_json() -> void:
 			"finished": false,
 			"path2d": 0,
 			"checkpoint_x" : 0,
-			"checkpoint_y" : 0},
+			"checkpoint_y" : 0,
+			"checkpoint_cam": 1},
 			"level3": {
 			"player_x": 0,
 			"player_y": 0,
@@ -63,7 +65,8 @@ func create_json() -> void:
 			"finished": false,
 			"path2d": 0,
 			"checkpoint_x" : 0,
-			"checkpoint_y" : 0},
+			"checkpoint_y" : 0,
+			"checkpoint_cam": 1},
 			"level4": {
 			"player_x": 0,
 			"player_y": 0,
@@ -72,7 +75,8 @@ func create_json() -> void:
 			"finished": false,
 			"path2d": 0,
 			"checkpoint_x" : 0,
-			"checkpoint_y" : 0}
+			"checkpoint_y" : 0,
+			"checkpoint_cam": 1}
 		}
 	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	var json_string = JSON.stringify(save_data, "\t")
