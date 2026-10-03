@@ -22,7 +22,7 @@ var player_temporary: float
 func _ready() -> void:
 	stop()
 
-	heightmeter.max_value = abs(exit.position.y - 1189)
+	heightmeter.max_value = abs(exit.global_position.y - 1189)
 	heightmeter.min_value = 0
 	if data and data[get_tree().current_scene.name]["started"] == true:
 		print("undefaulted")
@@ -37,7 +37,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if player.position.y > 0:
-		heightmeter.value = player.position.y
+		heightmeter.value = abs(player.global_position.y - 1189)
 		player_temporary = bar_temporary
 	else:
 		heightmeter.value = abs(player.position.y) + bar_temporary
@@ -53,57 +53,41 @@ func stop() -> void:
 func _on_switch_cam_1_body_entered(body: Node2D) -> void:
 	if body.name == "player":
 		current = 1
-		heightmeter.position = Vector2(5, 39)
-		$PauseMenu.camera = current
 		cam(current)
 
 func _on_switch_cam_2_body_entered(body: Node2D) -> void:
 	if body.name == "player":
 		current = 2
-		heightmeter.position = Vector2(5, -1196)
-		$PauseMenu.camera = current
 		cam(current)
 
 func _on_switch_cam_2_reentry_body_entered(body: Node2D) -> void:
 	if body.name == "player":
 		current = 2
-		heightmeter.position = Vector2(5, -1196)
-		$PauseMenu.camera = current
 		cam(current)
 		
 func _on_switch_cam_3_body_entered(body: Node2D) -> void:
 	if body.name == "player":
 		current = 3
-		heightmeter.position = Vector2(5, -2461)
-		$PauseMenu.camera = current
 		cam(current)
 
 func _on_switch_cam_3_reentry_2_body_entered(body: Node2D) -> void:
 	if body.name == "player":
 		current = 3
-		heightmeter.position = Vector2(5, -2461)
-		$PauseMenu.camera = current
 		cam(current)
 
 func _on_switch_cam_4_body_entered(body: Node2D) -> void:
 	if body.name == "player":
 		current = 4
-		heightmeter.position = Vector2(5, -3650)
-		$PauseMenu.camera = current
 		cam(current)
 		
 func _on_switch_cam_4_reentry_body_entered(body: Node2D) -> void:
 	if body.name == "player":
 		current = 4
-		heightmeter.position = Vector2(5, -3650)
-		$PauseMenu.camera = current
 		cam(current)
 
 func _on_switch_cam_5_body_entered(body: Node2D) -> void:
 	if body.name == "player":
 		current = 5
-		heightmeter.position = Vector2(5, -4936)
-		$PauseMenu.camera = current
 		cam(current)
 
 func _on_exit_body_entered(body: Node2D) -> void:
@@ -116,14 +100,24 @@ func _on_exit_body_entered(body: Node2D) -> void:
 
 func cam(current: int) -> void:
 	if current == 1:
+		heightmeter.position = Vector2(5, 39)
+		$PauseMenu.camera = current
 		camera_1.make_current()
 	elif current == 2:
+		heightmeter.position = Vector2(5, -1196)
+		$PauseMenu.camera = current
 		camera_2.make_current()
 	elif current == 3:
+		heightmeter.position = Vector2(5, -2461)
+		$PauseMenu.camera = current
 		camera_3.make_current()
 	elif current == 4:
+		heightmeter.position = Vector2(5, -3650)
+		$PauseMenu.camera = current
 		camera_4.make_current()
 	elif current == 5:
+		heightmeter.position = Vector2(5, -4936)
+		$PauseMenu.camera = current
 		camera_5.make_current()
 		
 func load_json_file(Path: String) -> Variant:

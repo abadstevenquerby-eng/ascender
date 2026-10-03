@@ -192,6 +192,10 @@ func save_current_position() -> void:
 				data[current_scene]["player_x"] = data[current_scene]["checkpoint_x"]
 				data[current_scene]["player_y"] = data[current_scene]["checkpoint_y"]
 				data[current_scene]["camera"] = data[current_scene]["checkpoint_cam"]
+			if restarted and data[current_scene]["checkpoint_x"] == 0:
+				data[current_scene]["player_x"] = starting_pos.x
+				data[current_scene]["player_y"] = starting_pos.y
+				data[current_scene]["camera"] = data[current_scene]["checkpoint_cam"]
 			elif checkpointed:
 				data[current_scene]["checkpoint_x"] = get_parent().checkpoint.x
 				data[current_scene]["checkpoint_y"] = get_parent().checkpoint.y

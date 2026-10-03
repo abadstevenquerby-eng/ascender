@@ -44,8 +44,8 @@ func create_json() -> void:
 			"camera": 1,
 			"finished": false,
 			"path2d": 0, #all path2d not currently used
-			"checkpoint_x" : 0,
-			"checkpoint_y" : 0,
+			"checkpoint_x" : 154,
+			"checkpoint_y" : 1176,
 			"checkpoint_cam": 1},
 			"level2": {
 			"player_x": 0,

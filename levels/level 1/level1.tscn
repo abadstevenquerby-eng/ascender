@@ -631,7 +631,7 @@ parameters/looping = true
 [node name="player" parent="." unique_id=331636849 instance=ExtResource("2_7vvte")]
 unique_name_in_owner = true
 z_index = 1
-position = Vector2(170, 1163)
+position = Vector2(129, 1191)
 
 [node name="blocks" type="Node2D" parent="." unique_id=733903127]
 
