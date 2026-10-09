@@ -13,27 +13,21 @@
 [ext_resource type="PackedScene" uid="uid://ctjc8s37yjwvw" path="res://levels/level 1/blocks/falling_collapse/falling_slow.tscn" id="9_hngal"]
 [ext_resource type="PackedScene" uid="uid://dungggdj1db0q" path="res://levels/level 1/blocks/falling_collapse/falling_fast.tscn" id="10_d4aew"]
 [ext_resource type="PackedScene" uid="uid://bqqn7ts2e7ty1" path="res://levels/level 1/blocks/moving/moving.tscn" id="11_nsygj"]
+[ext_resource type="Texture2D" uid="uid://548n231aokfk" path="res://levels/temporary_placeholders/images-removebg-preview.png" id="13_o246c"]
 [ext_resource type="PackedScene" uid="uid://cxvd4u8l6a7p2" path="res://pause_menu.tscn" id="14_khgbs"]
 [ext_resource type="PackedScene" uid="uid://d2u4et2ke2eln" path="res://levels/temporary_placeholders/checkpoint.tscn" id="14_lirpf"]
 
-[sub_resource type="Curve2D" id="Curve2D_lirpf"]
+[sub_resource type="Curve2D" id="Curve2D_o246c"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -2.1875, -2.1875, 0, 0, 0, 0, 1126.561, -8.75)
 }
 point_count = 2
 
-[sub_resource type="Curve2D" id="Curve2D_o246c"]
-resource_local_to_scene = true
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -2.1875, -2.1875, 0, 0, 0, 0, 1008.4363, -4.3745117)
-}
-point_count = 2
-
 [sub_resource type="Curve2D" id="Curve2D_3iamj"]
 resource_local_to_scene = true
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -2.1875, -2.1875, 0, 0, 0, 0, -10.9375, -435.31152)
+"points": PackedVector2Array(0, 0, 0, 0, -2.1875, -2.1875, 0, 0, 0, 0, 1008.4363, -4.3745117)
 }
 point_count = 2
 
@@ -47,12 +41,19 @@ point_count = 2
 [sub_resource type="Curve2D" id="Curve2D_k68bd"]
 resource_local_to_scene = true
 _data = {
+"points": PackedVector2Array(0, 0, 0, 0, -2.1875, -2.1875, 0, 0, 0, 0, -10.9375, -435.31152)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_7wrii"]
+resource_local_to_scene = true
+_data = {
 "points": PackedVector2Array(0, 0, 0, 0, -2.1875, -2.1875, 0, 0, 0, 0, 1017.1862, -8.749023)
 }
 point_count = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nsygj"]
-size = Vector2(63, 76)
+size = Vector2(168.7526, 262.50464)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_psx5d"]
 texture = ExtResource("7_tj45o")
@@ -703,7 +704,7 @@ scale = Vector2(0.36, 0.36)
 [node name="block18" parent="blocks" unique_id=299928165 instance=ExtResource("11_nsygj")]
 position = Vector2(475.00003, -2131)
 scale = Vector2(0.45714343, 0.45714343)
-curve = SubResource("Curve2D_lirpf")
+curve = SubResource("Curve2D_o246c")
 
 [node name="block19" parent="blocks" unique_id=1894768943 instance=ExtResource("10_d4aew")]
 position = Vector2(862, -2366)
@@ -719,12 +720,12 @@ position = Vector2(178, -2435)
 [node name="block22" parent="blocks" unique_id=738749660 instance=ExtResource("11_nsygj")]
 position = Vector2(408, -2803.0002)
 scale = Vector2(0.45714343, 0.45714343)
-curve = SubResource("Curve2D_o246c")
+curve = SubResource("Curve2D_3iamj")
 
 [node name="block23" parent="blocks" unique_id=808886132 instance=ExtResource("11_nsygj")]
 position = Vector2(928, -2853.0002)
 scale = Vector2(0.45714343, 0.45714343)
-curve = SubResource("Curve2D_3iamj")
+curve = SubResource("Curve2D_jexxc")
 
 [node name="block24" parent="blocks" unique_id=1725623866 instance=ExtResource("6_8xv0u")]
 position = Vector2(718.00006, -3174)
@@ -745,7 +746,7 @@ position = Vector2(174, 751)
 [node name="block28" parent="blocks" unique_id=223309182 instance=ExtResource("11_nsygj")]
 position = Vector2(701, -3680)
 scale = Vector2(0.45714343, 0.45714343)
-curve = SubResource("Curve2D_jexxc")
+curve = SubResource("Curve2D_k68bd")
 
 [node name="block29" parent="blocks" unique_id=1435836420 instance=ExtResource("10_d4aew")]
 position = Vector2(353, -3830)
@@ -766,7 +767,7 @@ scale = Vector2(0.67999876, 0.67999876)
 [node name="block33" parent="blocks" unique_id=421978647 instance=ExtResource("11_nsygj")]
 position = Vector2(337.00003, -4694.0005)
 scale = Vector2(0.45714343, 0.45714343)
-curve = SubResource("Curve2D_k68bd")
+curve = SubResource("Curve2D_7wrii")
 
 [node name="block34" parent="blocks" unique_id=372969384 instance=ExtResource("7_k8j64")]
 position = Vector2(1185.9999, -4732)
@@ -775,10 +776,15 @@ scale = Vector2(0.4439024, -0.46239832)
 
 [node name="exit" type="Area2D" parent="blocks" unique_id=1710165466]
 unique_name_in_owner = true
-position = Vector2(1214, -4849)
+position = Vector2(1198.0001, -4873.0005)
+scale = Vector2(0.3199951, 0.3199951)
+
+[node name="Sprite2D" type="Sprite2D" parent="blocks/exit" unique_id=2113603527]
+texture = ExtResource("13_o246c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="blocks/exit" unique_id=1661537372]
-position = Vector2(3, -10)
+position = Vector2(-9.375977, 21.876953)
+scale = Vector2(0.9999999, 0.9999999)
 shape = SubResource("RectangleShape2D_nsygj")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1318519517]

@@ -1,5 +1,5 @@
 extends Node2D
-@onready var sfx_click: AudioStreamPlayer = $sfx_click
+@onready var sfx_click: AudioStreamPlayer = %sfx_click
 const SAVE_PATH = "user://save_game.json"
 var data = load_json_file(SAVE_PATH)
 @onready var label: Label = %Label
@@ -24,29 +24,13 @@ func _on_level_1_pressed() -> void:
 
 
 func _on_level_2_pressed() -> void:
-	if data and data["level1"]["finished"] == true:
-		get_tree().change_scene_to_file("res://levels/level_2/level2.tscn")
-	else:
-		label.text = "Finish level 1, to play level 2"
-		await get_tree().create_timer(2.0).timeout
-		label.text = ""
-	
+	get_tree().change_scene_to_file("res://levels/level_2/level2.tscn")
 
 func _on_level_3_pressed() -> void:
-	if data and data["level2"]["finished"] == true:
-		get_tree().change_scene_to_file("res://levels/level_3/level3.tscn")
-	else:
-		label.text = "Finish level 2, to play level 3"
-		await get_tree().create_timer(2.0).timeout
-		label.text = ""
+	get_tree().change_scene_to_file("res://levels/level_3/level3.tscn")
 
 func _on_level_4_pressed() -> void:
-	if data and data["level3"]["finished"] == true:
-		get_tree().change_scene_to_file("res://levels/level_3/level3.tscn")
-	else:
-		label.text = "Finish level 3, to play level 4"
-		await get_tree().create_timer(2.0).timeout
-		label.text = ""
+	level_3.disabled
 
 
 func _on_back_pressed() -> void:
@@ -70,15 +54,15 @@ func load_json_file(SAVE_PATH: String) -> Variant:
 
 func conditions() -> void:
 	if data and data["level1"]["finished"] == true:
-		lock.visible = false
+		level_2.disabled = false
 	else:
-		lock.visible = true
+		level_2.disabled = true
 	if data and data["level2"]["finished"] == true:
-		lock_2.visible = false
+		level_3.disabled = false
 	else:
-		lock_2.visible = true
+		level_3.disabled = true
 	if data and data["level3"]["finished"] == true:
-		lock_3.visible = false
+		level_4.disabled = false
 	else:
-		lock_3.visible = true
+		level_4.disabled = true
 	

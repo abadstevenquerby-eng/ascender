@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://bvcaj1r011bdj" path="res://assets/audio/ambience/level2.mp3" id="4_17iu4"]
 [ext_resource type="Texture2D" uid="uid://dx7kfwoobupvu" path="res://assets/images/tilemap/level2/Crystal.png" id="5_2h0li"]
 [ext_resource type="PackedScene" uid="uid://kmrmipo0u0tp" path="res://levels/level_2/player_level2.tscn" id="6_yh11p"]
+[ext_resource type="Texture2D" uid="uid://548n231aokfk" path="res://levels/temporary_placeholders/images-removebg-preview.png" id="7_42t8u"]
 [ext_resource type="PackedScene" uid="uid://dkdie0oiaf1di" path="res://levels/level_2/blocks/static/block1.tscn" id="7_gqj3m"]
 [ext_resource type="PackedScene" uid="uid://bxefwqpruevha" path="res://levels/level_2/blocks/static/block2.tscn" id="8_efs3d"]
 [ext_resource type="PackedScene" uid="uid://by3ijjbxgxfdo" path="res://levels/level_2/blocks/static/block3.tscn" id="9_l55gy"]
@@ -14,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://r47v5vqw7ovr" path="res://levels/level_2/blocks/static/block4.tscn" id="12_q87sp"]
 [ext_resource type="PackedScene" uid="uid://1dgvtnn1qnil" path="res://levels/level_2/blocks/moving/wallmove1.tscn" id="13_i2sr1"]
 [ext_resource type="PackedScene" uid="uid://cxvd4u8l6a7p2" path="res://pause_menu.tscn" id="14_rtk7f"]
+[ext_resource type="PackedScene" uid="uid://d2u4et2ke2eln" path="res://levels/temporary_placeholders/checkpoint.tscn" id="15_si07u"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_17iu4"]
 texture = ExtResource("5_2h0li")
@@ -1129,15 +1131,20 @@ shape = SubResource("RectangleShape2D_17iu4")
 [node name="player" parent="." unique_id=331636849 instance=ExtResource("6_yh11p")]
 unique_name_in_owner = true
 z_index = 1
-position = Vector2(80, 1186)
+position = Vector2(79, 1186)
 
 [node name="blocks" type="Node2D" parent="." unique_id=733903127]
 
 [node name="exit" type="Area2D" parent="blocks" unique_id=1710165466]
 position = Vector2(1214, -4849)
 
+[node name="Sprite2D" type="Sprite2D" parent="blocks/exit" unique_id=875157499]
+position = Vector2(12.999952, 7.9999256)
+scale = Vector2(0.29482973, 0.29482973)
+texture = ExtResource("7_42t8u")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="blocks/exit" unique_id=1661537372]
-position = Vector2(3, -10)
+position = Vector2(13, 15)
 shape = SubResource("RectangleShape2D_nsygj")
 
 [node name="block1" parent="blocks" unique_id=605309229 instance=ExtResource("7_gqj3m")]
@@ -1347,75 +1354,92 @@ scale = Vector2(0.67517245, 0.6843566)
 position = Vector2(128.90625, 16.11316)
 shape = SubResource("RectangleShape2D_tj45o")
 
-[node name="stop_ledge" type="Node2D" parent="." unique_id=545161695]
+[node name="areas" type="Node2D" parent="." unique_id=545161695]
 
-[node name="Area2D" type="Area2D" parent="stop_ledge" unique_id=611062075 groups=["stop_ledge"]]
+[node name="Area2D" type="Area2D" parent="areas" unique_id=611062075 groups=["stop_ledge"]]
 position = Vector2(83, 316)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="stop_ledge/Area2D" unique_id=265974682]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="areas/Area2D" unique_id=265974682]
 position = Vector2(-0.5, -47.0112)
 scale = Vector2(1.5132726, 1.3785447)
 shape = SubResource("RectangleShape2D_3devp")
 
-[node name="Area2D3" type="Area2D" parent="stop_ledge" unique_id=1410484831 groups=["stop_ledge"]]
+[node name="Area2D12" type="Area2D" parent="areas" unique_id=1871357810 groups=["stop_ledge"]]
+position = Vector2(217, -437)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="areas/Area2D12" unique_id=1912108347]
+position = Vector2(-0.5, -47.0112)
+scale = Vector2(1.5132726, 1.3785447)
+shape = SubResource("RectangleShape2D_3devp")
+
+[node name="Area2D3" type="Area2D" parent="areas" unique_id=1410484831 groups=["stop_ledge"]]
 position = Vector2(1080, -1895)
 scale = Vector2(1.2000048, 1.7199974)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="stop_ledge/Area2D3" unique_id=1632732227]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="areas/Area2D3" unique_id=1632732227]
 position = Vector2(-19.999939, 9.984009)
 shape = SubResource("RectangleShape2D_i2sr1")
 
-[node name="Area2D4" type="Area2D" parent="stop_ledge" unique_id=728423227 groups=["stop_ledge"]]
+[node name="Area2D4" type="Area2D" parent="areas" unique_id=728423227 groups=["stop_ledge"]]
 position = Vector2(870.00006, -1562)
 scale = Vector2(1.2000048, 1.7199974)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="stop_ledge/Area2D4" unique_id=1253018704]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="areas/Area2D4" unique_id=1253018704]
 position = Vector2(3, 28.197693)
 shape = SubResource("RectangleShape2D_rtk7f")
 
-[node name="Area2D2" type="Area2D" parent="stop_ledge" unique_id=506073590 groups=["stop_ledge"]]
+[node name="Area2D2" type="Area2D" parent="areas" unique_id=506073590 groups=["stop_ledge"]]
 position = Vector2(308, -668.99994)
 scale = Vector2(2.5866416, 1.9999988)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="stop_ledge/Area2D2" unique_id=894738230]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="areas/Area2D2" unique_id=894738230]
 position = Vector2(29.101067, -47.19052)
 scale = Vector2(0.48898146, 0.9999995)
 shape = SubResource("RectangleShape2D_3devp")
 
-[node name="Area2D5" type="Area2D" parent="stop_ledge" unique_id=49231746 groups=["stop_ledge"]]
+[node name="Area2D5" type="Area2D" parent="areas" unique_id=49231746 groups=["stop_ledge"]]
 position = Vector2(190, -1959)
 scale = Vector2(0.3995555, 3.3868234)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="stop_ledge/Area2D5" unique_id=941340362]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="areas/Area2D5" unique_id=941340362]
 position = Vector2(2.5027938, -23.325697)
 scale = Vector2(4.4037824, 1)
 shape = SubResource("RectangleShape2D_3devp")
 
-[node name="Area2D6" type="Area2D" parent="stop_ledge" unique_id=315403196 groups=["stop_ledge"]]
+[node name="Area2D6" type="Area2D" parent="areas" unique_id=315403196 groups=["stop_ledge"]]
 position = Vector2(319, -2010)
 scale = Vector2(2.9595566, 3.1868186)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="stop_ledge/Area2D6" unique_id=791008513]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="areas/Area2D6" unique_id=791008513]
 position = Vector2(-1.1826096, -11.397827)
 shape = SubResource("RectangleShape2D_dpnv2")
 
-[node name="Area2D7" type="Area2D" parent="stop_ledge" unique_id=853866517 groups=["stop_ledge"]]
+[node name="Area2D7" type="Area2D" parent="areas" unique_id=853866517 groups=["stop_ledge"]]
 position = Vector2(1306, -3110)
 scale = Vector2(0.3995555, 1.8268186)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="stop_ledge/Area2D7" unique_id=633005291]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="areas/Area2D7" unique_id=633005291]
 position = Vector2(-245.27246, -25.69458)
 scale = Vector2(1, 0.99999976)
 shape = SubResource("RectangleShape2D_42t8u")
 
-[node name="Area2D8" type="Area2D" parent="stop_ledge" unique_id=498663230 groups=["stop_ledge"]]
+[node name="Area2D8" type="Area2D" parent="areas" unique_id=498663230 groups=["stop_ledge"]]
 position = Vector2(1319.9999, -3100)
 scale = Vector2(0.3995555, 1.8268186)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="stop_ledge/Area2D8" unique_id=656767795]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="areas/Area2D8" unique_id=656767795]
 position = Vector2(-708.28674, -299.4276)
 scale = Vector2(1, 0.99999964)
 shape = SubResource("RectangleShape2D_si07u")
+
+[node name="Area2D9" parent="areas" unique_id=725487488 instance=ExtResource("15_si07u")]
+position = Vector2(188, -236)
+
+[node name="Area2D10" parent="areas" unique_id=128206501 instance=ExtResource("15_si07u")]
+position = Vector2(435, -1601)
+
+[node name="Area2D11" parent="areas" unique_id=1356683506 instance=ExtResource("15_si07u")]
+position = Vector2(1222, -3301)
 
 [node name="PauseMenu" parent="." unique_id=375924707 instance=ExtResource("14_rtk7f")]
 visible = false

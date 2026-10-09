@@ -100,23 +100,23 @@ func _on_exit_body_entered(body: Node2D) -> void:
 
 func cam(current: int) -> void:
 	if current == 1:
-		heightmeter.position = Vector2(5, 39)
+		#heightmeter.position = Vector2(5, 39)
 		$PauseMenu.camera = current
 		camera_1.make_current()
 	elif current == 2:
-		heightmeter.position = Vector2(5, -1196)
+		#heightmeter.position = Vector2(5, -1196)
 		$PauseMenu.camera = current
 		camera_2.make_current()
 	elif current == 3:
-		heightmeter.position = Vector2(5, -2461)
+		#heightmeter.position = Vector2(5, -2461)
 		$PauseMenu.camera = current
 		camera_3.make_current()
 	elif current == 4:
-		heightmeter.position = Vector2(5, -3650)
+		#heightmeter.position = Vector2(5, -3650)
 		$PauseMenu.camera = current
 		camera_4.make_current()
 	elif current == 5:
-		heightmeter.position = Vector2(5, -4936)
+		#heightmeter.position = Vector2(5, -4936)
 		$PauseMenu.camera = current
 		camera_5.make_current()
 		

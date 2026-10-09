@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://btg8mlw1j8w0b" path="res://levels/level_4/block/static/4_static_3.tscn" id="8_ekh0r"]
 [ext_resource type="Texture2D" uid="uid://ckc8pkxkx4n21" path="res://elements/mushroom/mushrooom1.png" id="9_b7lqr"]
 [ext_resource type="PackedScene" uid="uid://vpgcwvx45ec4" path="res://levels/level_4/block/static/4_static_4.tscn" id="9_mvcgd"]
+[ext_resource type="PackedScene" uid="uid://db7ka3fdblgvy" path="res://elements/rope/rope.tscn" id="10_c87xm"]
 [ext_resource type="Texture2D" uid="uid://bhcn8stt8mpi2" path="res://elements/mushroom/mushroom.png" id="10_mvcgd"]
 [ext_resource type="PackedScene" uid="uid://cxvd4u8l6a7p2" path="res://pause_menu.tscn" id="12_6p2x5"]
 
@@ -111,6 +112,11 @@ position = Vector2(669, -1634)
 [node name="static4" parent="blocks" unique_id=2037439069 instance=ExtResource("9_mvcgd")]
 position = Vector2(960, -1649)
 scale = Vector2(-0.96000004, 1)
+
+[node name="Rope" parent="blocks" unique_id=1964370234 instance=ExtResource("10_c87xm")]
+position = Vector2(395.00003, -1909)
+rotation = 0.45379478
+length = 2
 
 [node name="cameras" type="Node2D" parent="." unique_id=1474003749]
 
