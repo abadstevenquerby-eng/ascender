@@ -1,4 +1,2 @@
-res://levels/level 1/level1.tscn
+res://level_selection.tscn
 res://addons/silent_wolf/assets/themes/sw_theme.tres
-res://level_end.tscn
-res://addons/silent_wolf/Scores/Leaderboard.tscn

@@ -214,6 +214,7 @@ texture = ExtResource("4_txqpt")
 unique_name_in_owner = true
 stream = ExtResource("9_wjmng")
 volume_db = 4.0
+bus = &"sfx"
 
 [connection signal="pressed" from="Panel/Level1" to="." method="_on_level_1_pressed"]
 [connection signal="pressed" from="Panel/Level2" to="." method="_on_level_2_pressed"]
