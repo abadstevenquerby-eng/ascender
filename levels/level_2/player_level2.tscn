@@ -170,6 +170,7 @@ shape = SubResource("RectangleShape2D_d21ai")
 unique_name_in_owner = true
 stream = ExtResource("9_dfw7q")
 volume_db = -26.0
+bus = &"sfx"
 
 [node name="charge_bar" type="TextureProgressBar" parent="." unique_id=1661860776]
 unique_name_in_owner = true

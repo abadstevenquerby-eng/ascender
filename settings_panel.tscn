@@ -1,0 +1,181 @@
+[gd_scene format=3 uid="uid://ddk71xgoj02u"]
+
+[ext_resource type="Script" uid="uid://dmw8boj8i0sa7" path="res://settings_panel.gd" id="1_xkl6r"]
+[ext_resource type="Texture2D" uid="uid://c0qj02r2q7g3t" path="res://elements/ui/settings_bg.png" id="2_elusd"]
+[ext_resource type="Texture2D" uid="uid://d4itro0msems1" path="res://elements/ui/checkbox_unchecked.png" id="3_7rkqc"]
+[ext_resource type="Texture2D" uid="uid://cupaf835fdf5t" path="res://elements/ui/checkbox_checked.png" id="4_vh62h"]
+[ext_resource type="Texture2D" uid="uid://btgutovtmjggx" path="res://elements/ui/slider_grabber.png" id="5_hw283"]
+[ext_resource type="Texture2D" uid="uid://bx10xd8y1xk78" path="res://elements/ui/btn_back_normal.png" id="6_hkfv4"]
+[ext_resource type="AudioStream" uid="uid://docrph6c6fhtq" path="res://assets/audio/sound effects/ui/on_press.mp3" id="7_elusd"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_slider_track"]
+texture_margin_left = 20.0
+texture_margin_top = 8.0
+texture_margin_right = 20.0
+texture_margin_bottom = 8.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1meuf"]
+load_path = "res://.godot/imported/slider_fill.png-551b4f20f3e0089ac4bfa99bf0ef52e3.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_slider_fill"]
+texture = SubResource("CompressedTexture2D_1meuf")
+texture_margin_left = 20.0
+texture_margin_top = 8.0
+texture_margin_right = 20.0
+texture_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aa1yj"]
+texture = SubResource("CompressedTexture2D_1meuf")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_elusd"]
+texture = ExtResource("6_hkfv4")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7rkqc"]
+texture = ExtResource("6_hkfv4")
+modulate_color = Color(0.5803922, 0.5803922, 0.5803922, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vh62h"]
+texture = ExtResource("6_hkfv4")
+modulate_color = Color(0.78431374, 0.78431374, 0.78431374, 1)
+
+[node name="SettingsPanel" type="Control" unique_id=454020680]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -393.5
+offset_top = -585.5
+offset_right = 387.5
+offset_bottom = 335.81525
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xkl6r")
+
+[node name="SettingsBg" type="TextureRect" parent="." unique_id=815346340]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -62.0
+offset_top = 64.31525
+offset_right = -62.0
+offset_bottom = 64.31525
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_elusd")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CheckBox" type="TextureButton" parent="." unique_id=135884146]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(52, 52)
+layout_mode = 0
+offset_left = 466.0
+offset_top = 688.3153
+offset_right = 518.0
+offset_bottom = 740.3153
+scale = Vector2(0.8038153, 0.8038153)
+toggle_mode = true
+button_pressed = true
+texture_normal = ExtResource("3_7rkqc")
+texture_pressed = ExtResource("4_vh62h")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="HSlider" type="HSlider" parent="." unique_id=563103209]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 138.0
+offset_top = 390.31528
+offset_right = 17204.414
+offset_bottom = 1599.3153
+scale = Vector2(0.022793308, 0.022793308)
+theme_override_icons/grabber = ExtResource("5_hw283")
+theme_override_icons/grabber_highlight = ExtResource("5_hw283")
+theme_override_styles/slider = SubResource("StyleBoxTexture_slider_track")
+theme_override_styles/grabber_area = SubResource("StyleBoxTexture_slider_fill")
+max_value = 1.0
+step = 0.001
+value = 0.8
+
+[node name="mslider" type="HSlider" parent="." unique_id=203180003]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 138.0
+offset_top = 472.31525
+offset_right = 17160.543
+offset_bottom = 1681.3152
+scale = Vector2(0.022793308, 0.022793308)
+theme_override_icons/grabber = ExtResource("5_hw283")
+theme_override_icons/grabber_highlight = ExtResource("5_hw283")
+theme_override_styles/slider = SubResource("StyleBoxTexture_slider_track")
+theme_override_styles/grabber_area = SubResource("StyleBoxTexture_slider_fill")
+max_value = 1.0
+step = 0.05
+value = 0.8
+
+[node name="aslider" type="HSlider" parent="." unique_id=244689837]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 138.0
+offset_top = 553.3153
+offset_right = 17160.543
+offset_bottom = 1762.3153
+scale = Vector2(0.022793308, 0.022793308)
+theme_override_icons/grabber = ExtResource("5_hw283")
+theme_override_icons/grabber_highlight = ExtResource("5_hw283")
+theme_override_styles/slider = SubResource("StyleBoxTexture_slider_track")
+theme_override_styles/grabber_area = SubResource("StyleBoxTexture_slider_fill")
+max_value = 1.0
+step = 0.05
+value = 0.8
+
+[node name="sfxSlider" type="HSlider" parent="." unique_id=1583751084]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 139.00002
+offset_top = 634.31525
+offset_right = 17117.67
+offset_bottom = 1843.3152
+scale = Vector2(0.022793308, 0.022793308)
+theme_override_icons/grabber = ExtResource("5_hw283")
+theme_override_icons/grabber_highlight = ExtResource("5_hw283")
+theme_override_styles/slider = SubResource("StyleBoxTexture_slider_track")
+theme_override_styles/grabber_area = SubResource("StyleBoxTexture_aa1yj")
+max_value = 1.0
+step = 0.05
+value = 0.8
+
+[node name="BackBtn" type="Button" parent="." unique_id=713504371]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -205.5
+offset_top = -193.0
+offset_right = -26.65387
+offset_bottom = -131.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.5600001, 1.5600001)
+theme_override_styles/normal = SubResource("StyleBoxTexture_elusd")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_7rkqc")
+theme_override_styles/hover = SubResource("StyleBoxTexture_vh62h")
+
+[node name="sfx_click" type="AudioStreamPlayer" parent="." unique_id=759940461]
+unique_name_in_owner = true
+stream = ExtResource("7_elusd")
+volume_db = 4.0
+bus = &"sfx"
+
+[connection signal="toggled" from="CheckBox" to="." method="_on_check_box_toggled"]
+[connection signal="replacing_by" from="HSlider" to="." method="_on_h_slider_replacing_by"]
+[connection signal="value_changed" from="HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="mslider" to="." method="_on_mslider_value_changed"]
+[connection signal="value_changed" from="aslider" to="." method="_on_aslider_value_changed"]
+[connection signal="value_changed" from="sfxSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="pressed" from="BackBtn" to="." method="_on_back_btn_pressed"]

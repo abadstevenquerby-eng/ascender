@@ -1,48 +1,73 @@
 [gd_scene format=3 uid="uid://bffy8nc7jotdb"]
 
 [ext_resource type="Script" uid="uid://0a42jlar1mf7" path="res://confirmation.gd" id="1_ov2qu"]
-[ext_resource type="Texture2D" uid="uid://c56gpco7uv64e" path="res://elements/ui/button.png" id="3_nhk6w"]
-[ext_resource type="Texture2D" uid="uid://du207copyn8te" path="res://elements/ui/hover.png" id="4_flpim"]
+[ext_resource type="Texture2D" uid="uid://xjbge2eqhp4f" path="res://elements/ui/exit_confirmation/box.png" id="2_1dii8"]
+[ext_resource type="Texture2D" uid="uid://b8m8gj4itf1pb" path="res://elements/ui/exit_confirmation/yes.png" id="3_mn0s6"]
 [ext_resource type="AudioStream" uid="uid://docrph6c6fhtq" path="res://assets/audio/sound effects/ui/on_press.mp3" id="5_xf1m8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_overlay"]
 bg_color = Color(0, 0, 0, 0.65)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
-bg_color = Color(0.105882, 0.0823529, 0.14902, 0.92)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.560784, 0.431373, 0.819608, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-shadow_color = Color(0, 0, 0, 0.5)
-shadow_size = 12
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mkshq"]
+load_path = "res://.godot/imported/yes.png-7ab0f10495a077331785a2131c8245a2.ctex"
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_btn_normal"]
-texture = ExtResource("3_nhk6w")
+texture = SubResource("CompressedTexture2D_mkshq")
 texture_margin_left = 12.0
 texture_margin_top = 8.0
 texture_margin_right = 12.0
 texture_margin_bottom = 14.0
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_btn_pressed"]
-texture = ExtResource("4_flpim")
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ov2qu"]
+load_path = "res://.godot/imported/yes.png-7ab0f10495a077331785a2131c8245a2.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_flpim"]
+texture = SubResource("CompressedTexture2D_ov2qu")
 texture_margin_left = 12.0
 texture_margin_top = 8.0
 texture_margin_right = 12.0
 texture_margin_bottom = 14.0
 modulate_color = Color(0.580228, 0.580228, 0.580228, 1)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_btn_hover"]
-texture = ExtResource("4_flpim")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mn0s6"]
+texture = ExtResource("3_mn0s6")
 texture_margin_left = 12.0
 texture_margin_top = 8.0
 texture_margin_right = 12.0
 texture_margin_bottom = 14.0
+modulate_color = Color(0.78521717, 0.7852172, 0.78521705, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nhk6w"]
+load_path = "res://.godot/imported/no.png-5e51019479e1b86bd01a9a587eaf4e3b.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xf1m8"]
+texture = SubResource("CompressedTexture2D_nhk6w")
+texture_margin_left = 12.0
+texture_margin_top = 8.0
+texture_margin_right = 12.0
+texture_margin_bottom = 14.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_flpim"]
+load_path = "res://.godot/imported/no.png-5e51019479e1b86bd01a9a587eaf4e3b.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_btn_pressed"]
+texture = SubResource("CompressedTexture2D_flpim")
+texture_margin_left = 12.0
+texture_margin_top = 8.0
+texture_margin_right = 12.0
+texture_margin_bottom = 14.0
+modulate_color = Color(0.580228, 0.580228, 0.580228, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xf1m8"]
+load_path = "res://.godot/imported/no.png-5e51019479e1b86bd01a9a587eaf4e3b.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_btn_hover"]
+texture = SubResource("CompressedTexture2D_xf1m8")
+texture_margin_left = 12.0
+texture_margin_top = 8.0
+texture_margin_right = 12.0
+texture_margin_bottom = 14.0
+modulate_color = Color(0.78521717, 0.7852172, 0.78521705, 1)
 
 [node name="PauseMenu" type="CanvasLayer" unique_id=375924707]
 process_mode = 3
@@ -66,69 +91,44 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_overlay")
 
-[node name="MainPausePanel" type="Panel" parent="Control" unique_id=1474070543]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -536.5
-offset_top = -140.5
-offset_right = 547.5
-offset_bottom = 238.25
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+[node name="box" type="TextureRect" parent="Control" unique_id=2020259435]
+layout_mode = 0
+offset_left = 144.00574
+offset_top = 380.46506
+offset_right = 2241.4292
+offset_bottom = 1499.4165
+scale = Vector2(0.48000106, 0.48000106)
+texture = ExtResource("2_1dii8")
 
-[node name="VBox" type="VBoxContainer" parent="Control/MainPausePanel" unique_id=924300575]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 40.0
-offset_top = 25.0
-offset_right = -40.0
-offset_bottom = -25.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 16
-alignment = 1
-
-[node name="TitleLabel" type="Label" parent="Control/MainPausePanel/VBox" unique_id=1566937957]
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "Are you sure you want 
-to quit?"
-horizontal_alignment = 1
-
-[node name="Spacer" type="Control" parent="Control/MainPausePanel/VBox" unique_id=487263376]
-custom_minimum_size = Vector2(0, 6)
-layout_mode = 2
-
-[node name="yes" type="Button" parent="Control/MainPausePanel/VBox" unique_id=129542853]
+[node name="yes" type="Button" parent="Control/box" unique_id=129542853]
 custom_minimum_size = Vector2(0, 78)
-layout_mode = 2
+layout_mode = 0
+offset_left = 247.8629
+offset_top = 617.901
+offset_right = 1104.6289
+offset_bottom = 928.93884
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxTexture_btn_normal")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_btn_pressed")
-theme_override_styles/hover = SubResource("StyleBoxTexture_btn_hover")
-text = "Yes
-"
+theme_override_styles/pressed = SubResource("StyleBoxTexture_flpim")
+theme_override_styles/hover = SubResource("StyleBoxTexture_mn0s6")
 
-[node name="no" type="Button" parent="Control/MainPausePanel/VBox" unique_id=1512355321]
+[node name="no" type="Button" parent="Control/box" unique_id=1512355321]
 custom_minimum_size = Vector2(0, 78)
-layout_mode = 2
+layout_mode = 0
+offset_left = 1026.1362
+offset_top = 624.5673
+offset_right = 1805.6172
+offset_bottom = 923.1899
 theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxTexture_btn_normal")
+theme_override_styles/normal = SubResource("StyleBoxTexture_xf1m8")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_btn_pressed")
 theme_override_styles/hover = SubResource("StyleBoxTexture_btn_hover")
-text = "No"
 
 [node name="sfx_click" type="AudioStreamPlayer" parent="." unique_id=252169780]
 unique_name_in_owner = true
 stream = ExtResource("5_xf1m8")
 volume_db = 4.0
+bus = &"sfx"
 
-[connection signal="pressed" from="Control/MainPausePanel/VBox/yes" to="." method="_on_yes_pressed"]
-[connection signal="pressed" from="Control/MainPausePanel/VBox/no" to="." method="_on_no_pressed"]
+[connection signal="pressed" from="Control/box/yes" to="." method="_on_yes_pressed"]
+[connection signal="pressed" from="Control/box/no" to="." method="_on_no_pressed"]

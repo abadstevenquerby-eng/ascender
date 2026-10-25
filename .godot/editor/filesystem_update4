@@ -1,2 +1,6 @@
-res://levels/level 1/level1.tscn
-res://levels/level 1/level_1.gd
+res://levels/level_2/level2.tscn
+res://addons/silent_wolf/assets/themes/sw_theme.tres
+res://addons/silent_wolf/Scores/Leaderboard.gd
+res://addons/silent_wolf/Scores/Leaderboard.tscn
+res://addons/silent_wolf/Scores/Scores.gd
+res://pause_menu.tscn

@@ -1,0 +1,125 @@
+[gd_scene format=3 uid="uid://bydv0g2rtpod5"]
+
+[ext_resource type="Script" uid="uid://dupd6ackp0nie" path="res://start.gd" id="1_y5hus"]
+[ext_resource type="Texture2D" uid="uid://hmda8c4c1q58" path="res://elements/ui/intro/intro.png" id="2_y5hus"]
+[ext_resource type="FontFile" uid="uid://becg3pya3tkjq" path="res://elements/ui/Teko-Bold.ttf" id="3_4a3qj"]
+[ext_resource type="Texture2D" uid="uid://drnyk0po2sjcy" path="res://elements/ui/intro/intro_btn.png" id="3_oiuna"]
+[ext_resource type="AudioStream" uid="uid://docrph6c6fhtq" path="res://assets/audio/sound effects/ui/on_press.mp3" id="4_g38d0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_overlay"]
+bg_color = Color(0, 0, 0, 0.65)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.105882, 0.0823529, 0.14902, 0.92)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.560784, 0.431373, 0.819608, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.5)
+shadow_size = 12
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_btn_normal"]
+texture = ExtResource("3_oiuna")
+texture_margin_left = 12.0
+texture_margin_top = 8.0
+texture_margin_right = 12.0
+texture_margin_bottom = 14.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_btn_pressed"]
+texture = ExtResource("3_oiuna")
+texture_margin_left = 12.0
+texture_margin_top = 8.0
+texture_margin_right = 12.0
+texture_margin_bottom = 14.0
+modulate_color = Color(0.580228, 0.580228, 0.580228, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_btn_hover"]
+texture = ExtResource("3_oiuna")
+texture_margin_left = 12.0
+texture_margin_top = 8.0
+texture_margin_right = 12.0
+texture_margin_bottom = 14.0
+modulate_color = Color(0.78431374, 0.78431374, 0.78431374, 1)
+
+[node name="PauseMenu" type="CanvasLayer" unique_id=375924707]
+process_mode = 3
+layer = 100
+script = ExtResource("1_y5hus")
+
+[node name="Control" type="Control" parent="." unique_id=1574579770]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DimOverlay" type="Panel" parent="Control" unique_id=1698890646]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_overlay")
+
+[node name="MainPausePanel" type="Panel" parent="Control" unique_id=1474070543]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -410.64105
+offset_top = -125.09088
+offset_right = 673.35864
+offset_bottom = 145.95862
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.77780247, 0.77780247)
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="TextureRect" type="TextureRect" parent="Control/MainPausePanel" unique_id=971973951]
+layout_mode = 0
+offset_left = -202.10828
+offset_top = -355.81085
+offset_right = 1245.8917
+offset_bottom = 730.18915
+texture = ExtResource("2_y5hus")
+
+[node name="input" type="LineEdit" parent="Control/MainPausePanel/TextureRect" unique_id=1541479755]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 247.59949
+offset_top = 513.6433
+offset_right = 1210.2395
+offset_bottom = 586.32336
+theme_override_fonts/font = ExtResource("3_4a3qj")
+theme_override_font_sizes/font_size = 40
+placeholder_text = "Insert name..."
+max_length = 32
+
+[node name="submit" type="Button" parent="Control/MainPausePanel/TextureRect" unique_id=129542853]
+custom_minimum_size = Vector2(0, 78)
+layout_mode = 0
+offset_left = 331.17896
+offset_top = 622.111
+offset_right = 1151.9662
+offset_bottom = 810.5417
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxTexture_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxTexture_btn_hover")
+
+[node name="sfx_click" type="AudioStreamPlayer" parent="." unique_id=252169780]
+unique_name_in_owner = true
+stream = ExtResource("4_g38d0")
+volume_db = 4.0
+bus = &"sfx"
+
+[connection signal="pressed" from="Control/MainPausePanel/TextureRect/submit" to="." method="_on_submit_pressed"]

@@ -135,6 +135,7 @@ func process_state(delta: float) -> void:
 		State.Fall:
 			velocity.y = move_toward(velocity.y, fall_velocity, fall_gravity * delta)
 			if is_on_floor() and floor_allow:
+				can_move = true
 				switch_state(State.Floor)
 			elif !floor_allow and !can_slide() and !is_ledge():
 				velocity.x += facing_direction 

@@ -1,0 +1,346 @@
+[gd_scene format=3 uid="uid://fno7ndwit8cl"]
+
+[ext_resource type="Script" uid="uid://d3tic8btww6l0" path="res://level_end.gd" id="1_herhi"]
+[ext_resource type="AudioStream" uid="uid://docrph6c6fhtq" path="res://assets/audio/sound effects/ui/on_press.mp3" id="2_kvnyk"]
+[ext_resource type="Texture2D" uid="uid://bvrg7qc7f7oxp" path="res://elements/ui/menu/logo.png" id="3_anqul"]
+[ext_resource type="Texture2D" uid="uid://dsfja3cciq15b" path="res://elements/ui/outro/out_panel.png" id="3_k3jqb"]
+[ext_resource type="FontFile" uid="uid://becg3pya3tkjq" path="res://elements/ui/Teko-Bold.ttf" id="4_kvnyk"]
+[ext_resource type="Texture2D" uid="uid://b0n1kvrfxxupk" path="res://elements/ui/icon_resume.png" id="6_df501"]
+[ext_resource type="Texture2D" uid="uid://bk7osp2xjwx33" path="res://elements/ui/icon_restart.png" id="7_ogjpa"]
+[ext_resource type="Texture2D" uid="uid://xjnf7amxg030" path="res://elements/ui/icon_exit.png" id="8_ejhva"]
+[ext_resource type="Texture2D" uid="uid://b8m8gj4itf1pb" path="res://elements/ui/exit_confirmation/yes.png" id="9_k3jqb"]
+[ext_resource type="Texture2D" uid="uid://bti1eshafsdww" path="res://elements/ui/exit_confirmation/no.png" id="10_df501"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_overlay"]
+bg_color = Color(0, 0, 0, 0.65)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oxj0r"]
+texture = ExtResource("3_k3jqb")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7a33p"]
+texture = ExtResource("6_df501")
+texture_margin_left = 12.0
+texture_margin_top = 8.0
+texture_margin_right = 12.0
+texture_margin_bottom = 14.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sq6kp"]
+texture = ExtResource("6_df501")
+texture_margin_left = 12.0
+texture_margin_top = 8.0
+texture_margin_right = 12.0
+texture_margin_bottom = 14.0
+modulate_color = Color(0.580228, 0.580228, 0.580228, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_weq1q"]
+texture = ExtResource("6_df501")
+texture_margin_left = 12.0
+texture_margin_top = 8.0
+texture_margin_right = 12.0
+texture_margin_bottom = 14.0
+modulate_color = Color(0.78431374, 0.78431374, 0.78431374, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ae3r4"]
+texture = ExtResource("7_ogjpa")
+texture_margin_left = 12.0
+texture_margin_top = 8.0
+texture_margin_right = 12.0
+texture_margin_bottom = 14.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4q1n6"]
+texture = ExtResource("7_ogjpa")
+texture_margin_left = 12.0
+texture_margin_top = 8.0
+texture_margin_right = 12.0
+texture_margin_bottom = 14.0
+modulate_color = Color(0.580228, 0.580228, 0.580228, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ub0au"]
+texture = ExtResource("7_ogjpa")
+texture_margin_left = 12.0
+texture_margin_top = 8.0
+texture_margin_right = 12.0
+texture_margin_bottom = 14.0
+modulate_color = Color(0.78431374, 0.78431374, 0.78431374, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v1ltp"]
+texture = ExtResource("8_ejhva")
+texture_margin_left = 12.0
+texture_margin_top = 8.0
+texture_margin_right = 12.0
+texture_margin_bottom = 14.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xuftw"]
+texture = ExtResource("8_ejhva")
+texture_margin_left = 12.0
+texture_margin_top = 8.0
+texture_margin_right = 12.0
+texture_margin_bottom = 14.0
+modulate_color = Color(0.580228, 0.580228, 0.580228, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v3bx5"]
+texture = ExtResource("8_ejhva")
+texture_margin_left = 12.0
+texture_margin_top = 8.0
+texture_margin_right = 12.0
+texture_margin_bottom = 14.0
+modulate_color = Color(0.78431374, 0.78431374, 0.78431374, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ogjpa"]
+texture = ExtResource("3_k3jqb")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ejhva"]
+texture = ExtResource("9_k3jqb")
+texture_margin_left = 12.0
+texture_margin_top = 8.0
+texture_margin_right = 12.0
+texture_margin_bottom = 14.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jl0os"]
+texture = ExtResource("9_k3jqb")
+texture_margin_left = 12.0
+texture_margin_top = 8.0
+texture_margin_right = 12.0
+texture_margin_bottom = 14.0
+modulate_color = Color(0.580228, 0.580228, 0.580228, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ul76g"]
+texture = ExtResource("9_k3jqb")
+texture_margin_left = 12.0
+texture_margin_top = 8.0
+texture_margin_right = 12.0
+texture_margin_bottom = 14.0
+modulate_color = Color(0.78431374, 0.78431374, 0.78431374, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_btn_normal"]
+texture = ExtResource("10_df501")
+texture_margin_left = 12.0
+texture_margin_top = 8.0
+texture_margin_right = 12.0
+texture_margin_bottom = 14.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_btn_pressed"]
+texture = ExtResource("10_df501")
+texture_margin_left = 12.0
+texture_margin_top = 8.0
+texture_margin_right = 12.0
+texture_margin_bottom = 14.0
+modulate_color = Color(0.580228, 0.580228, 0.580228, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_btn_hover"]
+texture = ExtResource("10_df501")
+texture_margin_left = 12.0
+texture_margin_top = 8.0
+texture_margin_right = 12.0
+texture_margin_bottom = 14.0
+modulate_color = Color(0.78431374, 0.78431374, 0.78431374, 1)
+
+[node name="level_end" type="CanvasLayer" unique_id=375924707]
+process_mode = 3
+layer = 100
+script = ExtResource("1_herhi")
+
+[node name="sfx_click" type="AudioStreamPlayer" parent="." unique_id=252169780]
+unique_name_in_owner = true
+stream = ExtResource("2_kvnyk")
+volume_db = 4.0
+bus = &"sfx"
+
+[node name="Control" type="Control" parent="." unique_id=1574579770]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DimOverlay" type="Panel" parent="Control" unique_id=1698890646]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_overlay")
+
+[node name="MainPausePanel" type="Panel" parent="Control" unique_id=1474070543]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -443.5
+offset_top = -450.0
+offset_right = 465.5
+offset_bottom = 565.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_oxj0r")
+
+[node name="LogoRect" type="TextureRect" parent="Control/MainPausePanel" unique_id=2133890068]
+custom_minimum_size = Vector2(0, 110)
+layout_mode = 0
+offset_left = -68.0
+offset_top = 132.5
+offset_right = 987.09094
+offset_bottom = 272.5
+texture = ExtResource("3_anqul")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TitleLabel" type="Label" parent="Control/MainPausePanel" unique_id=1566937957]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 324.0
+offset_right = 869.0
+offset_bottom = 382.0
+theme_override_fonts/font = ExtResource("4_kvnyk")
+theme_override_font_sizes/font_size = 40
+text = "Level 1 finished with a time record of"
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="Control/MainPausePanel" unique_id=1163469288]
+layout_mode = 0
+offset_left = 263.0
+offset_top = 374.5
+offset_right = 681.0
+offset_bottom = 430.5
+
+[node name="minute" type="Label" parent="Control/MainPausePanel/Panel" unique_id=1109410249]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 107.0
+offset_right = 164.0
+offset_bottom = 58.0
+theme_override_fonts/font = ExtResource("4_kvnyk")
+theme_override_font_sizes/font_size = 40
+text = "00:"
+
+[node name="seconds" type="Label" parent="Control/MainPausePanel/Panel" unique_id=2005126062]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 166.0
+offset_right = 223.0
+offset_bottom = 58.0
+theme_override_fonts/font = ExtResource("4_kvnyk")
+theme_override_font_sizes/font_size = 40
+text = "00."
+
+[node name="microseconds" type="Label" parent="Control/MainPausePanel/Panel" unique_id=865694225]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 221.0
+offset_right = 267.0
+offset_bottom = 58.0
+theme_override_fonts/font = ExtResource("4_kvnyk")
+theme_override_font_sizes/font_size = 40
+text = "00"
+
+[node name="Nextlvl" type="Button" parent="Control/MainPausePanel" unique_id=91143934]
+custom_minimum_size = Vector2(0, 78)
+layout_mode = 0
+offset_left = 164.0
+offset_top = 411.5
+offset_right = 732.0
+offset_bottom = 624.5
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxTexture_7a33p")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_sq6kp")
+theme_override_styles/hover = SubResource("StyleBoxTexture_weq1q")
+
+[node name="Restlvl" type="Button" parent="Control/MainPausePanel" unique_id=129542853]
+custom_minimum_size = Vector2(0, 78)
+layout_mode = 0
+offset_left = 165.0
+offset_top = 537.5
+offset_right = 729.0
+offset_bottom = 724.5
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxTexture_ae3r4")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_4q1n6")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ub0au")
+
+[node name="Exit" type="Button" parent="Control/MainPausePanel" unique_id=1932391201]
+custom_minimum_size = Vector2(0, 78)
+layout_mode = 0
+offset_left = 164.0
+offset_top = 659.5
+offset_right = 736.0
+offset_bottom = 849.5
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxTexture_v1ltp")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_xuftw")
+theme_override_styles/hover = SubResource("StyleBoxTexture_v3bx5")
+
+[node name="Confirmation" type="Panel" parent="Control" unique_id=573155267]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.5
+offset_top = -190.5
+offset_right = 359.5
+offset_bottom = 332.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ogjpa")
+
+[node name="Title" type="Label" parent="Control/Confirmation" unique_id=1966706504]
+layout_mode = 0
+offset_left = 41.5
+offset_top = 77.0
+offset_right = 641.5
+offset_bottom = 130.0
+theme_override_fonts/font = ExtResource("4_kvnyk")
+theme_override_font_sizes/font_size = 36
+text = "Submit Record?"
+horizontal_alignment = 1
+
+[node name="MechanicsText" type="Label" parent="Control/Confirmation" unique_id=1799369354]
+layout_mode = 0
+offset_left = 42.5
+offset_top = 121.0
+offset_right = 642.5
+offset_bottom = 165.0
+theme_override_fonts/font = ExtResource("4_kvnyk")
+theme_override_font_sizes/font_size = 30
+text = "(Requires internet)"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Yes" type="Button" parent="Control/Confirmation" unique_id=939333587]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 0
+offset_left = 100.5
+offset_top = 200.0
+offset_right = 579.5
+offset_bottom = 306.0
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxTexture_ejhva")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_jl0os")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ul76g")
+
+[node name="No" type="Button" parent="Control/Confirmation" unique_id=443828875]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 0
+offset_left = 115.5
+offset_top = 296.0
+offset_right = 555.5
+offset_bottom = 397.0
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxTexture_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxTexture_btn_hover")
+
+[connection signal="pressed" from="Control/MainPausePanel/Nextlvl" to="." method="_on_nextlvl_pressed"]
+[connection signal="pressed" from="Control/MainPausePanel/Restlvl" to="." method="_on_restlvl_pressed"]
+[connection signal="pressed" from="Control/MainPausePanel/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Control/Confirmation/Yes" to="." method="_on_yes_pressed"]
+[connection signal="pressed" from="Control/Confirmation/No" to="." method="_on_no_pressed"]

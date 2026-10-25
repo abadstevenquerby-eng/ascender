@@ -2,19 +2,22 @@ extends Node2D
 @onready var pressed: AudioStreamPlayer = %pressed
 @onready var on_press: AudioStreamPlayer = %on_press
 var clicked = false
-@onready var pause_menu: CanvasLayer = %PauseMenu
+@onready var confirmation: CanvasLayer = %confirmation
+@onready var start: CanvasLayer = %start
 const SAVE_PATH = "user://save_game.json"
+@onready var canvas_layer: CanvasLayer = %CanvasLayer
+@onready var settings: Control  = %settings
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if not FileAccess.file_exists(SAVE_PATH):
-		create_json()
+		start.visible = true
 	else:
 		pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 func _on_quit_button_down() -> void:
@@ -23,7 +26,7 @@ func _on_quit_button_down() -> void:
 func _on_quit_button_up() -> void:
 	pressed.play()
 	await get_tree().create_timer(0.5).timeout
-	pause_menu.visible = true
+	confirmation.visible = true
 
 
 func _on_start_game_button_down() -> void:
@@ -35,50 +38,12 @@ func _on_start_game_button_up() -> void:
 	await get_tree().create_timer(0.5).timeout
 	get_tree().change_scene_to_file("res://level_selection.tscn")
 	
-func create_json() -> void:
-	var save_data = {
-			"level1": {
-			"player_x": 0,
-			"player_y": 0,
-			"started": false,
-			"camera": 1,
-			"finished": false,
-			"path2d": 0, #all path2d not currently used
-			"checkpoint_x" : 154,
-			"checkpoint_y" : 1176,
-			"checkpoint_cam": 1},
-			"level2": {
-			"player_x": 0,
-			"player_y": 0,
-			"started": false,
-			"camera": 1,
-			"finished": false,
-			"path2d": 0,
-			"checkpoint_x" : 0,
-			"checkpoint_y" : 0,
-			"checkpoint_cam": 1},
-			"level3": {
-			"player_x": 0,
-			"player_y": 0,
-			"started": false,
-			"camera": 1,
-			"finished": false,
-			"path2d": 0,
-			"checkpoint_x" : 0,
-			"checkpoint_y" : 0,
-			"checkpoint_cam": 1},
-			"level4": {
-			"player_x": 0,
-			"player_y": 0,
-			"started": false,
-			"camera": 1,
-			"finished": false,
-			"path2d": 0,
-			"checkpoint_x" : 0,
-			"checkpoint_y" : 0,
-			"checkpoint_cam": 1}
-		}
-	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
-	var json_string = JSON.stringify(save_data, "\t")
-	file.store_string(json_string)
-	file.close()
+
+
+func _on_settings_pressed() -> void:
+	settings.visible = true
+	
+
+
+func _on_leaderboards_pressed() -> void:
+	get_tree().change_scene_to_file("res://addons/silent_wolf/Scores/Leaderboard.tscn")

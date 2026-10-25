@@ -172,6 +172,7 @@ shape = SubResource("RectangleShape2D_d21ai")
 unique_name_in_owner = true
 stream = ExtResource("15_dbvih")
 volume_db = -26.0
+bus = &"sfx"
 
 [node name="charge_bar" type="TextureProgressBar" parent="." unique_id=1661860776]
 unique_name_in_owner = true
@@ -187,10 +188,12 @@ texture_progress = ExtResource("17_2t2jd")
 unique_name_in_owner = true
 stream = ExtResource("18_n01hd")
 volume_db = -4.0
+bus = &"sfx"
 
 [node name="sfx_bounce" type="AudioStreamPlayer" parent="." unique_id=976036770]
 unique_name_in_owner = true
 stream = ExtResource("18_q3dk7")
+bus = &"sfx"
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

@@ -18,6 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 MainAudio="*uid://dxkcygaw26e07"
+SilentWolf="*uid://blprr6is0d3i"
+Global="*uid://bmrmk8qslvlw3"
 
 [display]
 
@@ -25,6 +27,10 @@ window/size/viewport_width=1275
 window/size/viewport_height=1247
 window/size/mode=3
 window/stretch/mode="viewport"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/silent_wolf/plugin.cfg")
 
 [importer_defaults]
 

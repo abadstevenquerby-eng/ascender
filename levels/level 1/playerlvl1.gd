@@ -70,7 +70,8 @@ func _physics_process(delta: float) -> void:
 	elif animated_sprite_2d.animation == "run":
 		if not sfx_run.playing:
 			sfx_run.play()
-		
+	else:
+		sfx_run.stop()
 	is_charging = true
 	charge_bar_2.visible = false
 	texture(is_charging)

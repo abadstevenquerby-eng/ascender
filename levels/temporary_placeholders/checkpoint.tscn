@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dw1awpatobvom" path="res://levels/temporary_placeholders/Checkpoint (Flag Idle)(64x64).png" id="1_gpxo8"]
 [ext_resource type="Script" uid="uid://bxf4a2b835a7g" path="res://levels/temporary_placeholders/checkpoint.gd" id="1_kjqfp"]
+[ext_resource type="FontFile" uid="uid://becg3pya3tkjq" path="res://elements/ui/Teko-Bold.ttf" id="3_bd5fh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kjqfp"]
 atlas = ExtResource("1_gpxo8")
@@ -89,8 +90,10 @@ height = 47.970253
 script = ExtResource("1_kjqfp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=69699106]
+unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_j2pkp")
-frame_progress = 0.14153208
+frame = 3
+frame_progress = 0.41903538
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=365435502]
 unique_name_in_owner = true
@@ -103,6 +106,7 @@ offset_left = -76.7745
 offset_top = -38.202843
 offset_right = 58.225502
 offset_bottom = -15.202843
+theme_override_fonts/font = ExtResource("3_bd5fh")
 theme_override_font_sizes/font_size = 8
 horizontal_alignment = 1
 vertical_alignment = 1

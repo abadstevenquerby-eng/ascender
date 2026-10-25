@@ -7,37 +7,65 @@ extends CanvasLayer
 ## 3. Settings submenu -> End (Back)
 ## 4. Save Position -> Exit level (Returns to Level Selection / Menu)
 
+@onready var settings_panel: Control = %SettingsPanel
+@onready var sfx_click: AudioStreamPlayer = %sfx_click
 @onready var main_pause_panel: Control = $Control/MainPausePanel
 @onready var mechanics_panel: Control = $Control/MechanicsPanel
-@onready var settings_panel: Control = $Control/SettingsPanel
-@onready var master_slider: HSlider = $Control/SettingsPanel/VBoxContainer/MasterVolume/HSlider
-@onready var music_slider: HSlider = $Control/SettingsPanel/VBoxContainer/MusicVolume/HSlider
-@onready var ambience_slider: HSlider = $Control/SettingsPanel/VBoxContainer/AmbienceVolume/HSlider
-@onready var sfx_slider: HSlider = $Control/SettingsPanel/VBoxContainer/SFXVolume/HSlider
-@onready var fullscreen_check: CheckBox = $Control/SettingsPanel/VBoxContainer/Fullscreen/CheckBox
 @onready var save_status_label: Label = $Control/MainPausePanel/SaveStatusLabel
-@onready var sfx_click: AudioStreamPlayer = %sfx_click
+@onready var minute: Label = %minute
+@onready var seconds: Label = %seconds
+@onready var microseconds: Label = %microseconds
 var is_paused: bool = false
 var camera: int
 var finished = false
 var starting_pos: Vector2
 var restarted = false
 var checkpointed = false
+var time: float = 0.0
+var mnute: int
+var sec: int
+var msec: int
+
 
 
 # Save file path
 const SAVE_PATH = "user://save_game.json"
 
+func _process(delta) -> void:
+	if is_paused == false:
+		time += delta
+		msec = fmod(time, 1) * 100
+		sec = fmod(time, 60)
+		mnute = fmod(time, 3600) /60
+		minute.text = "%02d:" % mnute
+		seconds.text = "%02d." % sec
+		microseconds.text = "%03d" % msec
+	else:
+		pass
+		
 func _ready() -> void:
 	# CanvasLayer and this node must continue running when the game tree is paused
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	var data: Dictionary = {}
 	
+	if FileAccess.file_exists(SAVE_PATH):
+		var file = FileAccess.open(SAVE_PATH, FileAccess.READ)
+		var json_string = file.get_as_text()
+		file.close()
+		var json = JSON.new()
+		var error = json.parse(json_string)
+		if error == OK:
+			var result = json.get_data()
+			if result is Dictionary:
+				data = result
+		time = data[get_tree().current_scene.name]["timer"]
+		file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
+		json_string = JSON.stringify(data, "\t")
+		file.store_string(json_string)
+		file.close()
 	# Start hidden
 	visible = false
 	_show_main_menu()
-	
-	# Initialize settings UI state
-	_init_settings_values()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -47,7 +75,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		save_current_position() #Saves the current player position the moment the pause menu shows up
 		if mechanics_panel.visible or settings_panel.visible:
 			_show_main_menu()
-			_play_click_sfx()
+			sfx_click.play()
 		else:
 			toggle_pause()
 		get_viewport().set_input_as_handled()
@@ -81,13 +109,14 @@ func _show_main_menu() -> void:
 
 ## Flowchart: [Resume] -> End Pause
 func _on_resume_pressed() -> void:
-	_play_click_sfx()
+	sfx_click.play()
 	set_paused(false)
+	
 
 
 ## Restarts the current active level
 func _on_restart_pressed() -> void:
-	_play_click_sfx()
+	sfx_click.play()
 	# 1. Loads the raw data straight from the file path
 	var json_text = FileAccess.get_file_as_string(SAVE_PATH)
 	
@@ -106,7 +135,7 @@ func _on_restart_pressed() -> void:
 
 ## Flowchart: [View the mechanics?] -> Yes -> Mechanic and Controls
 func _on_mechanics_pressed() -> void:
-	_play_click_sfx()
+	sfx_click.play()
 	main_pause_panel.visible = false
 	mechanics_panel.visible = true
 	settings_panel.visible = false
@@ -114,21 +143,21 @@ func _on_mechanics_pressed() -> void:
 
 ## Flowchart: [Configure Settings?] -> Yes -> Settings
 func _on_settings_pressed() -> void:
-	_play_click_sfx()
-	main_pause_panel.visible = false
+	sfx_click.play()
+	main_pause_panel.visible = true
 	mechanics_panel.visible = false
 	settings_panel.visible = true
 
 
 ## Flowchart: Mechanic / Settings [Back / End] -> Return to Menu
 func _on_back_to_menu_pressed() -> void:
-	_play_click_sfx()
+	sfx_click.play()
 	_show_main_menu()
 
 
 ## Flowchart: [Save Position] -> [Exit level] -> [B] (Level Selection / Title)
 func _on_save_and_exit_pressed() -> void:
-	_play_click_sfx()
+	sfx_click.play()
 	
 	if save_status_label:
 		save_status_label.text = "Exiting..."
@@ -156,7 +185,7 @@ func save_current_position() -> void:
 		save_status_label.text = "Position saved"
 	
 	if player_node:
-		player_pos = player_node.global_position
+		player_pos = player_node.position
 		print("[PauseMenu] Saved player position: ", player_pos)
 	else:
 		print("[PauseMenu] No player node found to save position, saving level progress.")
@@ -181,6 +210,7 @@ func save_current_position() -> void:
 			data[current_scene]["player_x"] = starting_pos.x
 			data[current_scene]["player_y"] = starting_pos.y
 			data[current_scene]["camera"] = 1
+			data[current_scene]["started"] = false
 			data[current_scene]["checkpoint_x"] = starting_pos.x
 			data[current_scene]["checkpoint_y"] = starting_pos.y
 			data[current_scene]["checkpoint_cam"] = 1
@@ -192,16 +222,19 @@ func save_current_position() -> void:
 				data[current_scene]["player_x"] = data[current_scene]["checkpoint_x"]
 				data[current_scene]["player_y"] = data[current_scene]["checkpoint_y"]
 				data[current_scene]["camera"] = data[current_scene]["checkpoint_cam"]
-			if restarted and data[current_scene]["checkpoint_x"] == 0:
+			if restarted and data[current_scene]["checkpoint_x"] == 0: # might be a bit reduntant and uneeded
+				print(starting_pos)
 				data[current_scene]["player_x"] = starting_pos.x
 				data[current_scene]["player_y"] = starting_pos.y
 				data[current_scene]["camera"] = data[current_scene]["checkpoint_cam"]
 			elif checkpointed:
-				data[current_scene]["checkpoint_x"] = get_parent().checkpoint.x
-				data[current_scene]["checkpoint_y"] = get_parent().checkpoint.y
+				data[current_scene]["checkpoint_x"] = player_pos.x
+				data[current_scene]["checkpoint_y"] = player_pos.y
 				data[current_scene]["checkpoint_cam"] = data[current_scene]["camera"]
 				checkpointed = false
-		data[current_scene]["started"] = true
+			data[current_scene]["timer"] = time
+			data[current_scene]["started"] = true
+			
 		
 		file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 		json_string = JSON.stringify(data, "\t")
@@ -222,96 +255,3 @@ func _find_player_in_tree() -> Node2D:
 			return found
 			
 	return null
-
-
-# ------------------------------------------------------------------------------
-# Settings Logic
-# ------------------------------------------------------------------------------
-
-func _init_settings_values() -> void:
-	# Initialize Master Volume Slider
-	var master_bus_idx = AudioServer.get_bus_index("Master")
-	if master_bus_idx != -1 and master_slider:
-		var db = AudioServer.get_bus_volume_db(master_bus_idx)
-		master_slider.value = db_to_linear(db)
-	
-	# TODO (co-programmer): Replace "Music" with the actual bus name once it's created in the AudioServer.
-	# Initialize Music Volume Slider
-	var music_bus_idx = AudioServer.get_bus_index("Music")
-	if music_bus_idx != -1 and music_slider:
-		var db = AudioServer.get_bus_volume_db(music_bus_idx)
-		music_slider.value = db_to_linear(db)
-	else:
-		if music_slider:
-			music_slider.value = 0.8  # Default until bus is available
-	
-	# TODO (co-programmer): Replace "Ambience" with the actual bus name once it's created in the AudioServer.
-	# Initialize Ambience Volume Slider
-	var ambience_bus_idx = AudioServer.get_bus_index("Ambience")
-	if ambience_bus_idx != -1 and ambience_slider:
-		var db = AudioServer.get_bus_volume_db(ambience_bus_idx)
-		ambience_slider.value = db_to_linear(db)
-	else:
-		if ambience_slider:
-			ambience_slider.value = 0.8  # Default until bus is available
-	
-	# TODO (co-programmer): Replace "SFX" with the actual bus name once it's created in the AudioServer.
-	# Initialize SFX Volume Slider
-	var sfx_bus_idx = AudioServer.get_bus_index("SFX")
-	if sfx_bus_idx != -1 and sfx_slider:
-		var db = AudioServer.get_bus_volume_db(sfx_bus_idx)
-		sfx_slider.value = db_to_linear(db)
-	else:
-		if sfx_slider:
-			sfx_slider.value = 0.8  # Default until bus is available
-	
-	# Initialize Fullscreen Checkbox
-	if fullscreen_check:
-		fullscreen_check.button_pressed = (DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN)
-
-
-func _on_master_volume_changed(value: float) -> void:
-	var master_bus_idx = AudioServer.get_bus_index("Master")
-	if master_bus_idx != -1:
-		AudioServer.set_bus_volume_db(master_bus_idx, linear_to_db(value))
-
-
-# TODO (co-programmer): Wire this to the "Music" audio bus once it exists in the AudioServer.
-# Create the bus in: Project > Project Settings > Audio > Add Bus, name it "Music".
-func _on_music_volume_changed(value: float) -> void:
-	var music_bus_idx = AudioServer.get_bus_index("Music")
-	if music_bus_idx != -1:
-		AudioServer.set_bus_volume_db(music_bus_idx, linear_to_db(value))
-
-
-# TODO (co-programmer): Wire this to the "Ambience" audio bus once it exists in the AudioServer.
-# Create the bus in: Project > Project Settings > Audio > Add Bus, name it "Ambience".
-func _on_ambience_volume_changed(value: float) -> void:
-	var ambience_bus_idx = AudioServer.get_bus_index("Ambience")
-	if ambience_bus_idx != -1:
-		AudioServer.set_bus_volume_db(ambience_bus_idx, linear_to_db(value))
-
-
-# TODO (co-programmer): Wire this to the "SFX" audio bus once it exists in the AudioServer.
-# Create the bus in: Project > Project Settings > Audio > Add Bus, name it "SFX".
-func _on_sfx_volume_changed(value: float) -> void:
-	var sfx_bus_idx = AudioServer.get_bus_index("SFX")
-	if sfx_bus_idx != -1:
-		AudioServer.set_bus_volume_db(sfx_bus_idx, linear_to_db(value))
-
-
-func _on_fullscreen_toggled(toggled_on: bool) -> void:
-	_play_click_sfx()
-	if toggled_on:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-	else:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-
-
-# ------------------------------------------------------------------------------
-# Audio Helper
-# ------------------------------------------------------------------------------
-
-func _play_click_sfx() -> void:
-	if sfx_click:
-		sfx_click.play()

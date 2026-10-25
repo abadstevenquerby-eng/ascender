@@ -6,3 +6,5 @@
 stream = ExtResource("1_vk56a")
 volume_db = -7.312
 autoplay = true
+bus = &"music"
+parameters/looping = true

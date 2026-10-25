@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://bffy8nc7jotdb" path="res://confirmation.tscn" id="9_0k4wn"]
 [ext_resource type="AudioStream" uid="uid://docrph6c6fhtq" path="res://assets/audio/sound effects/ui/on_press.mp3" id="9_0o4t1"]
 [ext_resource type="AudioStream" uid="uid://biy5qk5gkf7x" path="res://assets/audio/sound effects/ui/on_release.mp3" id="10_0o4t1"]
+[ext_resource type="PackedScene" uid="uid://bydv0g2rtpod5" path="res://start.tscn" id="12_j5v2v"]
+[ext_resource type="PackedScene" uid="uid://ddk71xgoj02u" path="res://settings_panel.tscn" id="13_iotk1"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_06t4h"]
 texture = ExtResource("1_06t4h")
@@ -22,12 +24,12 @@ texture_margin_bottom = 10.0
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8qtwp"]
 texture = ExtResource("3_nlkkf")
 texture_margin_bottom = 10.0
-modulate_color = Color(0.38321832, 0.38321832, 0.38321838, 1)
+modulate_color = Color(0.5803922, 0.5803922, 0.5803922, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nlkkf"]
 texture = ExtResource("3_nlkkf")
 texture_margin_bottom = 10.0
-modulate_color = Color(0.53224236, 0.53224236, 0.53224236, 1)
+modulate_color = Color(0.78431374, 0.78431374, 0.78431374, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j5v2v"]
 texture = ExtResource("4_8qtwp")
@@ -36,12 +38,12 @@ texture_margin_bottom = 10.0
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iotk1"]
 texture = ExtResource("4_8qtwp")
 texture_margin_bottom = 10.0
-modulate_color = Color(0.38431373, 0.38431373, 0.38431373, 1)
+modulate_color = Color(0.5803922, 0.5803922, 0.5803922, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w44g7"]
 texture = ExtResource("4_8qtwp")
 texture_margin_bottom = 10.0
-modulate_color = Color(0.53333336, 0.53333336, 0.53333336, 1)
+modulate_color = Color(0.78431374, 0.78431374, 0.78431374, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cm266"]
 texture = ExtResource("5_dy7ct")
@@ -50,12 +52,12 @@ texture_margin_bottom = 10.0
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g8g3n"]
 texture = ExtResource("5_dy7ct")
 texture_margin_bottom = 10.0
-modulate_color = Color(0.38431373, 0.38431373, 0.38431373, 1)
+modulate_color = Color(0.5803922, 0.5803922, 0.5803922, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8u0te"]
 texture = ExtResource("5_dy7ct")
 texture_margin_bottom = 10.0
-modulate_color = Color(0.53333336, 0.53333336, 0.53333336, 1)
+modulate_color = Color(0.78431374, 0.78431374, 0.78431374, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oiatc"]
 texture = ExtResource("6_0o4t1")
@@ -64,12 +66,12 @@ texture_margin_bottom = 10.0
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mg3m2"]
 texture = ExtResource("6_0o4t1")
 texture_margin_bottom = 10.0
-modulate_color = Color(0.38431373, 0.38431373, 0.38431373, 1)
+modulate_color = Color(0.5803922, 0.5803922, 0.5803922, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ojb7r"]
 texture = ExtResource("6_0o4t1")
 texture_margin_bottom = 10.0
-modulate_color = Color(0.53333336, 0.53333336, 0.53333336, 1)
+modulate_color = Color(0.78431374, 0.78431374, 0.78431374, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e5qqf"]
 texture = ExtResource("7_0k4wn")
@@ -78,12 +80,12 @@ texture_margin_bottom = 10.0
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7bbuq"]
 texture = ExtResource("7_0k4wn")
 texture_margin_bottom = 10.0
-modulate_color = Color(0.38431373, 0.38431373, 0.38431373, 1)
+modulate_color = Color(0.5803922, 0.5803922, 0.5803922, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_saq78"]
 texture = ExtResource("7_0k4wn")
 texture_margin_bottom = 10.0
-modulate_color = Color(0.53333336, 0.53333336, 0.53333336, 1)
+modulate_color = Color(0.78431374, 0.78431374, 0.78431374, 1)
 
 [node name="Control" type="Node2D" unique_id=1705610224]
 script = ExtResource("1_glbon")
@@ -212,16 +214,33 @@ texture = ExtResource("4_jix8l")
 unique_name_in_owner = true
 stream = ExtResource("9_0o4t1")
 volume_db = 5.0
+bus = &"sfx"
 
 [node name="pressed" type="AudioStreamPlayer" parent="." unique_id=34329368]
 unique_name_in_owner = true
 stream = ExtResource("10_0o4t1")
 volume_db = 5.0
+bus = &"sfx"
 
-[node name="PauseMenu" parent="." unique_id=375924707 instance=ExtResource("9_0k4wn")]
+[node name="confirmation" parent="." unique_id=375924707 instance=ExtResource("9_0k4wn")]
 unique_name_in_owner = true
+visible = false
+
+[node name="start" parent="." unique_id=1937012350 instance=ExtResource("12_j5v2v")]
+unique_name_in_owner = true
+visible = false
+
+[node name="settings" parent="." unique_id=893164938 instance=ExtResource("13_iotk1")]
+unique_name_in_owner = true
+visible = false
+offset_left = 322.98108
+offset_top = 328.40674
+offset_right = 1103.9811
+offset_bottom = 1249.7219
 
 [connection signal="button_down" from="Panel/Start game" to="." method="_on_start_game_button_down"]
 [connection signal="button_up" from="Panel/Start game" to="." method="_on_start_game_button_up"]
+[connection signal="pressed" from="Panel/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Panel/Leaderboards" to="." method="_on_leaderboards_pressed"]
 [connection signal="button_down" from="Panel/Quit" to="." method="_on_quit_button_down"]
 [connection signal="button_up" from="Panel/Quit" to="." method="_on_quit_button_up"]

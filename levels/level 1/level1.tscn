@@ -3,8 +3,9 @@
 [ext_resource type="Script" uid="uid://dt1ylfb6dewqh" path="res://levels/level 1/level_1.gd" id="1_7mql6"]
 [ext_resource type="PackedScene" uid="uid://diai1gjmhc7cy" path="res://levels/level 1/player(level1).tscn" id="2_7vvte"]
 [ext_resource type="Texture2D" uid="uid://dd2enoh2o0osm" path="res://assets/images/backgrounds/Lava.JPG" id="2_lirpf"]
+[ext_resource type="FontFile" uid="uid://becg3pya3tkjq" path="res://elements/ui/Teko-Bold.ttf" id="3_7wrii"]
+[ext_resource type="AudioStream" uid="uid://d0g7s4jlp5ch8" path="res://assets/audio/music/bgm_1.mp3" id="4_7wrii"]
 [ext_resource type="AudioStream" uid="uid://guu51tuoyin1" path="res://assets/audio/ambience/level1.mp3" id="4_14grb"]
-[ext_resource type="AudioStream" uid="uid://ba0jwjp5ofi83" path="res://assets/audio/music/bgm_1.wav" id="5_5lb6v"]
 [ext_resource type="PackedScene" uid="uid://c62d317gid6f6" path="res://levels/level 1/blocks/static/block_1.tscn" id="6_8xv0u"]
 [ext_resource type="PackedScene" uid="uid://lx1ho8hrxxgb" path="res://levels/level 1/blocks/static/block_2.tscn" id="7_k8j64"]
 [ext_resource type="PackedScene" uid="uid://djicmu2bv7p6x" path="res://levels/level 1/blocks/static/block_3.tscn" id="7_psx5d"]
@@ -14,38 +15,41 @@
 [ext_resource type="PackedScene" uid="uid://dungggdj1db0q" path="res://levels/level 1/blocks/falling_collapse/falling_fast.tscn" id="10_d4aew"]
 [ext_resource type="PackedScene" uid="uid://bqqn7ts2e7ty1" path="res://levels/level 1/blocks/moving/moving.tscn" id="11_nsygj"]
 [ext_resource type="Texture2D" uid="uid://548n231aokfk" path="res://levels/temporary_placeholders/images-removebg-preview.png" id="13_o246c"]
-[ext_resource type="PackedScene" uid="uid://cxvd4u8l6a7p2" path="res://pause_menu.tscn" id="14_khgbs"]
 [ext_resource type="PackedScene" uid="uid://d2u4et2ke2eln" path="res://levels/temporary_placeholders/checkpoint.tscn" id="14_lirpf"]
+[ext_resource type="PackedScene" uid="uid://fno7ndwit8cl" path="res://level_end.tscn" id="17_3iamj"]
+[ext_resource type="Texture2D" uid="uid://dhbkojshnyhh0" path="res://elements/ui/height_fill.png" id="18_7wrii"]
+[ext_resource type="Texture2D" uid="uid://d3l30lot08db8" path="res://elements/ui/height_flag.png" id="18_k68bd"]
+[ext_resource type="PackedScene" uid="uid://cgov0jx16ux1h" path="res://pause_menu.tscn" id="19_k68bd"]
 
-[sub_resource type="Curve2D" id="Curve2D_o246c"]
+[sub_resource type="Curve2D" id="Curve2D_7wrii"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -2.1875, -2.1875, 0, 0, 0, 0, 1126.561, -8.75)
 }
 point_count = 2
 
-[sub_resource type="Curve2D" id="Curve2D_3iamj"]
+[sub_resource type="Curve2D" id="Curve2D_sli6u"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -2.1875, -2.1875, 0, 0, 0, 0, 1008.4363, -4.3745117)
 }
 point_count = 2
 
-[sub_resource type="Curve2D" id="Curve2D_jexxc"]
+[sub_resource type="Curve2D" id="Curve2D_n7p2t"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -2.1875, -2.1875, 0, 0, 0, 0, -10.9375, -435.31152)
 }
 point_count = 2
 
-[sub_resource type="Curve2D" id="Curve2D_k68bd"]
+[sub_resource type="Curve2D" id="Curve2D_fpomc"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -2.1875, -2.1875, 0, 0, 0, 0, -10.9375, -435.31152)
 }
 point_count = 2
 
-[sub_resource type="Curve2D" id="Curve2D_7wrii"]
+[sub_resource type="Curve2D" id="Curve2D_3x650"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -2.1875, -2.1875, 0, 0, 0, 0, 1017.1862, -8.749023)
@@ -554,10 +558,11 @@ size = Vector2(3001.1594, 148.24106)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tj45o"]
 size = Vector2(1904.6831, 148.24106)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lirpf"]
-bg_color = Color(0.5368773, 0, 0.016361615, 1)
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jexxc"]
+load_path = "res://.godot/imported/height_bar.png-9a0a3ecdb565f65b302807d27764c35b.ctex"
 
 [node name="level1" type="Node2D" unique_id=1233610334]
+position = Vector2(0, -1284)
 script = ExtResource("1_7mql6")
 metadata/_edit_vertical_guides_ = [-61.0]
 
@@ -598,35 +603,52 @@ offset_right = 1318.0
 offset_bottom = -3686.0
 texture = ExtResource("2_lirpf")
 
-[node name="TextEdit" type="TextEdit" parent="background_text_audio" unique_id=1929744318]
-offset_left = 54.0
-offset_top = 922.0
-offset_right = 331.0
-offset_bottom = 1074.0
+[node name="Label" type="Label" parent="background_text_audio" unique_id=266511510]
+offset_left = 87.0
+offset_top = 948.0
+offset_right = 348.0
+offset_bottom = 1075.0
+theme_override_fonts/font = ExtResource("3_7wrii")
 text = "Press \"A and D or  the left 
 and right arrows\" to move, and 
 hold \"Spacebar\" to Jump.
 The longer you hold it, the higher 
 and further you jump."
 
-[node name="TextEdit2" type="TextEdit" parent="background_text_audio" unique_id=768085144]
-offset_left = 419.0
-offset_top = 889.0
-offset_right = 696.0
-offset_bottom = 1041.0
+[node name="Label2" type="Label" parent="background_text_audio" unique_id=738797622]
+offset_left = 399.0
+offset_top = 910.0
+offset_right = 660.0
+offset_bottom = 1037.0
+theme_override_fonts/font = ExtResource("3_7wrii")
 text = "Hold the movement button 
 while falling in order to grab a 
 ledge."
 
+[node name="Label3" type="Label" parent="background_text_audio" unique_id=1257932133]
+offset_left = 954.0
+offset_top = -295.0
+offset_right = 1226.0
+offset_bottom = -163.0
+theme_override_fonts/font = ExtResource("3_7wrii")
+text = "To go back to the checkpoint press 
+pause using \"esc\" and click restart.
+Beware that this will add to 
+additional seconds to your timer
+based on how far you fell."
+
 [node name="bgm" type="AudioStreamPlayer" parent="background_text_audio" unique_id=1797398668]
-stream = ExtResource("5_5lb6v")
+stream = ExtResource("4_7wrii")
 volume_db = -3.0
 autoplay = true
+bus = &"music"
+parameters/looping = true
 
 [node name="ambience" type="AudioStreamPlayer" parent="background_text_audio" unique_id=978702383]
 stream = ExtResource("4_14grb")
 volume_db = -5.0
 autoplay = true
+bus = &"ambience"
 parameters/looping = true
 
 [node name="player" parent="." unique_id=331636849 instance=ExtResource("2_7vvte")]
@@ -704,7 +726,7 @@ scale = Vector2(0.36, 0.36)
 [node name="block18" parent="blocks" unique_id=299928165 instance=ExtResource("11_nsygj")]
 position = Vector2(475.00003, -2131)
 scale = Vector2(0.45714343, 0.45714343)
-curve = SubResource("Curve2D_o246c")
+curve = SubResource("Curve2D_7wrii")
 
 [node name="block19" parent="blocks" unique_id=1894768943 instance=ExtResource("10_d4aew")]
 position = Vector2(862, -2366)
@@ -720,12 +742,12 @@ position = Vector2(178, -2435)
 [node name="block22" parent="blocks" unique_id=738749660 instance=ExtResource("11_nsygj")]
 position = Vector2(408, -2803.0002)
 scale = Vector2(0.45714343, 0.45714343)
-curve = SubResource("Curve2D_3iamj")
+curve = SubResource("Curve2D_sli6u")
 
 [node name="block23" parent="blocks" unique_id=808886132 instance=ExtResource("11_nsygj")]
 position = Vector2(928, -2853.0002)
 scale = Vector2(0.45714343, 0.45714343)
-curve = SubResource("Curve2D_jexxc")
+curve = SubResource("Curve2D_n7p2t")
 
 [node name="block24" parent="blocks" unique_id=1725623866 instance=ExtResource("6_8xv0u")]
 position = Vector2(718.00006, -3174)
@@ -746,7 +768,7 @@ position = Vector2(174, 751)
 [node name="block28" parent="blocks" unique_id=223309182 instance=ExtResource("11_nsygj")]
 position = Vector2(701, -3680)
 scale = Vector2(0.45714343, 0.45714343)
-curve = SubResource("Curve2D_k68bd")
+curve = SubResource("Curve2D_fpomc")
 
 [node name="block29" parent="blocks" unique_id=1435836420 instance=ExtResource("10_d4aew")]
 position = Vector2(353, -3830)
@@ -767,7 +789,7 @@ scale = Vector2(0.67999876, 0.67999876)
 [node name="block33" parent="blocks" unique_id=421978647 instance=ExtResource("11_nsygj")]
 position = Vector2(337.00003, -4694.0005)
 scale = Vector2(0.45714343, 0.45714343)
-curve = SubResource("Curve2D_7wrii")
+curve = SubResource("Curve2D_3x650")
 
 [node name="block34" parent="blocks" unique_id=372969384 instance=ExtResource("7_k8j64")]
 position = Vector2(1185.9999, -4732)
@@ -892,20 +914,40 @@ scale = Vector2(1.537, 1.537)
 position = Vector2(1096, -3636)
 scale = Vector2(1.537, 1.537)
 
-[node name="PauseMenu" parent="." unique_id=375924707 instance=ExtResource("14_khgbs")]
+[node name="level_end" parent="." unique_id=1140374692 instance=ExtResource("17_3iamj")]
 unique_name_in_owner = true
 visible = false
 
-[node name="heightmeter" type="ProgressBar" parent="." unique_id=1358671775]
+[node name="PauseMenu" parent="." unique_id=375924707 instance=ExtResource("19_k68bd")]
+
+[node name="heightmeter" type="TextureProgressBar" parent="." unique_id=1993670093]
 unique_name_in_owner = true
-offset_left = 5.0
-offset_top = 37.0
-offset_right = 9.0
-offset_bottom = 64.0
-scale = Vector2(4.8587, 4.8587)
-theme_override_styles/fill = SubResource("StyleBoxFlat_lirpf")
+offset_left = -18.0
+offset_top = 15.0
+offset_right = 297.0
+offset_bottom = 899.0
+scale = Vector2(0.21869412, 0.21869412)
+max_value = 6157.0
+value = 4910.0
 fill_mode = 3
-show_percentage = false
+texture_under = SubResource("CompressedTexture2D_jexxc")
+texture_progress = ExtResource("18_7wrii")
+texture_progress_offset = Vector2(5, -35)
+
+[node name="Sprite2D" type="Sprite2D" parent="heightmeter" unique_id=338653838]
+position = Vector2(242.34764, 667.5989)
+scale = Vector2(0.24358965, 0.24358971)
+texture = ExtResource("18_k68bd")
+
+[node name="Sprite2D2" type="Sprite2D" parent="heightmeter" unique_id=1964612265]
+position = Vector2(242.34764, 411.5335)
+scale = Vector2(0.24358965, 0.24358971)
+texture = ExtResource("18_k68bd")
+
+[node name="Sprite2D3" type="Sprite2D" parent="heightmeter" unique_id=1501116326]
+position = Vector2(242.34764, 164.61331)
+scale = Vector2(0.24358965, 0.24358971)
+texture = ExtResource("18_k68bd")
 
 [connection signal="body_entered" from="blocks/exit" to="." method="_on_exit_body_entered"]
 [connection signal="body_entered" from="areas/switch_cam1" to="." method="_on_switch_cam_1_body_entered"]

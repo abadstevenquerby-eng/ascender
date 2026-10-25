@@ -1,39 +1,45 @@
 extends Node2D
-@onready var sfx_click: AudioStreamPlayer = %sfx_click
 const SAVE_PATH = "user://save_game.json"
 var data = load_json_file(SAVE_PATH)
 @onready var label: Label = %Label
 @onready var level_2: Button = %Level2
 @onready var level_3: Button = %Level3
 @onready var level_4: Button = %"Level 4"
-@onready var lock: Sprite2D = %Lock
-@onready var lock_2: Sprite2D = %Lock2
-@onready var lock_3: Sprite2D = %Lock3
-
+@onready var sfx_click: AudioStreamPlayer = %sfx_click
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	conditions()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 func _on_level_1_pressed() -> void:
+	sfx_click.play()
+	await get_tree().create_timer(0.5).timeout
 	get_tree().change_scene_to_file("res://levels/level 1/level1.tscn")
 
 
 func _on_level_2_pressed() -> void:
+	sfx_click.play()
+	await get_tree().create_timer(0.5).timeout
 	get_tree().change_scene_to_file("res://levels/level_2/level2.tscn")
 
 func _on_level_3_pressed() -> void:
+	sfx_click.play()
+	await get_tree().create_timer(0.5).timeout
 	get_tree().change_scene_to_file("res://levels/level_3/level3.tscn")
 
 func _on_level_4_pressed() -> void:
+	sfx_click.play()
+	await get_tree().create_timer(0.5).timeout
 	level_3.disabled
 
 
 func _on_back_pressed() -> void:
+	sfx_click.play()
+	await get_tree().create_timer(0.5).timeout
 	get_tree().change_scene_to_file("res://main_menu.tscn")
 
 func load_json_file(SAVE_PATH: String) -> Variant:
