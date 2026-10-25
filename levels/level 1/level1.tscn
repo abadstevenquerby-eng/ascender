@@ -2,8 +2,9 @@
 
 [ext_resource type="Script" uid="uid://dt1ylfb6dewqh" path="res://levels/level 1/level_1.gd" id="1_7mql6"]
 [ext_resource type="PackedScene" uid="uid://diai1gjmhc7cy" path="res://levels/level 1/player(level1).tscn" id="2_7vvte"]
-[ext_resource type="Texture2D" uid="uid://dd2enoh2o0osm" path="res://assets/images/backgrounds/Lava.JPG" id="2_lirpf"]
 [ext_resource type="FontFile" uid="uid://becg3pya3tkjq" path="res://elements/ui/Teko-Bold.ttf" id="3_7wrii"]
+[ext_resource type="VideoStream" uid="uid://cvvxnyoa2clgv" path="res://assets/images/backgrounds/lava/top.ogv" id="3_n7p2t"]
+[ext_resource type="VideoStream" uid="uid://ckx6r26giatxv" path="res://assets/images/backgrounds/lava/bottom.ogv" id="3_sli6u"]
 [ext_resource type="AudioStream" uid="uid://d0g7s4jlp5ch8" path="res://assets/audio/music/bgm_1.mp3" id="4_7wrii"]
 [ext_resource type="AudioStream" uid="uid://guu51tuoyin1" path="res://assets/audio/ambience/level1.mp3" id="4_14grb"]
 [ext_resource type="PackedScene" uid="uid://c62d317gid6f6" path="res://levels/level 1/blocks/static/block_1.tscn" id="6_8xv0u"]
@@ -21,35 +22,35 @@
 [ext_resource type="Texture2D" uid="uid://d3l30lot08db8" path="res://elements/ui/height_flag.png" id="18_k68bd"]
 [ext_resource type="PackedScene" uid="uid://cgov0jx16ux1h" path="res://pause_menu.tscn" id="19_k68bd"]
 
-[sub_resource type="Curve2D" id="Curve2D_7wrii"]
+[sub_resource type="Curve2D" id="Curve2D_n7p2t"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -2.1875, -2.1875, 0, 0, 0, 0, 1126.561, -8.75)
 }
 point_count = 2
 
-[sub_resource type="Curve2D" id="Curve2D_sli6u"]
+[sub_resource type="Curve2D" id="Curve2D_fpomc"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -2.1875, -2.1875, 0, 0, 0, 0, 1008.4363, -4.3745117)
 }
 point_count = 2
 
-[sub_resource type="Curve2D" id="Curve2D_n7p2t"]
-resource_local_to_scene = true
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -2.1875, -2.1875, 0, 0, 0, 0, -10.9375, -435.31152)
-}
-point_count = 2
-
-[sub_resource type="Curve2D" id="Curve2D_fpomc"]
-resource_local_to_scene = true
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -2.1875, -2.1875, 0, 0, 0, 0, -10.9375, -435.31152)
-}
-point_count = 2
-
 [sub_resource type="Curve2D" id="Curve2D_3x650"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -2.1875, -2.1875, 0, 0, 0, 0, -10.9375, -435.31152)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_tq20s"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -2.1875, -2.1875, 0, 0, 0, 0, -10.9375, -435.31152)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_uskxf"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -2.1875, -2.1875, 0, 0, 0, 0, 1017.1862, -8.749023)
@@ -568,40 +569,55 @@ metadata/_edit_vertical_guides_ = [-61.0]
 
 [node name="background_text_audio" type="Node2D" parent="." unique_id=868234266]
 
-[node name="back1" type="TextureRect" parent="background_text_audio" unique_id=340445138]
-offset_left = -54.0
-offset_top = -20.0
-offset_right = 1322.0
-offset_bottom = 1285.0
-texture = ExtResource("2_lirpf")
+[node name="back1" type="VideoStreamPlayer" parent="background_text_audio" unique_id=2065994688]
+offset_left = -55.0
+offset_top = -10.0
+offset_right = 1321.0
+offset_bottom = 1225.0
+stream = ExtResource("3_sli6u")
+autoplay = true
+expand = true
+loop = true
 
-[node name="back2" type="TextureRect" parent="background_text_audio" unique_id=203599830]
+[node name="back2" type="VideoStreamPlayer" parent="background_text_audio" unique_id=571226616]
 offset_left = -55.0
 offset_top = -1311.0
 offset_right = 1321.0
 offset_bottom = -6.0
-texture = ExtResource("2_lirpf")
+stream = ExtResource("3_n7p2t")
+autoplay = true
+expand = true
+loop = true
 
-[node name="back3" type="TextureRect" parent="background_text_audio" unique_id=2142462074]
+[node name="back3" type="VideoStreamPlayer" parent="background_text_audio" unique_id=2027755788]
 offset_left = -57.0
 offset_top = -2566.0
 offset_right = 1319.0
 offset_bottom = -1261.0
-texture = ExtResource("2_lirpf")
+stream = ExtResource("3_n7p2t")
+autoplay = true
+expand = true
+loop = true
 
-[node name="back4" type="TextureRect" parent="background_text_audio" unique_id=1843903944]
+[node name="back4" type="VideoStreamPlayer" parent="background_text_audio" unique_id=1677094359]
 offset_left = -57.0
 offset_top = -3859.0
 offset_right = 1319.0
 offset_bottom = -2554.0
-texture = ExtResource("2_lirpf")
+stream = ExtResource("3_n7p2t")
+autoplay = true
+expand = true
+loop = true
 
-[node name="back5" type="TextureRect" parent="background_text_audio" unique_id=1180421241]
+[node name="back5" type="VideoStreamPlayer" parent="background_text_audio" unique_id=847557456]
 offset_left = -58.0
 offset_top = -4991.0
 offset_right = 1318.0
 offset_bottom = -3686.0
-texture = ExtResource("2_lirpf")
+stream = ExtResource("3_n7p2t")
+autoplay = true
+expand = true
+loop = true
 
 [node name="Label" type="Label" parent="background_text_audio" unique_id=266511510]
 offset_left = 87.0
@@ -726,7 +742,7 @@ scale = Vector2(0.36, 0.36)
 [node name="block18" parent="blocks" unique_id=299928165 instance=ExtResource("11_nsygj")]
 position = Vector2(475.00003, -2131)
 scale = Vector2(0.45714343, 0.45714343)
-curve = SubResource("Curve2D_7wrii")
+curve = SubResource("Curve2D_n7p2t")
 
 [node name="block19" parent="blocks" unique_id=1894768943 instance=ExtResource("10_d4aew")]
 position = Vector2(862, -2366)
@@ -742,12 +758,12 @@ position = Vector2(178, -2435)
 [node name="block22" parent="blocks" unique_id=738749660 instance=ExtResource("11_nsygj")]
 position = Vector2(408, -2803.0002)
 scale = Vector2(0.45714343, 0.45714343)
-curve = SubResource("Curve2D_sli6u")
+curve = SubResource("Curve2D_fpomc")
 
 [node name="block23" parent="blocks" unique_id=808886132 instance=ExtResource("11_nsygj")]
 position = Vector2(928, -2853.0002)
 scale = Vector2(0.45714343, 0.45714343)
-curve = SubResource("Curve2D_n7p2t")
+curve = SubResource("Curve2D_3x650")
 
 [node name="block24" parent="blocks" unique_id=1725623866 instance=ExtResource("6_8xv0u")]
 position = Vector2(718.00006, -3174)
@@ -768,7 +784,7 @@ position = Vector2(174, 751)
 [node name="block28" parent="blocks" unique_id=223309182 instance=ExtResource("11_nsygj")]
 position = Vector2(701, -3680)
 scale = Vector2(0.45714343, 0.45714343)
-curve = SubResource("Curve2D_fpomc")
+curve = SubResource("Curve2D_tq20s")
 
 [node name="block29" parent="blocks" unique_id=1435836420 instance=ExtResource("10_d4aew")]
 position = Vector2(353, -3830)
@@ -789,7 +805,7 @@ scale = Vector2(0.67999876, 0.67999876)
 [node name="block33" parent="blocks" unique_id=421978647 instance=ExtResource("11_nsygj")]
 position = Vector2(337.00003, -4694.0005)
 scale = Vector2(0.45714343, 0.45714343)
-curve = SubResource("Curve2D_3x650")
+curve = SubResource("Curve2D_uskxf")
 
 [node name="block34" parent="blocks" unique_id=372969384 instance=ExtResource("7_k8j64")]
 position = Vector2(1185.9999, -4732)
